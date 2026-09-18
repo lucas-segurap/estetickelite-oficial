@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+        if (sessionStorage.getItem("adminLogado") !== "true") {
+        window.location.replace("./login-admin.html");
+    }
+
 
     // PROTEÇÃO ADMINISTRATIVA //
 
