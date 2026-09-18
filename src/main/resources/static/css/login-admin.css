@@ -1,0 +1,457 @@
+/* =========================================================
+   ESTETICKELITE
+   LOGIN ADMINISTRATIVO
+   IDENTIDADE VISUAL PRETO + DOURADO
+   ========================================================= */
+
+:root {
+    --preto: #000000;
+    --preto-secundario: #111111;
+    --preto-card: #161616;
+    --cinza: #222222;
+    --cinza-texto: #cccccc;
+    --cinza-claro: #888888;
+    --dourado: #d4af37;
+    --dourado-claro: #f0d56a;
+    --branco: #ffffff;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background: var(--preto);
+    color: var(--branco);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   ÁREA DO LOGIN
+   ========================================================= */
+
+.login-admin {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(circle at center,
+            #202020 0%,
+            #111111 35%,
+            #050505 70%,
+            #000000 100%);
+}
+
+
+/* =========================================================
+   CAIXA DO LOGIN
+   ========================================================= */
+
+.login-admin-box {
+    position: relative;
+
+    width: 100%;
+    max-width: 440px;
+
+    padding: 45px 42px;
+
+    background:
+        linear-gradient(145deg,
+            #181818,
+            #080808);
+
+    border: 1px solid #2c2c2c;
+    border-top: 2px solid var(--dourado);
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.85),
+        0 0 30px rgba(212, 175, 55, 0.04);
+
+    overflow: hidden;
+
+    animation: aparecer 0.6s ease both;
+}
+
+
+/* LINHA DOURADA DECORATIVA */
+
+.login-admin-box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 15%;
+
+    width: 70%;
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            var(--dourado-claro),
+            var(--dourado),
+            transparent);
+
+    box-shadow:
+        0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo-login {
+    width: 78px;
+    height: 78px;
+
+    object-fit: contain;
+
+    margin-bottom: 20px;
+
+    filter:
+        drop-shadow(0 0 10px rgba(212, 175, 55, 0.22));
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+.logo-login:hover {
+    transform: scale(1.06);
+
+    filter:
+        drop-shadow(0 0 18px rgba(212, 175, 55, 0.42));
+}
+
+
+/* =========================================================
+   TAG
+   ========================================================= */
+
+.login-tag {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--dourado);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.login-admin-box h1 {
+    margin: 0 0 10px;
+
+    color: var(--branco);
+
+    font-size: 29px;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
+   DESCRIÇÃO
+   ========================================================= */
+
+.descricao-login {
+    margin-bottom: 30px;
+
+    color: var(--cinza-claro);
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+.campo-login {
+    margin-bottom: 20px;
+
+    text-align: left;
+}
+
+.campo-login label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--dourado);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.campo-login input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    background: #101010;
+
+    color: var(--branco);
+
+    border: 1px solid #333333;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* PLACEHOLDER */
+
+.campo-login input::placeholder {
+    color: #666666;
+}
+
+
+/* FOCO */
+
+.campo-login input:focus {
+    background: #141414;
+
+    border-color: var(--dourado);
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.07),
+        0 0 15px rgba(212, 175, 55, 0.12);
+}
+
+
+/* =========================================================
+   BOTÃO
+   ========================================================= */
+
+.btn-login {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 4px;
+
+    border: 1px solid var(--dourado);
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(135deg,
+            var(--dourado),
+            #b89428);
+
+    color: #050505;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.btn-login:hover {
+    background:
+        linear-gradient(135deg,
+            var(--dourado-claro),
+            var(--dourado));
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(212, 175, 55, 0.22);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MENSAGEM DE ERRO
+   ========================================================= */
+
+#mensagemLogin {
+    min-height: 20px;
+
+    margin-top: 15px;
+    margin-bottom: 0;
+
+    font-size: 13px;
+}
+
+.login-erro {
+    color: #e6c45a;
+}
+
+
+/* =========================================================
+   VOLTAR PARA O SITE
+   ========================================================= */
+
+.voltar-site {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    color: #777777;
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.voltar-site:hover {
+    color: var(--dourado);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+   ========================================================= */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   SELEÇÃO
+   ========================================================= */
+
+::selection {
+    background: var(--dourado);
+    color: #000000;
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(212, 175, 55, 0.4);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .login-admin {
+        padding: 25px 15px;
+    }
+
+    .login-admin-box {
+        padding: 35px 25px;
+
+        border-radius: 15px;
+    }
+
+    .logo-login {
+        width: 68px;
+        height: 68px;
+    }
+
+    .login-admin-box h1 {
+        font-size: 25px;
+    }
+
+    .descricao-login {
+        font-size: 13px;
+    }
+
+    .campo-login input {
+        padding: 13px 14px;
+    }
+
+    .btn-login {
+        padding: 13px;
+    }
+}
+
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

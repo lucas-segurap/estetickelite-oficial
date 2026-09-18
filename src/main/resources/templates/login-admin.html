@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Administrativo - EstetickElite</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <!-- CSS do Login Administrativo -->
+    <link rel="stylesheet" href="../static/css/login-admin.css">
+</head>
+
+<body>
+
+    <main class="login-admin">
+
+        <div class="login-admin-box">
+
+            <!-- LOGO -->
+            <img src="../static/img/logo.png" alt="Logo EstetickElite" class="logo-login">
+
+            <!-- IDENTIFICAÇÃO -->
+            <span class="login-tag">
+                ÁREA RESTRITA
+            </span>
+
+            <h1>
+                Login Administrativo
+            </h1>
+
+            <p class="descricao-login">
+                Acesse o painel exclusivo da EstetickElite.
+            </p>
+
+            <!-- FORMULÁRIO -->
+            <form id="loginAdmin">
+
+                <!-- USUÁRIO -->
+                <div class="campo-login">
+                    <label for="usuario">
+                        Usuário
+                    </label>
+
+                    <input type="text" id="usuario" placeholder="Digite seu usuário" autocomplete="username" required>
+                </div>
+
+                <!-- SENHA -->
+                <div class="campo-login">
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input type="password" id="senha" placeholder="Digite sua senha" autocomplete="current-password"
+                        required>
+                </div>
+
+                <!-- BOTÃO -->
+                <button type="submit" class="btn-login">
+                    Entrar no painel
+                </button>
+
+                <!-- MENSAGEM -->
+                <p id="mensagemLogin"></p>
+
+            </form>
+
+            <!-- VOLTAR -->
+            <a href="../index.html" class="voltar-site">
+                Voltar para o site
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- LOGIN ADMINISTRATIVO -->
+    <script src="./static/js/script.js"></script>
+
+
+</body>
+
+</html>

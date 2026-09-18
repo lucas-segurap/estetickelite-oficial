@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administração - EstetickElite</title>
+
+    <!-- PROTEÇÃO DO PAINEL -->
+    <script>
+        if (sessionStorage.getItem("adminLogado") !== "true") {
+            window.location.replace("./login-admin.html");
+        }
+    </script>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS do painel -->
+    <link rel="stylesheet" href="../static/css/admin.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <div class="container header-estetick">
+
+            <div class="header-container">
+
+                <!-- LOGO -->
+
+                <a href="../index.html" class="logo-estetick">
+
+                    <img src="../static/img/logo.png" alt="Logo da EstetickElite">
+
+                    <span>
+                        Estetick<span>Elite</span>
+                    </span>
+
+                </a>
+
+
+                <!-- SAIR -->
+
+                <div class="botoes-header">
+
+                    <a href="./login-admin.html" class="btn-agendar" onclick="sessionStorage.removeItem('adminLogado')">
+                        Sair
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PAINEL
+         ===================================================== -->
+
+    <main>
+
+        <div class="container painel-admin">
+
+
+            <!-- TÍTULO -->
+
+            <div class="titulo-admin">
+
+                <span class="admin-tag">
+                    ÁREA RESTRITA
+                </span>
+
+                <h1>
+                    Painel Administrativo
+                </h1>
+
+                <p>
+                    Gerencie os agendamentos e acompanhe os serviços realizados.
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 ESTATÍSTICAS
+                 ================================================= -->
+
+            <div class="estatisticas">
+
+
+                <div class="estatistica">
+
+                    <span>
+                        Agendados
+                    </span>
+
+                    <h2 id="totalAgendados">
+                        0
+                    </h2>
+
+                </div>
+
+
+                <div class="estatistica">
+
+                    <span>
+                        Serviços Feitos
+                    </span>
+
+                    <h2 id="totalFeitos">
+                        0
+                    </h2>
+
+                </div>
+
+
+                <div class="estatistica">
+
+                    <span>
+                        Total de Serviços
+                    </span>
+
+                    <h2 id="totalServicos">
+                        0
+                    </h2>
+
+                </div>
+
+
+                <div class="estatistica">
+
+                    <span>
+                        Taxa de Conclusão
+                    </span>
+
+                    <h2 id="taxaConclusao">
+                        0%
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 GRÁFICOS
+                 ================================================= -->
+
+            <div class="graficos">
+
+
+                <div class="grafico-box">
+
+                    <h3>
+                        Status dos Serviços
+                    </h3>
+
+                    <div class="grafico-container">
+
+                        <canvas id="graficoStatus"></canvas>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grafico-box">
+
+                    <h3>
+                        Serviços Agendados
+                    </h3>
+
+                    <div class="grafico-container">
+
+                        <canvas id="graficoServicos"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 AGENDADOS
+                 ================================================= -->
+
+            <section class="secao-admin">
+
+                <div class="titulo-secao">
+
+                    <h2>
+                        Agendados para fazer
+                    </h2>
+
+                    <span class="contador" id="contadorAgendados">
+                        0
+                    </span>
+
+                </div>
+
+                <div id="listaAgendados"></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SERVIÇOS FEITOS
+                 ================================================= -->
+
+            <section class="secao-admin">
+
+                <div class="titulo-secao">
+
+                    <h2>
+                        Serviços feitos
+                    </h2>
+
+                    <span class="contador" id="contadorFeitos">
+                        0
+                    </span>
+
+                </div>
+
+                <div id="listaFeitos"></div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- JavaScript do painel -->
+
+    <script src="../static/js/admin.js"></script>
+
+</body>
+
+</html>

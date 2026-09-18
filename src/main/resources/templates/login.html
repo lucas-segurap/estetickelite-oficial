@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- TAG DO MEU SITE-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Página com conteúdos, exercícios e atividades desenvolvidas durante as aulas de Bootstrap, aprendendo a criar páginas web modernas, organizadas e responsivas.">
+    <meta name="keywords" content="sites,web desenvolvimento backend">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <link rel="stylesheet" href="../static/css/cadastro.css">
+
+
+    <meta name="author" content="Lucas segura, SeguraPrime, seguralucas949@gmail.com, 11 97387-4201">
+    <title>Cadastro</title>
+    <link rel="icon" href="../favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="container header-estetick">
+
+            <div class="header-container">
+
+                <!-- LOGO -->
+
+                <a href="../index.html" class="logo-estetick">
+
+                    <img src="../static/img/logo.png" alt="Logo da EstetickElite">
+
+                    <span>
+                        Estetick<span>Elite</span>
+                    </span>
+
+                </a>
+
+
+                <!-- MENU -->
+
+                <nav aria-label="Menu principal">
+
+                    <ul class="nav-estetick">
+
+                        <li>
+                            <a href="../index.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./cadastro.html" class="active">
+                                Cadastro
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./agendamento.html">
+                                Agendamento
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="./faleconosco.html">
+                                Fale conosco
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+                <!-- BOTÕES -->
+
+                <div class="botoes-header">
+
+                    <a href="./cadastro.html" class="btn-cadastrar">
+
+                        Cadastrar
+
+                    </a>
+
+                    <a href="./login.html" class="btn-agendar">
+
+                        Fazer Login
+
+                    </a>
+
+
+                    <a href="./admin.html" class="btn-admin" aria-label="Acesso administrativo"
+                        title="Acesso administrativo">
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <div class="cadastro">
+
+            <div class="text-center mb-4">
+
+                <h1>Fazer Login</h1>
+
+                <p style="color: #cccccc;">
+                    Faça Login ou cadastre-se para agendar um horário e conhecer nossos serviços.
+                </p>
+
+            </div>
+
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+
+                    <input type="email" class="form-control" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Senha</label>
+
+                    <input type="password" class="form-control" placeholder="Digite sua senha" required>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-estetick w-100">
+                    Fazer Login
+                </button>
+
+            </form>
+        </div>
+
+
+    </main>
+
+    <footer>
+
+        <div class="footer-estetick">
+            <div class="container footer-container">
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center py-4">
+
+                    <!-- COPYRIGHT -->
+                    <p class="col-md-4 mb-0 copyright">
+                        © 2026 EstetickElite. Todos os direitos reservados.
+                    </p>
+
+                    <!-- LOGO -->
+                    <a href="./index.html"
+                        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 logo-footer">
+
+                        <img src="../static/img/logo.png" alt="Logo EstetickElite" width="40" height="40" class="me-2">
+
+                        Estetick<span>Elite</span>
+                    </a>
+
+                    <!-- MENU -->
+                    <ul class="nav col-md-4 justify-content-end nav-estetick">
+
+                        <!-- HOME -->
+                        <li class="nav-item">
+                            <a href="./index.html" class="nav-link px-2 active">
+                                Home
+                            </a>
+                        </li>
+
+                        <!-- CADASTRO -->
+                        <li class="nav-item">
+                            <a href="./templates/cadastro.html" class="nav-link px-2 ">
+                                Cadastro
+                            </a>
+                        </li>
+
+                        <!-- AGENDAMENTO -->
+                        <li class="nav-item">
+                            <a href="./templates/agendamento.html" class="nav-link px-2 ">
+                                Agendamento
+                            </a>
+                        </li>
+
+                        <!-- FALE CONOSCO -->
+                        <li class="nav-item">
+                            <a href="./templates/faleconosco.html" class="nav-link px-2 ">
+                                Fale conosco
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- FRASE DA EMPRESA -->
+                <div class="text-center py-3 linha-dourada">
+                    <small style="color: #d4af37;">
+                        Estética automotiva com qualidade e excelência.
+                    </small>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
+    <script src="./static/js/script.js"></script>
+
+</body>
+
+</html>

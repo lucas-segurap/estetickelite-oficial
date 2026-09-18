@@ -1,0 +1,553 @@
+/* =====================================================
+   FUNDO DA PÁGINA
+===================================================== */
+
+body {
+    background: #000000;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   ÁREA PRINCIPAL
+===================================================== */
+
+main {
+    background:
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 35%),
+        #000000;
+
+    min-height: 100vh;
+    padding: 1px 0;
+
+    animation: aparecerPagina 0.8s ease forwards;
+}
+
+
+/* =====================================================
+   CARD DE CADASTRO
+===================================================== */
+
+.cadastro {
+    position: relative;
+
+    max-width: 700px;
+    margin: 60px auto;
+
+    background:
+        linear-gradient(145deg,
+            #080808,
+            #000000 70%);
+
+    padding: 40px;
+
+    border-radius: 16px;
+
+    border: 1px solid #3d3d3d;
+    border-top: 2px solid #d4af37;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.8),
+        0 0 0 rgba(212, 175, 55, 0);
+
+    animation: entrarCard 0.9s ease forwards;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+}
+
+
+/* =====================================================
+   BRILHO DO CARD
+===================================================== */
+
+.cadastro::before {
+    content: "";
+
+    position: absolute;
+
+    top: -2px;
+    left: 10%;
+    right: 10%;
+
+    height: 2px;
+
+    background: linear-gradient(90deg,
+            transparent,
+            #d4af37,
+            #f5d76e,
+            #d4af37,
+            transparent);
+
+    filter: blur(1px);
+
+    opacity: 0.8;
+
+    animation: brilhoLinha 3s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   HOVER DO CARD
+===================================================== */
+
+.cadastro:hover {
+    transform: translateY(-6px);
+
+    border-color: #6d5a24;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(212, 175, 55, 0.08);
+}
+
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
+.cadastro h1 {
+    color: #d4af37;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 10px rgba(212, 175, 55, 0.15);
+
+    animation: tituloEntrada 0.9s ease forwards;
+
+    transition:
+        text-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.cadastro h1:hover {
+    transform: scale(1.02);
+
+    text-shadow:
+        0 0 8px rgba(212, 175, 55, 0.4),
+        0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+
+/* =====================================================
+   LABELS
+===================================================== */
+
+.form-label {
+    color: #dddddd;
+
+    font-weight: 500;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+/* =====================================================
+   CAMPOS
+===================================================== */
+
+.form-control {
+    background-color: #050505;
+
+    border: 1px solid #333333;
+
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    padding: 11px 13px;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease,
+        transform 0.25s ease;
+}
+
+
+/* Placeholder */
+
+.form-control::placeholder {
+    color: #777777;
+
+    transition: color 0.3s ease;
+}
+
+
+/* =====================================================
+   HOVER DOS CAMPOS
+===================================================== */
+
+.form-control:hover {
+    border-color: #665522;
+
+    background-color: #090909;
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   CAMPOS AO SELECIONAR
+===================================================== */
+
+.form-control:focus {
+    background-color: #0d0d0d;
+
+    color: #ffffff;
+
+    border-color: #d4af37;
+
+    outline: none;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.08),
+        0 0 18px rgba(212, 175, 55, 0.12);
+
+    animation: campoFoco 0.35s ease;
+}
+
+
+.form-control:focus::placeholder {
+    color: #aaaaaa;
+}
+
+
+/* =====================================================
+   LABEL QUANDO O CAMPO RECEBE FOCO
+===================================================== */
+
+.form-control:focus+.form-label {
+    color: #d4af37;
+}
+
+
+/* =====================================================
+   BOTÃO ESTETICK
+===================================================== */
+
+.btn-estetick {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(135deg,
+            #d4af37,
+            #b89428);
+
+    border: 1px solid #d4af37;
+
+    color: #000000;
+
+    font-weight: bold;
+
+    padding: 11px 28px;
+
+    border-radius: 8px;
+
+    letter-spacing: 0.3px;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.25s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =====================================================
+   BRILHO PASSANDO PELO BOTÃO
+===================================================== */
+
+.btn-estetick::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.45),
+            transparent);
+
+    transform: skewX(-20deg);
+
+    transition: left 0.6s ease;
+}
+
+
+.btn-estetick:hover::before {
+    left: 130%;
+}
+
+
+/* =====================================================
+   HOVER DO BOTÃO
+===================================================== */
+
+.btn-estetick:hover {
+    background:
+        linear-gradient(135deg,
+            #e5c158,
+            #d4af37);
+
+    border-color: #f0d56b;
+
+    color: #000000;
+
+    transform: translateY(-3px) scale(1.02);
+
+    box-shadow:
+        0 8px 20px rgba(212, 175, 55, 0.3),
+        0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+
+/* =====================================================
+   BOTÃO AO CLICAR
+===================================================== */
+
+.btn-estetick:active {
+    transform: translateY(0) scale(0.98);
+
+    box-shadow:
+        0 3px 8px rgba(212, 175, 55, 0.2);
+}
+
+
+/* =====================================================
+   ANIMAÇÃO DOS CAMPOS DO FORMULÁRIO
+===================================================== */
+
+.cadastro .mb-3 {
+    animation: campoEntrada 0.7s ease both;
+}
+
+
+.cadastro .mb-3:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.cadastro .mb-3:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.cadastro .mb-3:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.cadastro .mb-3:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.cadastro .mb-3:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+
+/* =====================================================
+   ANIMAÇÕES
+===================================================== */
+
+@keyframes aparecerPagina {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes entrarCard {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+@keyframes tituloEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes campoEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes campoFoco {
+
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(212, 175, 55, 0.25);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 3px rgba(212, 175, 55, 0.08),
+            0 0 18px rgba(212, 175, 55, 0.12);
+    }
+}
+
+
+@keyframes brilhoLinha {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scaleX(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .cadastro {
+        margin: 30px 15px;
+
+        padding: 25px;
+
+        border-radius: 13px;
+    }
+
+    .cadastro h1 {
+        font-size: 28px;
+    }
+
+    .btn-estetick {
+        width: 100%;
+    }
+}
+
+/* =====================================================
+   CAMPOS DO FORMULÁRIO
+===================================================== */
+
+.form-control {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+
+    border: 1px solid #444444 !important;
+    border-radius: 8px;
+
+    padding: 11px 13px;
+
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+/* =====================================================
+   PLACEHOLDER
+===================================================== */
+
+.form-control::placeholder {
+    color: #777777 !important;
+    opacity: 1;
+    transition: color 0.3s ease;
+}
+
+
+/* =====================================================
+   QUANDO PASSAR O MOUSE
+===================================================== */
+
+.form-control:hover {
+    background-color: #161616 !important;
+    color: #ffffff !important;
+
+    border-color: #d4af37 !important;
+
+    box-shadow:
+        0 0 10px rgba(212, 175, 55, 0.08);
+
+    transform: translateY(-1px);
+}
+
+
+/* =====================================================
+   QUANDO CLICAR NO CAMPO
+===================================================== */
+
+.form-control:focus {
+    background-color: #181818 !important;
+    color: #ffffff !important;
+
+    border-color: #d4af37 !important;
+
+    outline: none !important;
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.10),
+        0 0 18px rgba(212, 175, 55, 0.12) !important;
+
+    transform: translateY(-2px);
+}
+
+
+/* Placeholder quando estiver selecionado */
+
+.form-control:focus::placeholder {
+    color: #999999 !important;
+}

@@ -1,0 +1,1288 @@
+/* =====================================================
+   LUCAS SEGURA PEREIRA
+===================================================== */
+
+/* =====================================================
+   CONFIGURAÇÕES GERAIS
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background-color: var(--preto) !important;
+
+    color: var(--branco);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+/* =====================================================
+   HEADER ESTETICKELITE
+   PRETO + DOURADO
+===================================================== */
+
+.header-estetick {
+    width: 100%;
+
+    background:
+        linear-gradient(135deg,
+            #030303,
+            #111111,
+            #050505);
+
+    border-bottom:
+        1px solid rgba(212, 175, 55, 0.35);
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.7);
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+/* =====================================================
+   LINHA DOURADA DO HEADER
+===================================================== */
+
+.header-estetick::after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 2px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            var(--dourado),
+            var(--dourado-claro),
+            var(--dourado),
+            transparent);
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.header-estetick .header-container {
+
+    min-height: 85px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 0 20px;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.header-estetick .logo-estetick {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.header-estetick .logo-estetick:hover {
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   IMAGEM DA LOGO
+===================================================== */
+
+.header-estetick .logo-estetick img {
+
+    width: 52px;
+
+    height: 52px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 0 8px rgba(212, 175, 55, 0.25));
+
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.header-estetick .logo-estetick:hover img {
+
+    transform: scale(1.05);
+
+    filter:
+        drop-shadow(0 0 12px rgba(212, 175, 55, 0.45));
+}
+
+
+/* =====================================================
+   NOME DA EMPRESA
+===================================================== */
+
+.header-estetick .logo-estetick span {
+
+    color: var(--branco);
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.5px;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+/* DOURADO DO LOGO */
+
+.header-estetick .logo-estetick span span {
+
+    color: var(--dourado);
+}
+
+/* =====================================================
+   MENU DE NAVEGAÇÃO
+===================================================== */
+
+.header-estetick .nav-estetick {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+.header-estetick .nav-estetick a {
+
+    position: relative;
+
+    display: block;
+
+    padding: 10px 15px;
+
+    color: #cccccc;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    border-radius: 6px;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.header-estetick .nav-estetick a:hover {
+
+    color: var(--dourado);
+
+    background:
+        rgba(212, 175, 55, 0.05);
+}
+
+
+/* =====================================================
+   LINK ATIVO
+===================================================== */
+
+.header-estetick .nav-estetick a.active {
+
+    color: var(--dourado);
+
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   LINHA DOURADA DOS LINKS
+===================================================== */
+
+.header-estetick .nav-estetick a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 15px;
+
+    right: 15px;
+
+    bottom: 3px;
+
+    height: 2px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(90deg,
+            var(--preto-card),
+            var(--dourado-claro));
+
+    transform: scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* =====================================================
+   LINHA AO PASSAR O MOUSE
+===================================================== */
+
+.header-estetick .nav-estetick a:hover::after {
+
+    transform: scaleX(1);
+}
+
+
+/* =====================================================
+   LINHA PERMANENTE NO BOTÃO ATIVO
+===================================================== */
+
+.header-estetick .nav-estetick a.active::after {
+
+    transform: scaleX(1);
+}
+
+
+/* =====================================================
+   BOTÕES DO HEADER
+===================================================== */
+
+.header-estetick .botoes-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =====================================================
+   ESTILO GERAL DOS BOTÕES
+===================================================== */
+
+.header-estetick .botoes-header a {
+
+    padding:
+        10px 18px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition:
+        all 0.3s ease;
+}
+
+/* =====================================================
+   BOTÃO CADASTRAR
+===================================================== */
+
+.header-estetick .btn-cadastrar {
+
+    color: var(--dourado);
+
+    background:
+        transparent;
+
+    border:
+        1px solid var(--dourado);
+}
+
+
+.header-estetick .btn-cadastrar:hover {
+
+    background:
+        var(--dourado);
+
+    color:
+        #080808;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(212, 175, 55, 0.2);
+}
+
+
+/* =====================================================
+   BOTÃO AGENDAR
+===================================================== */
+
+.header-estetick .btn-agendar {
+
+    background:
+        linear-gradient(135deg,
+            var(--dourado),
+            #b89428);
+
+    color:
+        #080808;
+
+    border:
+        1px solid var(--dourado);
+
+    box-shadow:
+        0 4px 12px rgba(212, 175, 55, 0.12);
+}
+
+
+.header-estetick .btn-agendar:hover {
+
+    background:
+        linear-gradient(135deg,
+            var(--dourado-claro),
+            var(--dourado));
+
+    color:
+        #000000;
+
+    border-color:
+        var(--dourado-claro);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 22px rgba(212, 175, 55, 0.25);
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .header-estetick .header-container {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        padding:
+            20px;
+    }
+
+
+    .header-estetick .logo-estetick {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .header-estetick .nav-estetick {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .header-estetick .botoes-header {
+
+        justify-content: center;
+    }
+}
+
+
+/* =====================================================
+   CELULAR
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .header-estetick .header-container {
+
+        gap: 18px;
+
+        padding:
+            20px 10px;
+    }
+
+
+    .header-estetick .logo-estetick img {
+
+        width: 45px;
+
+        height: 45px;
+    }
+
+
+    .header-estetick .logo-estetick span {
+
+        font-size: 19px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .header-estetick .nav-estetick {
+
+        width: 100%;
+
+        gap: 2px;
+    }
+
+
+    .header-estetick .nav-estetick a {
+
+        padding:
+            8px 10px;
+
+        font-size: 14px;
+    }
+
+
+    .header-estetick .botoes-header {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .header-estetick .botoes-header a {
+
+        flex: 1;
+
+        max-width: 160px;
+
+        text-align: center;
+
+        padding:
+            10px 12px;
+    }
+
+}
+
+:root {
+    --preto: #000000;
+    --preto-secundario: #111111;
+    --preto-card: #161616;
+
+    --cinza: #222222;
+    --cinza-texto: #cccccc;
+
+    --dourado: #d4af37;
+    --dourado-claro: #f0d56a;
+
+    --branco: #ffffff;
+}
+
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    width: 100%;
+
+    background:
+        linear-gradient(135deg,
+            #030303,
+            #151515,
+            #050505);
+
+    border-bottom:
+        1px solid rgba(212, 175, 55, 0.45);
+
+    box-shadow:
+        0 5px 25px rgba(0, 0, 0, 0.7);
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+header::after {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 2px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            var(--dourado),
+            var(--dourado-claro),
+            var(--dourado),
+            transparent);
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+    width: 100%;
+
+    min-height: 80vh;
+
+    padding-top: 50px;
+
+    padding-bottom: 70px;
+
+    background:
+        radial-gradient(circle at 50% 0%,
+            #292929 0%,
+            #141414 25%,
+            #080808 65%,
+            #050505 100%);
+}
+
+
+/* =====================================================
+   APRESENTAÇÃO
+===================================================== */
+
+.container-img {
+    width: calc(100% - 30px);
+
+    max-width: 1200px;
+
+    margin: 0 auto 70px;
+
+    padding: 50px 30px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(145deg,
+            #151515,
+            #090909);
+
+    border:
+        1px solid #292929;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.6);
+}
+
+
+/* =====================================================
+   TÍTULO PRINCIPAL
+===================================================== */
+
+.container-img h1 {
+    color: var(--dourado);
+
+    font-size: 2.5rem;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+        0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+
+.container-img p {
+    max-width: 1000px;
+
+    margin: 0 auto 30px;
+
+    color: var(--cinza-texto);
+
+    line-height: 1.8;
+
+    font-size: 1rem;
+}
+
+
+
+/* =====================================================
+   TÍTULOS DAS SEÇÕES
+===================================================== */
+
+main h2 {
+    color: var(--dourado) !important;
+
+    font-weight: bold;
+
+    font-size: 2.2rem;
+
+    text-shadow:
+        0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+
+main .text-center p {
+    color: var(--cinza-texto);
+}
+
+
+/* =====================================================
+   SERVIÇOS
+===================================================== */
+
+.servicos {
+    max-width: 1200px;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card {
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(145deg,
+            #181818,
+            #0d0d0d) !important;
+
+    color: var(--branco);
+
+    border:
+        1px solid #292929 !important;
+
+    border-radius: 15px !important;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.45);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* =====================================================
+   CARDS DOS SERVIÇOS
+===================================================== */
+
+.card {
+    width: 100%;
+
+    height: 520px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        linear-gradient(145deg,
+            #181818,
+            #0d0d0d) !important;
+
+    color: var(--branco);
+
+    border:
+        1px solid #292929 !important;
+
+    border-radius: 15px !important;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.45);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/* =====================================================
+   HOVER DOS CARDS
+===================================================== */
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(212, 175, 55, 0.65) !important;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.7),
+
+        0 0 20px rgba(212, 175, 55, 0.08);
+}
+
+
+/* =====================================================
+   IMAGENS DOS SERVIÇOS
+===================================================== */
+
+.card-img-top {
+
+    display: block;
+
+    width: 100%;
+
+    height: 220px;
+
+    min-height: 220px;
+
+    object-fit: cover;
+
+    flex-shrink: 0;
+
+    transition:
+        transform 0.4s ease;
+}
+
+
+.card:hover .card-img-top {
+
+    transform: scale(1.04);
+}
+
+
+/* =====================================================
+   CORPO DOS CARDS
+===================================================== */
+
+.card-body {
+
+    padding: 25px;
+
+    display: flex;
+
+
+    flex-direction: column;
+
+    flex: 1;
+
+    min-height: 0;
+}
+
+
+/* =====================================================
+   TÍTULO DOS CARDS
+===================================================== */
+
+.card-title {
+
+    color:
+        var(--dourado) !important;
+
+    font-size: 1.2rem;
+
+    font-weight: bold;
+
+    margin-bottom: 1px;
+
+    min-height: 40px;
+
+    display: flex;
+
+    align-items: flex-start;
+}
+
+
+/* =====================================================
+   DESCRIÇÃO
+===================================================== */
+
+.card-text {
+
+    color:
+        var(--cinza-texto) !important;
+
+    line-height: 1.6;
+
+    font-size: 0.95rem;
+
+    flex: 1;
+
+    margin-bottom: 10px;
+    max-width: 320px;
+}
+
+
+/* =====================================================
+   PREÇO
+===================================================== */
+
+.card h4 {
+
+    color:
+        var(--dourado) !important;
+
+    font-weight: bold;
+
+    margin-top: auto;
+
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   BOTÃO
+===================================================== */
+
+.card .btn {
+
+    margin-top: auto;
+
+    width: 100%;
+}
+
+
+.card-servico .card-text {
+    min-height: 40px;
+    margin-bottom: 0;
+}
+
+/* =====================================================
+   BOTÃO PRINCIPAL
+===================================================== */
+
+.btn-primary {
+
+    background:
+        linear-gradient(135deg,
+            var(--dourado),
+            #b89428) !important;
+
+    border:
+        none !important;
+
+    color:
+        #080808 !important;
+
+    font-weight: bold;
+
+    padding:
+        11px 20px;
+
+    border-radius: 8px;
+
+    transition:
+        all 0.3s ease;
+}
+
+
+.btn-primary:hover {
+
+    background:
+        linear-gradient(135deg,
+            var(--dourado-claro),
+            var(--dourado)) !important;
+
+    color:
+        #000000 !important;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 7px 20px rgba(212, 175, 55, 0.25);
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .card {
+
+        height: 500px;
+
+    }
+
+
+    .card-img-top {
+
+        height: 210px;
+
+        min-height: 210px;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .card {
+
+        height: 480px;
+
+    }
+
+
+    .card-img-top {
+
+        height: 200px;
+
+        min-height: 200px;
+
+    }
+
+
+    .card-body {
+
+        padding: 20px;
+
+    }
+
+}
+
+/* =====================================================
+   COMBOS
+===================================================== */
+
+.combo-premium {
+    border:
+        2px solid var(--dourado);
+
+    box-shadow:
+        0 10px 35px rgba(212, 175, 55, 0.12);
+}
+
+
+.container.py-5 .card h3 {
+    color: var(--branco);
+
+    font-size: 2rem;
+
+    margin: 15px 0;
+}
+
+
+.container.py-5 .card h4 {
+    font-size: 1.4rem;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    width: 100%;
+
+    background:
+        linear-gradient(135deg,
+            #030303,
+            #121212,
+            #030303);
+
+    color: var(--branco);
+
+    border-top:
+        1px solid rgba(212, 175, 55, 0.45);
+
+    box-shadow:
+        0 -5px 25px rgba(0, 0, 0, 0.6);
+
+    position: relative;
+
+    padding: 35px 0;
+}
+
+
+footer::before {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+
+    height: 2px;
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            var(--dourado),
+            var(--dourado-claro),
+            var(--dourado),
+            transparent);
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 992px) {
+
+    .imagemelite {
+        height: 400px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    main {
+        padding-top: 30px;
+
+        padding-bottom: 50px;
+    }
+
+
+    .container-img {
+        margin:
+            0 15px 45px;
+
+        width:
+            calc(100% - 30px);
+
+        padding:
+            35px 20px;
+
+        border-radius: 15px;
+    }
+
+
+    .container-img h1 {
+        font-size: 1.9rem;
+    }
+
+
+    .container-img p {
+        font-size: 0.9rem;
+
+        line-height: 1.7;
+    }
+
+
+    .imagemelite {
+        height: 300px;
+    }
+
+
+    main h2 {
+        font-size: 1.8rem;
+    }
+
+
+    .card-img-top {
+        height: 210px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .container-img {
+        margin:
+            0 10px 40px;
+
+        width:
+            calc(100% - 20px);
+
+        padding:
+            30px 15px;
+    }
+
+
+    .container-img h1 {
+        font-size: 1.6rem;
+    }
+
+
+    .imagemelite {
+        height: 230px;
+    }
+
+
+    .card-body {
+        padding: 20px;
+    }
+
+
+    .card-title {
+        font-size: 1.1rem;
+
+        min-height: auto;
+    }
+
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+
+    .btn-primary {
+        width: 100%;
+    }
+
+}
+
+
+
+
+
+
+
+/* SAMUEL */
+.footer-estetick {
+    background-color: #000000;
+    border-top: 1px solid #2b2b2b;
+    color: #ffffff;
+}
+
+.footer-estetick .footer-container {
+    min-height: 120px;
+}
+
+.footer-estetick .logo-footer {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.footer-estetick .logo-footer span {
+    color: #d4af37;
+}
+
+.footer-estetick .copyright {
+    color: #999999;
+    font-size: 14px;
+}
+
+.footer-estetick .nav-link {
+    color: #999999 !important;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.footer-estetick .nav-link:hover {
+    color: #d4af37 !important;
+}
+
+.footer-estetick .linha-dourada {
+    border-top: 1px solid #d4af37;
+
+}
+
+.card-img {
+
+    grid-area: 500px;
+    height: 500px;
+    border: #ffffff 2px solid;
+}
+
+@media (max-width: 768px) {
+    .footer-estetick .footer-container {
+        text-align: center;
+    }
+
+    .footer-estetick .nav {
+        justify-content: center !important;
+        margin-top: 15px;
+    }
+}
+
+.btn-admin {
+    color: #555;
+    text-decoration: none;
+    font-size: 11px;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.btn-admin:hover {
+    color: #d4af37;
+    opacity: 1;
+}

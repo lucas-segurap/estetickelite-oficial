@@ -1,0 +1,806 @@
+/* =========================================================
+   ESTETICKELITE
+   PAINEL ADMINISTRATIVO
+   IDENTIDADE VISUAL PRETO + DOURADO
+   ========================================================= */
+
+/* =========================================================
+   VARIÁVEIS
+   ========================================================= */
+
+:root {
+    --preto: #000000;
+    --preto-secundario: #111111;
+    --preto-card: #161616;
+    --cinza: #222222;
+    --cinza-texto: #cccccc;
+    --cinza-claro: #999999;
+    --dourado: #d4af37;
+    --dourado-claro: #f0d56a;
+    --branco: #ffffff;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--preto);
+    color: var(--branco);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+    width: 100%;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg,
+            #030303,
+            #151515,
+            #050505);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Linha dourada */
+
+header::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--dourado),
+            var(--dourado-claro),
+            var(--dourado),
+            transparent);
+}
+
+/* =========================================================
+   CONTAINER DO HEADER
+   ========================================================= */
+
+.header-estetick {
+    width: 100%;
+}
+
+.header-container {
+    min-height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo-estetick {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    transition: transform 0.3s ease;
+}
+
+.logo-estetick:hover {
+    transform: translateY(-2px);
+}
+
+.logo-estetick img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.25));
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+.logo-estetick:hover img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.45));
+}
+
+.logo-estetick>span {
+    color: var(--branco);
+}
+
+.logo-estetick>span>span {
+    color: var(--dourado);
+}
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.nav-estetick {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-estetick .nav-link {
+    position: relative;
+    display: block;
+    padding: 10px 15px !important;
+    color: #cccccc !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 7px;
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.nav-estetick .nav-link:hover {
+    color: var(--dourado) !important;
+    background: rgba(212, 175, 55, 0.06);
+    transform: translateY(-2px);
+}
+
+/* Linha animada */
+
+.nav-estetick .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 3px;
+    height: 2px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,
+            var(--dourado),
+            var(--dourado-claro));
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.nav-estetick .nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* =========================================================
+   BOTÃO SAIR / AGENDAR
+   ========================================================= */
+
+.botoes-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-agendar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 82px;
+    padding: 11px 20px;
+    border-radius: 7px;
+    border: 1px solid var(--dourado);
+    background: linear-gradient(135deg,
+            var(--dourado),
+            #b89428);
+    color: #080808 !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-agendar:hover {
+    background: linear-gradient(135deg,
+            var(--dourado-claro),
+            var(--dourado));
+    color: #000000 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(212, 175, 55, 0.25);
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 0%,
+            #292929 0%,
+            #141414 25%,
+            #080808 65%,
+            #050505 100%);
+}
+
+/* =========================================================
+   PAINEL
+   ========================================================= */
+
+.painel-admin {
+    max-width: 1200px;
+    padding-top: 55px;
+    padding-bottom: 80px;
+}
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.titulo-admin {
+    margin-bottom: 40px;
+    animation: aparecer 0.6s ease both;
+}
+
+.admin-tag {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--dourado);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.titulo-admin h1 {
+    margin: 0 0 12px;
+    color: var(--branco);
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
+}
+
+.titulo-admin p {
+    max-width: 720px;
+    margin: 0;
+    color: var(--cinza-texto);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   ESTATÍSTICAS
+   ========================================================= */
+
+.estatisticas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 38px;
+}
+
+.estatistica {
+    position: relative;
+    min-height: 140px;
+    padding: 25px;
+    background: linear-gradient(145deg,
+            #181818,
+            #0d0d0d);
+    border: 1px solid #292929;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    animation: aparecer 0.6s ease both;
+}
+
+/* Barra dourada lateral */
+
+.estatistica::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg,
+            var(--dourado-claro),
+            var(--dourado));
+}
+
+.estatistica:hover {
+    transform: translateY(-7px);
+    border-color: rgba(212, 175, 55, 0.65);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(212, 175, 55, 0.08);
+}
+
+.estatistica span {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--cinza-texto);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.estatistica h2 {
+    margin: 0;
+    color: var(--dourado);
+    font-size: 34px;
+    font-weight: 800;
+    transition: color 0.3s ease;
+}
+
+.estatistica:hover h2 {
+    color: var(--dourado-claro);
+}
+
+/* =========================================================
+   GRÁFICOS
+   ========================================================= */
+
+.graficos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 50px;
+}
+
+.grafico-box {
+    min-height: 390px;
+    padding: 28px;
+    background: linear-gradient(145deg,
+            #181818,
+            #0d0d0d);
+    border: 1px solid #292929;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    animation: aparecer 0.7s ease both;
+}
+
+.grafico-box:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6);
+}
+
+.grafico-box h3 {
+    margin: 0 0 25px;
+    color: var(--dourado);
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.grafico-container {
+    position: relative;
+    width: 100%;
+    height: 285px;
+}
+
+.grafico-container canvas {
+    max-width: 100%;
+}
+
+/* =========================================================
+   SEÇÕES ADMINISTRATIVAS
+   ========================================================= */
+
+.secao-admin {
+    margin-bottom: 30px;
+    padding: 28px;
+    background: linear-gradient(145deg,
+            #181818,
+            #0d0d0d);
+    border: 1px solid #292929;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    animation: aparecer 0.8s ease both;
+}
+
+.titulo-secao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #292929;
+}
+
+.titulo-secao h2 {
+    margin: 0;
+    color: var(--dourado);
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.contador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 13px;
+    border-radius: 50px;
+    background: linear-gradient(135deg,
+            var(--dourado),
+            #b89428);
+    color: #080808;
+    font-size: 14px;
+    font-weight: 800;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.12);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.contador:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.25);
+}
+
+/* =========================================================
+   LISTAS
+   ========================================================= */
+
+#listaAgendados,
+#listaFeitos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#listaAgendados>div,
+#listaFeitos>div,
+#listaAgendados>article,
+#listaFeitos>article {
+    padding: 20px;
+    background: linear-gradient(145deg,
+            #1c1c1c,
+            #111111);
+    border: 1px solid #292929;
+    border-radius: 12px;
+    color: var(--cinza-texto);
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#listaAgendados>div:hover,
+#listaFeitos>div:hover,
+#listaAgendados>article:hover,
+#listaFeitos>article:hover {
+    transform: translateX(5px);
+    border-color: rgba(212, 175, 55, 0.55);
+    background: linear-gradient(145deg,
+            #202020,
+            #141414);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Textos */
+
+#listaAgendados strong,
+#listaFeitos strong {
+    color: var(--branco);
+}
+
+#listaAgendados p,
+#listaFeitos p {
+    color: var(--cinza-texto);
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   ESTADO VAZIO
+   ========================================================= */
+
+#listaAgendados:empty::before {
+    content: "Nenhum agendamento encontrado.";
+    display: block;
+    padding: 45px 20px;
+    color: #777777;
+    text-align: center;
+    font-size: 14px;
+}
+
+#listaFeitos:empty::before {
+    content: "Nenhum serviço concluído.";
+    display: block;
+    padding: 45px 20px;
+    color: #777777;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* =========================================================
+   BOTÕES DENTRO DAS LISTAS
+   ========================================================= */
+
+#listaAgendados button,
+#listaFeitos button {
+    padding: 9px 16px;
+    border: 1px solid var(--dourado);
+    border-radius: 7px;
+    background: linear-gradient(135deg,
+            var(--dourado),
+            #b89428);
+    color: #080808;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#listaAgendados button:hover,
+#listaFeitos button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,
+            var(--dourado-claro),
+            var(--dourado));
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.2);
+}
+
+/* =========================================================
+   ANIMAÇÃO
+   ========================================================= */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   ANIMAÇÃO DOS CARDS
+   ========================================================= */
+
+.estatistica:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.estatistica:nth-child(2) {
+    animation-delay: 0.10s;
+}
+
+.estatistica:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.estatistica:nth-child(4) {
+    animation-delay: 0.20s;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555555;
+    border-radius: 10px;
+    border: 2px solid #080808;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dourado);
+}
+
+/* =========================================================
+   SELEÇÃO DE TEXTO
+   ========================================================= */
+
+::selection {
+    background: var(--dourado);
+    color: #000000;
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(212, 175, 55, 0.45);
+    outline-offset: 3px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .estatisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header-container {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .header-container {
+        flex-wrap: wrap;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .nav-estetick {
+        order: 3;
+        width: 100%;
+        padding-top: 10px;
+        border-top: 1px solid #292929;
+    }
+
+    .graficos {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .painel-admin {
+        padding-top: 35px;
+        padding-bottom: 50px;
+    }
+
+    .estatisticas {
+        grid-template-columns: 1fr;
+    }
+
+    .titulo-admin h1 {
+        font-size: 32px;
+    }
+
+    .grafico-box {
+        min-height: 350px;
+        padding: 22px;
+    }
+
+    .grafico-container {
+        height: 250px;
+    }
+
+    .secao-admin {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-container {
+        min-height: 70px;
+        gap: 18px;
+        padding: 18px 10px;
+    }
+
+    .logo-estetick {
+        font-size: 18px;
+    }
+
+    .logo-estetick img {
+        width: 43px;
+        height: 43px;
+    }
+
+    .nav-estetick {
+        width: 100%;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .nav-estetick .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 9px 10px !important;
+    }
+
+    .botoes-header {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-agendar {
+        width: 100%;
+        max-width: 170px;
+    }
+
+    .titulo-admin h1 {
+        font-size: 29px;
+    }
+
+    .titulo-admin p {
+        font-size: 14px;
+    }
+
+    .estatistica {
+        min-height: 115px;
+        padding: 21px;
+    }
+
+    .estatistica h2 {
+        font-size: 29px;
+    }
+
+    .grafico-box {
+        min-height: 330px;
+        padding: 18px;
+    }
+
+    .grafico-container {
+        height: 230px;
+    }
+
+    .secao-admin {
+        padding: 18px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 19px;
+    }
+
+    .contador {
+        min-width: 38px;
+        height: 38px;
+    }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
