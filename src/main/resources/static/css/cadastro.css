@@ -1,406 +1,427 @@
-/* =====================================================
-   FUNDO DA PÁGINA
-===================================================== */
+/* EstetickElite — identidade visual compartilhada: preto e dourado */
+:root {
+    --preto: #080808;
+    --preto-2: #111111;
+    --preto-3: #181818;
+    --cinza: #222222;
+    --cinza-texto: #cccccc;
+    --branco: #ffffff;
+    --dourado: #d4af37;
+    --dourado-claro: #f0d56a;
+    --sombra: 0 15px 40px rgba(0, 0, 0, .45);
+    --transicao: .3s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-    background: #000000;
-    color: #ffffff;
-    overflow-x: hidden;
-}
-
-
-/* =====================================================
-   ÁREA PRINCIPAL
-===================================================== */
-
-main {
-    background:
-        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 35%),
-        #000000;
-
+    margin: 0;
     min-height: 100vh;
-    padding: 1px 0;
-
-    animation: aparecerPagina 0.8s ease forwards;
+    overflow-x: hidden;
+    background: radial-gradient(circle at top, rgba(212, 175, 55, .08), transparent 35%),
+        linear-gradient(135deg, #080808 0%, #111 50%, #080808 100%);
+    color: var(--branco);
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
+a {
+    transition: var(--transicao);
+}
 
-/* =====================================================
-   CARD DE CADASTRO
-===================================================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8, 8, 8, .96);
+    border-bottom: 1px solid rgba(212, 175, 55, .35);
+    backdrop-filter: blur(12px);
+}
 
+.header-estetick {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header-container {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+}
+
+.logo-estetick {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.logo-estetick img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.logo-estetick span span,
+.logo-footer span {
+    color: var(--dourado);
+}
+
+.nav-estetick {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-estetick a {
+    position: relative;
+    display: block;
+    padding: 10px 12px;
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-estetick a::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 3px;
+    height: 2px;
+    background: var(--dourado);
+    transform: scaleX(0);
+    transition: var(--transicao);
+}
+
+.nav-estetick a:hover,
+.nav-estetick a.active {
+    color: var(--dourado-claro);
+}
+
+.nav-estetick a:hover::after,
+.nav-estetick a.active::after {
+    transform: scaleX(1);
+}
+
+.botoes-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cadastrar,
+.btn-agendar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.btn-cadastrar {
+    color: var(--dourado-claro);
+    border: 1px solid var(--dourado);
+    background: transparent;
+}
+
+.btn-cadastrar:hover {
+    color: #080808;
+    background: var(--dourado);
+    transform: translateY(-2px);
+}
+
+.btn-agendar {
+    color: #080808;
+    background: linear-gradient(135deg, var(--dourado), var(--dourado-claro));
+    border: 1px solid var(--dourado);
+}
+
+.btn-agendar:hover {
+    color: #080808;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, .25);
+}
+
+main.container {
+    max-width: 900px;
+    padding-top: 55px;
+    padding-bottom: 65px;
+}
+
+.agendamento,
 .cadastro {
     position: relative;
-
-    max-width: 700px;
-    margin: 60px auto;
-
-    background:
-        linear-gradient(145deg,
-            #080808,
-            #000000 70%);
-
-    padding: 40px;
-
-    border-radius: 16px;
-
-    border: 1px solid #3d3d3d;
-    border-top: 2px solid #d4af37;
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.8),
-        0 0 0 rgba(212, 175, 55, 0);
-
-    animation: entrarCard 0.9s ease forwards;
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease,
-        border-color 0.4s ease;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 42px);
+    background: linear-gradient(145deg, #151515, #0b0b0b);
+    border: 1px solid rgba(212, 175, 55, .3);
+    border-radius: 18px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    animation: entrarCard .65s ease both;
 }
 
-
-/* =====================================================
-   BRILHO DO CARD
-===================================================== */
-
+.agendamento::before,
 .cadastro::before {
     content: "";
-
     position: absolute;
-
-    top: -2px;
-    left: 10%;
-    right: 10%;
-
-    height: 2px;
-
-    background: linear-gradient(90deg,
-            transparent,
-            #d4af37,
-            #f5d76e,
-            #d4af37,
-            transparent);
-
-    filter: blur(1px);
-
-    opacity: 0.8;
-
-    animation: brilhoLinha 3s ease-in-out infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), var(--dourado), transparent);
 }
 
-
-/* =====================================================
-   HOVER DO CARD
-===================================================== */
-
-.cadastro:hover {
-    transform: translateY(-6px);
-
-    border-color: #6d5a24;
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(212, 175, 55, 0.08);
-}
-
-
-/* =====================================================
-   TÍTULO
-===================================================== */
-
+.agendamento h1,
 .cadastro h1 {
-    color: #d4af37;
-
-    font-weight: bold;
-
+    color: var(--dourado);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: .5px;
     text-align: center;
-
-    letter-spacing: 1px;
-
-    text-shadow:
-        0 0 10px rgba(212, 175, 55, 0.15);
-
-    animation: tituloEntrada 0.9s ease forwards;
-
-    transition:
-        text-shadow 0.3s ease,
-        transform 0.3s ease;
+    margin-bottom: 10px;
 }
 
-
-.cadastro h1:hover {
-    transform: scale(1.02);
-
-    text-shadow:
-        0 0 8px rgba(212, 175, 55, 0.4),
-        0 0 20px rgba(212, 175, 55, 0.15);
+.agendamento .text-center>p:not(.eyebrow),
+.cadastro-intro {
+    color: var(--cinza-texto);
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-
-/* =====================================================
-   LABELS
-===================================================== */
+.eyebrow {
+    color: var(--dourado-claro);
+    font-size: .75rem;
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
 
 .form-label {
-    color: #dddddd;
-
-    font-weight: 500;
-
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease;
+    color: #eee;
+    font-weight: 650;
+    margin-bottom: 8px;
 }
 
-
-/* =====================================================
-   CAMPOS
-===================================================== */
-
-.form-control {
-    background-color: #050505;
-
-    border: 1px solid #333333;
-
-    color: #ffffff;
-
-    border-radius: 8px;
-
-    padding: 11px 13px;
-
-    transition:
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        background-color 0.3s ease,
-        transform 0.25s ease;
+.form-control,
+.form-select {
+    min-height: 48px;
+    color: #fff !important;
+    background-color: #0d0d0d !important;
+    border: 1px solid #3a3a3a !important;
+    border-radius: 9px !important;
+    padding: 11px 14px;
+    transition: var(--transicao);
 }
-
-
-/* Placeholder */
 
 .form-control::placeholder {
-    color: #777777;
-
-    transition: color 0.3s ease;
+    color: #777;
 }
 
-
-/* =====================================================
-   HOVER DOS CAMPOS
-===================================================== */
-
-.form-control:hover {
-    border-color: #665522;
-
-    background-color: #090909;
-
-    transform: translateY(-1px);
+.form-control:hover,
+.form-select:hover {
+    border-color: #665522 !important;
 }
 
-
-/* =====================================================
-   CAMPOS AO SELECIONAR
-===================================================== */
-
-.form-control:focus {
-    background-color: #0d0d0d;
-
-    color: #ffffff;
-
-    border-color: #d4af37;
-
-    outline: none;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0 0 3px rgba(212, 175, 55, 0.08),
-        0 0 18px rgba(212, 175, 55, 0.12);
-
-    animation: campoFoco 0.35s ease;
+.form-control:focus,
+.form-select:focus {
+    background-color: #101010 !important;
+    border-color: var(--dourado) !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, .1) !important;
+    color: #fff !important;
 }
 
-
-.form-control:focus::placeholder {
-    color: #aaaaaa;
+textarea.form-control {
+    min-height: 115px;
+    resize: vertical;
 }
 
-
-/* =====================================================
-   LABEL QUANDO O CAMPO RECEBE FOCO
-===================================================== */
-
-.form-control:focus+.form-label {
-    color: #d4af37;
+.form-select option {
+    background: #111;
+    color: #fff;
 }
-
-
-/* =====================================================
-   BOTÃO ESTETICK
-===================================================== */
 
 .btn-estetick {
     position: relative;
-
     overflow: hidden;
-
-    background:
-        linear-gradient(135deg,
-            #d4af37,
-            #b89428);
-
-    border: 1px solid #d4af37;
-
-    color: #000000;
-
-    font-weight: bold;
-
-    padding: 11px 28px;
-
-    border-radius: 8px;
-
-    letter-spacing: 0.3px;
-
-    transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease,
-        transform 0.25s ease,
-        box-shadow 0.3s ease;
+    min-height: 49px;
+    padding: 12px 20px;
+    color: #080808;
+    font-weight: 800;
+    letter-spacing: .3px;
+    border: 1px solid var(--dourado);
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--dourado), #b89428);
+    transition: var(--transicao);
 }
-
-
-/* =====================================================
-   BRILHO PASSANDO PELO BOTÃO
-===================================================== */
-
-.btn-estetick::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -100%;
-
-    width: 70%;
-    height: 100%;
-
-    background:
-        linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.45),
-            transparent);
-
-    transform: skewX(-20deg);
-
-    transition: left 0.6s ease;
-}
-
-
-.btn-estetick:hover::before {
-    left: 130%;
-}
-
-
-/* =====================================================
-   HOVER DO BOTÃO
-===================================================== */
 
 .btn-estetick:hover {
-    background:
-        linear-gradient(135deg,
-            #e5c158,
-            #d4af37);
-
-    border-color: #f0d56b;
-
-    color: #000000;
-
-    transform: translateY(-3px) scale(1.02);
-
-    box-shadow:
-        0 8px 20px rgba(212, 175, 55, 0.3),
-        0 0 15px rgba(212, 175, 55, 0.15);
+    color: #080808;
+    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, .2);
 }
-
-
-/* =====================================================
-   BOTÃO AO CLICAR
-===================================================== */
 
 .btn-estetick:active {
-    transform: translateY(0) scale(0.98);
-
-    box-shadow:
-        0 3px 8px rgba(212, 175, 55, 0.2);
+    transform: translateY(0);
 }
 
-
-/* =====================================================
-   ANIMAÇÃO DOS CAMPOS DO FORMULÁRIO
-===================================================== */
-
-.cadastro .mb-3 {
-    animation: campoEntrada 0.7s ease both;
+.confirmacao-agendamento {
+    padding: 15px;
+    background: rgba(212, 175, 55, .05);
+    border: 1px solid rgba(212, 175, 55, .2);
+    border-radius: 10px;
 }
 
-
-.cadastro .mb-3:nth-child(1) {
-    animation-delay: 0.1s;
+.confirmacao-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
 }
 
-.cadastro .mb-3:nth-child(2) {
-    animation-delay: 0.2s;
+.confirmacao-check input {
+    margin-top: 5px;
+    accent-color: var(--dourado);
+    flex: 0 0 auto;
 }
 
-.cadastro .mb-3:nth-child(3) {
-    animation-delay: 0.3s;
+.confirmacao-check label {
+    color: #ccc;
+    font-size: .92rem;
+    line-height: 1.5;
 }
 
-.cadastro .mb-3:nth-child(4) {
-    animation-delay: 0.4s;
+.field-error {
+    display: block;
+    color: #ff8d8d;
+    margin-top: 5px;
 }
 
-.cadastro .mb-3:nth-child(5) {
-    animation-delay: 0.5s;
+.payment-note,
+.form-footnote,
+.form-text {
+    display: block;
+    color: #999;
+    font-size: .82rem;
+    margin-top: 9px;
 }
 
-
-/* =====================================================
-   ANIMAÇÕES
-===================================================== */
-
-@keyframes aparecerPagina {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+.form-footnote {
+    text-align: center;
+    margin-bottom: 0;
 }
 
+.login-link {
+    margin: 22px 0 0;
+    text-align: center;
+    color: #bbb;
+}
+
+.login-link a {
+    color: var(--dourado-claro);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.alert {
+    border-radius: 9px;
+}
+
+.footer-estetick {
+    border-top: 1px solid rgba(212, 175, 55, .25);
+    background: #080808;
+}
+
+.footer-container {
+    max-width: 1200px;
+}
+
+.footer-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+.copyright {
+    color: #aaa;
+    font-size: .85rem;
+    margin: 0;
+}
+
+.logo-footer {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.logo-footer img {
+    object-fit: contain;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links a {
+    color: #bbb;
+    text-decoration: none;
+    padding: 6px;
+    font-size: .9rem;
+}
+
+.footer-links a:hover {
+    color: var(--dourado-claro);
+}
+
+.footer-tagline {
+    text-align: center;
+    padding: 15px 0;
+    color: var(--dourado-claro);
+    border-top: 1px solid rgba(212, 175, 55, .12);
+    font-size: .85rem;
+}
 
 @keyframes entrarCard {
-
     from {
         opacity: 0;
-        transform: translateY(35px) scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-
-@keyframes tituloEntrada {
-
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
+        transform: translateY(18px);
     }
 
     to {
@@ -409,145 +430,132 @@ main {
     }
 }
 
-
-@keyframes campoEntrada {
-
-    from {
-        opacity: 0;
-        transform: translateX(-15px);
+@media (max-width: 1000px) {
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 12px;
+        padding-bottom: 14px;
+        gap: 10px 20px;
     }
 
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-
-@keyframes campoFoco {
-
-    0% {
-        box-shadow:
-            0 0 0 0 rgba(212, 175, 55, 0.25);
-    }
-
-    100% {
-        box-shadow:
-            0 0 0 3px rgba(212, 175, 55, 0.08),
-            0 0 18px rgba(212, 175, 55, 0.12);
-    }
-}
-
-
-@keyframes brilhoLinha {
-
-    0%,
-    100% {
-        opacity: 0.3;
-        transform: scaleX(0.7);
-    }
-
-    50% {
-        opacity: 1;
-        transform: scaleX(1);
-    }
-}
-
-
-/* =====================================================
-   RESPONSIVIDADE
-===================================================== */
-
-@media (max-width: 768px) {
-
-    .cadastro {
-        margin: 30px 15px;
-
-        padding: 25px;
-
-        border-radius: 13px;
-    }
-
-    .cadastro h1 {
-        font-size: 28px;
-    }
-
-    .btn-estetick {
+    .header-container nav {
+        order: 3;
         width: 100%;
     }
+
+    .nav-estetick {
+        flex-wrap: wrap;
+    }
 }
 
-/* =====================================================
-   CAMPOS DO FORMULÁRIO
-===================================================== */
+@media (max-width: 600px) {
+    main.container {
+        padding-top: 28px;
+        padding-bottom: 35px;
+    }
 
-.form-control {
-    background-color: #111111 !important;
-    color: #ffffff !important;
+    .header-container {
+        gap: 12px;
+    }
 
-    border: 1px solid #444444 !important;
-    border-radius: 8px;
+    .logo-estetick {
+        font-size: 1.15rem;
+    }
 
-    padding: 11px 13px;
+    .logo-estetick img {
+        width: 40px;
+        height: 40px;
+    }
 
-    transition:
-        background-color 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        transform 0.2s ease;
+    .nav-estetick {
+        gap: 0;
+    }
+
+    .nav-estetick a {
+        padding: 8px;
+        font-size: .9rem;
+    }
+
+    .botoes-header {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-cadastrar,
+    .btn-agendar {
+        flex: 1;
+        max-width: 170px;
+    }
+
+    .agendamento,
+    .cadastro {
+        padding: 24px 18px;
+        border-radius: 14px;
+    }
+
+    .footer-main {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .copyright {
+        width: 100%;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
 }
 
+@media (prefers-reduced-motion: reduce) {
 
-/* =====================================================
-   PLACEHOLDER
-===================================================== */
-
-.form-control::placeholder {
-    color: #777777 !important;
-    opacity: 1;
-    transition: color 0.3s ease;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
 }
 
-
-/* =====================================================
-   QUANDO PASSAR O MOUSE
-===================================================== */
-
-.form-control:hover {
-    background-color: #161616 !important;
-    color: #ffffff !important;
-
-    border-color: #d4af37 !important;
-
-    box-shadow:
-        0 0 10px rgba(212, 175, 55, 0.08);
-
-    transform: translateY(-1px);
+/* Ajustes específicos da página de cadastro */
+.cadastro-main {
+    min-height: 70vh;
+    padding: 55px 18px 65px;
 }
 
-
-/* =====================================================
-   QUANDO CLICAR NO CAMPO
-===================================================== */
-
-.form-control:focus {
-    background-color: #181818 !important;
-    color: #ffffff !important;
-
-    border-color: #d4af37 !important;
-
-    outline: none !important;
-
-    box-shadow:
-        0 0 0 3px rgba(212, 175, 55, 0.10),
-        0 0 18px rgba(212, 175, 55, 0.12) !important;
-
-    transform: translateY(-2px);
+.cadastro {
+    max-width: 700px;
 }
 
+.cadastro .mb-3,
+.cadastro .mb-4 {
+    animation: entrarCard .5s ease both;
+}
 
-/* Placeholder quando estiver selecionado */
+.cadastro .mb-3:nth-of-type(2) {
+    animation-delay: .04s;
+}
 
-.form-control:focus::placeholder {
-    color: #999999 !important;
+.cadastro .mb-3:nth-of-type(3) {
+    animation-delay: .08s;
+}
+
+.cadastro .mb-3:nth-of-type(4) {
+    animation-delay: .12s;
+}
+
+.cadastro .mb-3:nth-of-type(5) {
+    animation-delay: .16s;
+}
+
+.cadastro .mb-4 {
+    animation-delay: .2s;
+}
+
+@media (max-width: 600px) {
+    .cadastro-main {
+        padding: 28px 14px 40px;
+    }
 }

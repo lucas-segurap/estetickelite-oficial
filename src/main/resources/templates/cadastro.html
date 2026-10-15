@@ -1,238 +1,148 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <!-- TAG DO MEU SITE-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Página com conteúdos, exercícios e atividades desenvolvidas durante as aulas de Bootstrap, aprendendo a criar páginas web modernas, organizadas e responsivas.">
-    <meta name="keywords" content="sites,web desenvolvimento backend">
-
-    <link rel="stylesheet" href="../static/css/style.css">
-
-    <link rel="stylesheet" href="../static/css/cadastro.css">
-
-    <meta name="author" content="Samuel Moysés, Samuelmoysess, samuelmoyses396@gmail.com, 11 99734-9303">
-    <title>Cadastro</title>
-    <link rel="icon" href="../favicon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Crie sua conta na EstetickElite para facilitar seus agendamentos.">
+    <meta name="author" content="EstetickElite">
+    <title>Cadastro | EstetickElite</title>
+    <link rel="icon" th:href="@{/favicon.png}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cadastro.css}">
 </head>
-
 <body>
-    <!-- =====================================================
-     HEADER ESTETICKELITE
-     ===================================================== -->
-
-    <header>
-
-        <div class="container header-estetick">
-
-            <div class="header-container">
-
-                <!-- LOGO -->
-
-                <a href="../index.html" class="logo-estetick">
-
-                    <img src="../static/img/logo.png" alt="Logo EstetickElite">
-
-                    <span>
-                        Estetick<span>Elite</span>
-                    </span>
-
-                </a>
-
-
-                <!-- MENU -->
-
-                <nav aria-label="Menu principal">
-
-                    <ul class="nav-estetick">
-
-                        <li>
-                            <a href="../index.html">
-                                Home
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="./cadastro.html">
-                                Cadastro
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="./agendamento.html">
-                                Agendamento
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="./faleconosco.html">
-                                Fale conosco
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </nav>
-
-
-                <!-- BOTÕES -->
-
-                <div class="botoes-header">
-
-                    <a href="./cadastro.html" class="btn-cadastrar">
-
-                        Cadastrar
-
-                    </a>
-
-                    <a href="./login.html" class="btn-agendar">
-
-                        Fazer Login
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <main>
-
-        <div class="cadastro">
-
-            <div class="text-center mb-4">
-
-                <h1>Cadastro</h1>
-
-                <p style="color: #cccccc;">
-                    Cadastre seus dados para facilitar seus próximos agendamentos.
-                </p>
-
-            </div>
-
-
-            <form action="../index.html" method="get">
-
-                <div class="mb-3">
-                    <label class="form-label">Nome completo</label>
-                    <input type="text" class="form-control" placeholder="Digite seu nome" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">E-mail</label>
-                    <input type="email" class="form-control" placeholder="Digite seu e-mail" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Telefone</label>
-                    <input type="tel" class="form-control" placeholder="(00) 00000-0000" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">CPF</label>
-                    <input type="text" class="form-control" placeholder="Digite seu CPF" required>
-                </div>
-
-                <div class="mb-4">
-                    <label class="form-label">Senha</label>
-                    <input type="password" class="form-control" placeholder="Crie uma senha" required>
-                </div>
-
-                <div class="mb-4">
-                    <label class="form-label">Confirme Sua Senha</label>
-                    <input type="password" class="form-control" placeholder="Confirme sua senha" required>
-                </div>
-
-                <button type="submit" class="btn btn-estetick w-100">
-                    Criar cadastro
-                </button>
-
-            </form>
-
-        </div>
-
-
-    </main>
-
-    <footer>
-
-        <div class="footer-estetick">
-            <div class="container footer-container">
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center py-4">
-
-                    <!-- COPYRIGHT -->
-                    <p class="col-md-4 mb-0 copyright">
-                        © 2026 EstetickElite. Todos os direitos reservados.
-                    </p>
-
-                    <!-- LOGO -->
-                    <a href="./index.html"
-                        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 logo-footer">
-
-                        <img src="../static/img/logo.png" alt="Logo EstetickElite" width="40" height="40" class="me-2">
-
-                        Estetick<span>Elite</span>
-                    </a>
-
-                    <!-- MENU -->
-                    <ul class="nav col-md-4 justify-content-end nav-estetick">
-
-                        <!-- HOME -->
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link px-2 active">
-                                Home
-                            </a>
-                        </li>
-
-                        <!-- CADASTRO -->
-                        <li class="nav-item">
-                            <a href="cadastro.html" class="nav-link px-2 ">
-                                Cadastro
-                            </a>
-                        </li>
-
-                        <!-- AGENDAMENTO -->
-                        <li class="nav-item">
-                            <a href="agendamento.html" class="nav-link px-2 ">
-                                Agendamento
-                            </a>
-                        </li>
-
-                        <!-- FALE CONOSCO -->
-                        <li class="nav-item">
-                            <a href="faleconosco.html" class="nav-link px-2 ">
-                                Fale conosco
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-                <!-- FRASE DA EMPRESA -->
-                <div class="text-center py-3 linha-dourada">
-                    <small style="color: #d4af37;">
-                        Estética automotiva com qualidade e excelência.
-                    </small>
-                </div>
-
+<header>
+    <div class="container header-estetick">
+        <div class="header-container">
+            <a th:href="@{/}" class="logo-estetick">
+                <img th:src="@{/img/logo.png}" alt="Logo EstetickElite">
+                <span>Estetick<span>Elite</span></span>
+            </a>
+            <nav aria-label="Menu principal">
+                <ul class="nav-estetick">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a th:href="@{/cadastro}" class="active" aria-current="page">Cadastro</a></li>
+                    <li><a th:href="@{/agendamento}">Agendamento</a></li>
+                    <li><a th:href="@{/faleconosco}">Fale conosco</a></li>
+                </ul>
+            </nav>
+            <div class="botoes-header">
+                <a th:href="@{/cadastro}" class="btn-cadastrar">Cadastrar</a>
+                <a th:href="@{/login}" class="btn-agendar">Fazer Login</a>
             </div>
         </div>
-    </footer>
+    </div>
+</header>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-        </script>
-    <script src="/js/script.js"></script>
+<main class="cadastro-main">
+    <section class="cadastro">
+        <p class="eyebrow">BEM-VINDO À ESTETICKELITE</p>
+        <h1>Criar conta</h1>
+        <p class="cadastro-intro">Cadastre seus dados para facilitar seus próximos agendamentos.</p>
 
+        <div th:if="${sucesso}" class="alert alert-success" role="status" th:text="${sucesso}"></div>
+        <div th:if="${erro}" class="alert alert-danger" role="alert" th:text="${erro}"></div>
+
+        <form id="formCadastro" th:action="@{/cadastro}" th:object="${cliente}" method="post">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome completo</label>
+                <input type="text" class="form-control" id="nome" th:field="*{nome}"
+                       placeholder="Digite seu nome completo" autocomplete="name" maxlength="120" required>
+                <small class="field-error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></small>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}"
+                       placeholder="exemplo@email.com" autocomplete="email" maxlength="150" required>
+                <small class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+            </div>
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone</label>
+                <input type="tel" class="form-control" id="telefone" th:field="*{telefone}"
+                       placeholder="(11) 99999-9999" autocomplete="tel" maxlength="20" required>
+                <small class="field-error" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></small>
+            </div>
+            <div class="mb-3">
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" class="form-control" id="cpf" th:field="*{cpf}"
+                       placeholder="000.000.000-00" inputmode="numeric" autocomplete="off" maxlength="14" required>
+                <small class="field-error" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></small>
+            </div>
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="senha" th:field="*{senha}"
+                       placeholder="Crie uma senha" autocomplete="new-password" minlength="8" required>
+                <small class="form-text">Use pelo menos 8 caracteres.</small>
+            </div>
+            <div class="mb-4">
+                <label for="confirmarSenha" class="form-label">Confirmar senha</label>
+                <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha"
+                       placeholder="Digite a senha novamente" autocomplete="new-password" minlength="8" required>
+                <small class="field-error" id="erroSenha" aria-live="polite"></small>
+            </div>
+            <button type="submit" class="btn btn-estetick w-100">Criar minha conta</button>
+            <p class="login-link">Já tem uma conta? <a th:href="@{/login}">Fazer login</a></p>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-estetick">
+        <div class="container footer-container">
+            <div class="footer-main">
+                <p class="copyright">© 2026 EstetickElite. Todos os direitos reservados.</p>
+                <a th:href="@{/}" class="logo-footer"><img th:src="@{/img/logo.png}" alt="" width="36" height="36"> Estetick<span>Elite</span></a>
+                <ul class="footer-links">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a th:href="@{/cadastro}">Cadastro</a></li>
+                    <li><a th:href="@{/agendamento}">Agendamento</a></li>
+                    <li><a th:href="@{/faleconosco}">Fale conosco</a></li>
+                </ul>
+            </div>
+            <div class="footer-tagline">Estética automotiva com qualidade e excelência.</div>
+        </div>
+    </div>
+</footer>
+
+<script>
+(() => {
+    const form = document.getElementById('formCadastro');
+    const senha = document.getElementById('senha');
+    const confirmar = document.getElementById('confirmarSenha');
+    const erro = document.getElementById('erroSenha');
+    const cpf = document.getElementById('cpf');
+    const telefone = document.getElementById('telefone');
+
+    const validarSenhas = () => {
+        const iguais = senha.value === confirmar.value;
+        confirmar.setCustomValidity(iguais ? '' : 'As senhas não coincidem.');
+        erro.textContent = iguais || !confirmar.value ? '' : 'As senhas não coincidem.';
+        return iguais;
+    };
+    senha.addEventListener('input', validarSenhas);
+    confirmar.addEventListener('input', validarSenhas);
+
+    cpf.addEventListener('input', () => {
+        let v = cpf.value.replace(/\D/g, '').slice(0, 11);
+        v = v.replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        cpf.value = v;
+    });
+    telefone.addEventListener('input', () => {
+        let v = telefone.value.replace(/\D/g, '').slice(0, 11);
+        if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+        else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+        else if (v.length > 2) v = v.replace(/^(\d{2})(\d+)/, '($1) $2');
+        telefone.value = v;
+    });
+    form.addEventListener('submit', (event) => {
+        if (!validarSenhas()) {
+            event.preventDefault();
+            confirmar.reportValidity();
+        }
+    });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

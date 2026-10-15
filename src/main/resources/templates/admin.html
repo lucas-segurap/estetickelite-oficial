@@ -1,256 +1,257 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="EstetickElite - Estética automotiva com qualidade, cuidado e excelência.">
-    <meta name="author" content="Samuel, SamuelPrime>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="EstetickElite - Estética automotiva com qualidade, cuidado e excelência.">
+
+    <meta name="author"
+          content="SamuelPrime">
 
     <title>Administração - EstetickElite</title>
 
-    <!-- PROTEÇÃO DO PAINEL -->
-
-
+    <!-- Proteção do painel: validar a sessão no Controller -->
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 
     <!-- CSS do painel -->
-    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="stylesheet"
+          th:href="@{/css/admin.css}">
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body>
 
-    <!-- =====================================================
-         HEADER
-         ===================================================== -->
+<!-- HEADER -->
+<header>
+    <div class="container header-estetick">
+        <div class="header-container">
 
-    <header>
+            <!-- LOGO -->
+            <a th:href="@{/}"
+               class="logo-estetick">
 
-        <div class="container header-estetick">
+                <img th:src="@{/img/logo.png}"
+                     alt="Logo da EstetickElite">
 
-            <div class="header-container">
-
-                <!-- LOGO -->
-
-                <a href="../index.html" class="logo-estetick">
-
-                    <img src="../static/img/logo.png" alt="Logo da EstetickElite">
-
-                    <span>
+                <span>
                         Estetick<span>Elite</span>
                     </span>
+            </a>
 
-                </a>
+            <!-- SAIR -->
+            <div class="botoes-header">
+                <form th:action="@{/admin/logout}"
+                      method="post">
 
-
-                <!-- SAIR -->
-
-                <div class="botoes-header">
-
-                    <a href="./login-admin.html" class="btn-agendar" onclick="sessionStorage.removeItem('adminLogado')">
+                    <button type="submit"
+                            class="btn-agendar">
                         Sair
-                    </a>
-
-                </div>
-
+                    </button>
+                </form>
             </div>
 
         </div>
+    </div>
+</header>
 
-    </header>
+<!-- PAINEL -->
+<main>
+    <div class="container painel-admin">
 
-
-    <!-- =====================================================
-         PAINEL
-         ===================================================== -->
-
-    <main>
-
-        <div class="container painel-admin">
-
-
-            <!-- TÍTULO -->
-
-            <div class="titulo-admin">
+        <!-- TÍTULO -->
+        <div class="titulo-admin">
 
                 <span class="admin-tag">
                     ÁREA RESTRITA
                 </span>
 
-                <h1>
-                    Painel Administrativo
-                </h1>
+            <h1>Painel Administrativo</h1>
 
-                <p>
-                    Gerencie os agendamentos e acompanhe os serviços realizados.
-                </p>
+            <p>
+                Gerencie os agendamentos e acompanhe os serviços realizados.
+            </p>
+        </div>
 
+        <!-- ESTATÍSTICAS -->
+        <div class="estatisticas">
+
+            <div class="estatistica">
+                <span>Agendados</span>
+                <h2 id="totalAgendados"
+                    th:text="${totalAgendados != null ? totalAgendados : 0}">
+                    0
+                </h2>
             </div>
 
-
-            <!-- =================================================
-                 ESTATÍSTICAS
-                 ================================================= -->
-
-            <div class="estatisticas">
-
-
-                <div class="estatistica">
-
-                    <span>
-                        Agendados
-                    </span>
-
-                    <h2 id="totalAgendados">
-                        0
-                    </h2>
-
-                </div>
-
-
-                <div class="estatistica">
-
-                    <span>
-                        Serviços Feitos
-                    </span>
-
-                    <h2 id="totalFeitos">
-                        0
-                    </h2>
-
-                </div>
-
-
-                <div class="estatistica">
-
-                    <span>
-                        Total de Serviços
-                    </span>
-
-                    <h2 id="totalServicos">
-                        0
-                    </h2>
-
-                </div>
-
-
-                <div class="estatistica">
-
-                    <span>
-                        Taxa de Conclusão
-                    </span>
-
-                    <h2 id="taxaConclusao">
-                        0%
-                    </h2>
-
-                </div>
-
+            <div class="estatistica">
+                <span>Serviços Feitos</span>
+                <h2 id="totalFeitos"
+                    th:text="${totalFeitos != null ? totalFeitos : 0}">
+                    0
+                </h2>
             </div>
 
-
-            <!-- =================================================
-                 GRÁFICOS
-                 ================================================= -->
-
-            <div class="graficos">
-
-
-                <div class="grafico-box">
-
-                    <h3>
-                        Status dos Serviços
-                    </h3>
-
-                    <div class="grafico-container">
-
-                        <canvas id="graficoStatus"></canvas>
-
-                    </div>
-
-                </div>
-
-
-                <div class="grafico-box">
-
-                    <h3>
-                        Serviços Agendados
-                    </h3>
-
-                    <div class="grafico-container">
-
-                        <canvas id="graficoServicos"></canvas>
-
-                    </div>
-
-                </div>
-
+            <div class="estatistica">
+                <span>Total de Serviços</span>
+                <h2 id="totalServicos"
+                    th:text="${totalServicos != null ? totalServicos : 0}">
+                    0
+                </h2>
             </div>
 
-
-            <!-- =================================================
-                 AGENDADOS
-                 ================================================= -->
-
-            <section class="secao-admin">
-
-                <div class="titulo-secao">
-
-                    <h2>
-                        Agendados para fazer
-                    </h2>
-
-                    <span class="contador" id="contadorAgendados">
-                        0
-                    </span>
-
-                </div>
-
-                <div id="listaAgendados"></div>
-
-            </section>
-
-
-            <!-- =================================================
-                 SERVIÇOS FEITOS
-                 ================================================= -->
-
-            <section class="secao-admin">
-
-                <div class="titulo-secao">
-
-                    <h2>
-                        Serviços feitos
-                    </h2>
-
-                    <span class="contador" id="contadorFeitos">
-                        0
-                    </span>
-
-                </div>
-
-                <div id="listaFeitos"></div>
-
-            </section>
-
+            <div class="estatistica">
+                <span>Taxa de Conclusão</span>
+                <h2 id="taxaConclusao"
+                    th:text="${taxaConclusao != null ? taxaConclusao + '%' : '0%'}">
+                    0%
+                </h2>
+            </div>
 
         </div>
 
-    </main>
+        <!-- GRÁFICOS -->
+        <div class="graficos">
 
+            <div class="grafico-box">
+                <h3>Status dos Serviços</h3>
 
-    <!-- JavaScript do painel -->
+                <div class="grafico-container">
+                    <canvas id="graficoStatus"></canvas>
+                </div>
+            </div>
 
-    <script src="../static/js/admin.js"></script>
+            <div class="grafico-box">
+                <h3>Serviços Agendados</h3>
+
+                <div class="grafico-container">
+                    <canvas id="graficoServicos"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- AGENDADOS -->
+        <section class="secao-admin">
+
+            <div class="titulo-secao">
+                <h2>Agendados para fazer</h2>
+
+                <span class="contador"
+                      id="contadorAgendados"
+                      th:text="${agendados != null ? #lists.size(agendados) : 0}">
+                        0
+                    </span>
+            </div>
+
+            <div id="listaAgendados">
+
+                <div th:if="${agendados == null or #lists.isEmpty(agendados)}">
+                    <p>Nenhum agendamento pendente no momento.</p>
+                </div>
+
+                <div th:each="agendamento : ${agendados}"
+                     class="item-agendamento">
+
+                    <h3 th:text="${agendamento.cliente != null
+                                      ? agendamento.cliente.nome
+                                      : 'Cliente não informado'}">
+                        Nome do cliente
+                    </h3>
+
+                    <p>
+                        <strong>Serviço:</strong>
+                        <span th:text="${agendamento.servico != null
+                                            ? agendamento.servico.nome
+                                            : 'Não informado'}">
+                                Serviço
+                            </span>
+                    </p>
+
+                    <p>
+                        <strong>Data:</strong>
+                        <span th:text="${agendamento.dataHora != null
+                                            ? #temporals.format(agendamento.dataHora, 'dd/MM/yyyy HH:mm')
+                                            : 'Não informada'}">
+                                Data do agendamento
+                            </span>
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SERVIÇOS FEITOS -->
+        <section class="secao-admin">
+
+            <div class="titulo-secao">
+                <h2>Serviços feitos</h2>
+
+                <span class="contador"
+                      id="contadorFeitos"
+                      th:text="${feitos != null ? #lists.size(feitos) : 0}">
+                        0
+                    </span>
+            </div>
+
+            <div id="listaFeitos">
+
+                <div th:if="${feitos == null or #lists.isEmpty(feitos)}">
+                    <p>Nenhum serviço concluído ainda.</p>
+                </div>
+
+                <div th:each="agendamento : ${feitos}"
+                     class="item-agendamento">
+
+                    <h3 th:text="${agendamento.cliente != null
+                                      ? agendamento.cliente.nome
+                                      : 'Cliente não informado'}">
+                        Nome do cliente
+                    </h3>
+
+                    <p>
+                        <strong>Serviço:</strong>
+                        <span th:text="${agendamento.servico != null
+                                            ? agendamento.servico.nome
+                                            : 'Não informado'}">
+                                Serviço
+                            </span>
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span th:text="${agendamento.status}">
+                                CONCLUIDO
+                            </span>
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+<!-- Bootstrap JS -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- JavaScript do painel -->
+<script th:src="@{/js/admin.js}"></script>
 
 </body>
-
 </html>

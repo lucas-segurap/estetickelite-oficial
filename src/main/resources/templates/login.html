@@ -1,29 +1,40 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <!-- TAG DO MEU SITE-->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description"
-        content="Página com conteúdos, exercícios e atividades desenvolvidas durante as aulas de Bootstrap, aprendendo a criar páginas web modernas, organizadas e responsivas.">
-    <meta name="keywords" content="sites,web desenvolvimento backend">
+          content="EstetickElite - Faça login para agendar serviços de estética automotiva.">
 
-    <link rel="stylesheet" href="../static/css/style.css">
+    <meta name="keywords"
+          content="Estética automotiva, login, cadastro, agendamento">
 
-    <link rel="stylesheet" href="../static/css/cadastro.css">
+    <meta name="author" content="Lucas Segura">
 
+    <title>Login | EstetickElite</title>
 
-    <meta name="author" content="Lucas segura, SeguraPrime, seguralucas949@gmail.com, 11 97387-4201">
-    <title>Cadastro</title>
-    <link rel="icon" href="../favicon.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="icon" type="image/png" th:href="@{/favicon.png}">
 
+    <!-- CSS GLOBAL -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- CSS DA PÁGINA -->
+    <link rel="stylesheet" th:href="@{/css/cadastro.css}">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
 </head>
 
 <body>
 
+    <!-- HEADER -->
     <header>
 
         <div class="container header-estetick">
@@ -31,10 +42,12 @@
             <div class="header-container">
 
                 <!-- LOGO -->
+                <a th:href="@{/}"
+                   class="logo-estetick"
+                   aria-label="Página inicial EstetickElite">
 
-                <a href="../index.html" class="logo-estetick">
-
-                    <img src="../static/img/logo.png" alt="Logo da EstetickElite">
+                    <img th:src="@{/img/logo.png}"
+                         alt="Logo da EstetickElite">
 
                     <span>
                         Estetick<span>Elite</span>
@@ -42,33 +55,31 @@
 
                 </a>
 
-
                 <!-- MENU -->
-
                 <nav aria-label="Menu principal">
 
                     <ul class="nav-estetick">
 
                         <li>
-                            <a href="../index.html">
+                            <a th:href="@{/}">
                                 Home
                             </a>
                         </li>
 
                         <li>
-                            <a href="./cadastro.html" class="active">
+                            <a th:href="@{/cadastro}">
                                 Cadastro
                             </a>
                         </li>
 
                         <li>
-                            <a href="./agendamento.html">
+                            <a th:href="@{/agendamento}">
                                 Agendamento
                             </a>
                         </li>
 
                         <li>
-                            <a href="./faleconosco.html">
+                            <a th:href="@{/fale-conosco}">
                                 Fale conosco
                             </a>
                         </li>
@@ -77,26 +88,23 @@
 
                 </nav>
 
-
                 <!-- BOTÕES -->
-
                 <div class="botoes-header">
 
-                    <a href="./cadastro.html" class="btn-cadastrar">
-
+                    <a th:href="@{/cadastro}"
+                       class="btn-cadastrar">
                         Cadastrar
-
                     </a>
 
-                    <a href="./login.html" class="btn-agendar">
-
+                    <a th:href="@{/login}"
+                       class="btn-agendar">
                         Fazer Login
-
                     </a>
 
-
-                    <a href="./admin.html" class="btn-admin" aria-label="Acesso administrativo"
-                        title="Acesso administrativo">
+                    <a th:href="@{/admin/login}"
+                       class="btn-admin"
+                       aria-label="Acesso administrativo"
+                       title="Acesso administrativo">
                     </a>
 
                 </div>
@@ -107,7 +115,7 @@
 
     </header>
 
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <main>
 
         <div class="cadastro">
@@ -117,40 +125,84 @@
                 <h1>Fazer Login</h1>
 
                 <p style="color: #cccccc;">
-                    Faça Login ou cadastre-se para agendar um horário e conhecer nossos serviços.
+                    Faça login ou cadastre-se para agendar um horário
+                    e conhecer nossos serviços.
                 </p>
 
             </div>
 
-            <form>
+            <!-- MENSAGEM DE ERRO -->
+            <div th:if="${param.erro}"
+                 class="alert alert-danger"
+                 role="alert">
+                E-mail ou senha inválidos. Tente novamente.
+            </div>
+
+            <!-- MENSAGEM DE SUCESSO -->
+            <div th:if="${param.sucesso}"
+                 class="alert alert-success"
+                 role="alert">
+                Cadastro realizado com sucesso! Faça login para continuar.
+            </div>
+
+            <!-- FORMULÁRIO DE LOGIN -->
+            <form th:action="@{/login}" method="post">
 
                 <div class="mb-3">
-                    <label class="form-label">E-mail</label>
 
-                    <input type="email" class="form-control" placeholder="Digite seu e-mail" required>
+                    <label for="email" class="form-label">
+                        E-mail
+                    </label>
+
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           class="form-control"
+                           placeholder="Digite seu e-mail"
+                           autocomplete="email"
+                           required>
+
                 </div>
 
                 <div class="mb-4">
-                    <label class="form-label">Senha</label>
 
-                    <input type="password" class="form-control" placeholder="Digite sua senha" required>
+                    <label for="senha" class="form-label">
+                        Senha
+                    </label>
+
+                    <input type="password"
+                           id="senha"
+                           name="senha"
+                           class="form-control"
+                           placeholder="Digite sua senha"
+                           autocomplete="current-password"
+                           required>
+
                 </div>
 
-
-
-                <button type="submit" class="btn btn-estetick w-100">
+                <button type="submit"
+                        class="btn btn-estetick w-100">
                     Fazer Login
                 </button>
 
             </form>
-        </div>
 
+            <p class="text-center mt-4">
+                Ainda não tem cadastro?
+                <a th:href="@{/cadastro}">
+                    Cadastre-se
+                </a>
+            </p>
+
+        </div>
 
     </main>
 
+    <!-- FOOTER -->
     <footer>
 
         <div class="footer-estetick">
+
             <div class="container footer-container">
 
                 <div class="d-flex flex-wrap justify-content-between align-items-center py-4">
@@ -161,62 +213,76 @@
                     </p>
 
                     <!-- LOGO -->
-                    <a href="./index.html"
-                        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 logo-footer">
+                    <a th:href="@{/}"
+                       class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 logo-footer">
 
-                        <img src="../static/img/logo.png" alt="Logo EstetickElite" width="40" height="40" class="me-2">
+                        <img th:src="@{/img/logo.png}"
+                             alt="Logo EstetickElite"
+                             width="40"
+                             height="40"
+                             class="me-2">
 
                         Estetick<span>Elite</span>
+
                     </a>
 
                     <!-- MENU -->
                     <ul class="nav col-md-4 justify-content-end nav-estetick">
 
-                        <!-- HOME -->
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link px-2 active">
+                            <a th:href="@{/}"
+                               class="nav-link px-2">
                                 Home
                             </a>
                         </li>
 
-                        <!-- CADASTRO -->
                         <li class="nav-item">
-                            <a href="./templates/cadastro.html" class="nav-link px-2 ">
+                            <a th:href="@{/cadastro}"
+                               class="nav-link px-2">
                                 Cadastro
                             </a>
                         </li>
 
-                        <!-- AGENDAMENTO -->
                         <li class="nav-item">
-                            <a href="./templates/agendamento.html" class="nav-link px-2 ">
+                            <a th:href="@{/agendamento}"
+                               class="nav-link px-2">
                                 Agendamento
                             </a>
                         </li>
 
-                        <!-- FALE CONOSCO -->
                         <li class="nav-item">
-                            <a href="./templates/faleconosco.html" class="nav-link px-2 ">
+                            <a th:href="@{/fale-conosco}"
+                               class="nav-link px-2">
                                 Fale conosco
                             </a>
                         </li>
 
                     </ul>
+
                 </div>
+
                 <!-- FRASE DA EMPRESA -->
                 <div class="text-center py-3 linha-dourada">
+
                     <small style="color: #d4af37;">
                         Estética automotiva com qualidade e excelência.
                     </small>
+
                 </div>
 
             </div>
+
         </div>
+
     </footer>
 
+    <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-        </script>
-    <script src="./static/js/script.js"></script>
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+
+    <!-- JAVASCRIPT PERSONALIZADO -->
+    <script th:src="@{/js/script.js}"></script>
 
 </body>
 

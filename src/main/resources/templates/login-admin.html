@@ -1,90 +1,145 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login Administrativo - EstetickElite</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Acesso administrativo da EstetickElite">
+
+    <meta name="author"
+          content="EstetickElite">
+
+    <title>Login Administrativo | EstetickElite</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
-    <!-- CSS principal -->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- CSS global -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
-    <!-- CSS do Login Administrativo -->
-    <link rel="stylesheet" href="../static/css/login-admin.css">
+    <!-- CSS do login -->
+    <link rel="stylesheet" th:href="@{/css/login-admin.css}">
 </head>
 
 <body>
 
-    <main class="login-admin">
+<main class="login-admin">
 
-        <div class="login-admin-box">
+    <section class="login-admin-box"
+             aria-labelledby="tituloLogin">
 
-            <!-- LOGO -->
-            <img src="../static/img/logo.png" alt="Logo EstetickElite" class="logo-login">
-
-            <!-- IDENTIFICAÇÃO -->
-            <span class="login-tag">
-                ÁREA RESTRITA
-            </span>
-
-            <h1>
-                Login Administrativo
-            </h1>
-
-            <p class="descricao-login">
-                Acesse o painel exclusivo da EstetickElite.
-            </p>
-
-            <!-- FORMULÁRIO -->
-            <form id="loginAdmin">
-
-                <!-- USUÁRIO -->
-                <div class="campo-login">
-                    <label for="usuario">
-                        Usuário
-                    </label>
-
-                    <input type="text" id="usuario" placeholder="Digite seu usuário" autocomplete="username" required>
-                </div>
-
-                <!-- SENHA -->
-                <div class="campo-login">
-                    <label for="senha">
-                        Senha
-                    </label>
-
-                    <input type="password" id="senha" placeholder="Digite sua senha" autocomplete="current-password"
-                        required>
-                </div>
-
-                <!-- BOTÃO -->
-                <button type="submit" class="btn-login">
-                    Entrar no painel
-                </button>
-
-                <!-- MENSAGEM -->
-                <p id="mensagemLogin"></p>
-
-            </form>
-
-            <!-- VOLTAR -->
-            <a href="../index.html" class="voltar-site">
-                Voltar para o site
-            </a>
-
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img
+                th:src="@{/img/logo.png}"
+                src="/img/logo.png"
+                alt="Logo EstetickElite"
+                class="logo-login">
         </div>
 
-    </main>
+        <!-- IDENTIFICAÇÃO -->
+        <span class="login-tag">
+            Área restrita
+        </span>
 
+        <h1 id="tituloLogin">
+            Login Administrativo
+        </h1>
 
-    <!-- LOGIN ADMINISTRATIVO -->
-    <script src="./static/js/script.js"></script>
+        <p class="descricao-login">
+            Acesse o painel exclusivo da EstetickElite.
+        </p>
 
+        <!-- MENSAGEM DE ERRO -->
+        <div class="mensagem-login mensagem-erro"
+             th:if="${param.erro}"
+             role="alert">
+            Usuário ou senha inválidos.
+        </div>
+
+        <!-- MENSAGEM DE LOGOUT -->
+        <div class="mensagem-login mensagem-sucesso"
+             th:if="${param.logout}"
+             role="status">
+            Você saiu do sistema com segurança.
+        </div>
+
+        <!-- FORMULÁRIO -->
+        <form id="loginAdmin"
+              th:action="@{/admin/login}"
+              action="/admin/login"
+              method="post">
+
+            <!-- USUÁRIO -->
+            <div class="campo-login">
+
+                <label for="usuario">
+                    Usuário
+                </label>
+
+                <input
+                    type="text"
+                    id="usuario"
+                    name="usuario"
+                    placeholder="Digite seu usuário"
+                    autocomplete="username"
+                    maxlength="100"
+                    required
+                    autofocus>
+
+            </div>
+
+            <!-- SENHA -->
+            <div class="campo-login">
+
+                <label for="senha">
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Digite sua senha"
+                    autocomplete="current-password"
+                    required>
+
+            </div>
+
+            <!-- BOTÃO -->
+            <button type="submit" class="btn-login">
+                Entrar no painel
+                <span aria-hidden="true">→</span>
+            </button>
+
+        </form>
+
+        <!-- VOLTAR -->
+        <a th:href="@{/}"
+           href="/"
+           class="voltar-site">
+            <span aria-hidden="true">←</span>
+            Voltar para o site
+        </a>
+
+        <!-- RODAPÉ -->
+        <footer class="login-footer">
+            <span class="linha-dourada"></span>
+            <p>ESTETICKELITE</p>
+            <small>Área administrativa protegida</small>
+        </footer>
+
+    </section>
+
+</main>
 
 </body>
-
 </html>

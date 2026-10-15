@@ -768,3 +768,59 @@ footer .nav-link:hover {
 .pix-expirado button {
     margin-top: 10px;
 }
+
+/* =========================================================
+   AJUSTES FINAIS — INTEGRAÇÃO COM O TEMPLATE THYMELEAF
+   ========================================================= */
+
+.agendamento .form-label {
+    display: block;
+}
+
+.agendamento input[type="text"],
+.agendamento input[type="email"],
+.agendamento input[type="time"],
+.agendamento input[type="date"],
+.agendamento textarea,
+.agendamento select {
+    width: 100%;
+}
+
+.agendamento .form-control::placeholder,
+.agendamento textarea::placeholder {
+    color: #a8a8a8 !important;
+    opacity: 1;
+}
+
+.agendamento input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1);
+}
+
+.agendamento input[type="checkbox"],
+.agendamento input[type="radio"] {
+    accent-color: var(--dourado);
+}
+
+.agendamento .form-control:disabled,
+.agendamento .form-select:disabled {
+    color: #999 !important;
+    background-color: #171717 !important;
+    cursor: not-allowed;
+}
+
+.agendamento .form-control:invalid:focus,
+.agendamento .form-select:invalid:focus {
+    border-color: #b96a6a !important;
+}
+
+/* Mantém o painel confortável em telas pequenas. */
+@media (max-width: 576px) {
+    .pagamento-card label {
+        min-height: 64px;
+    }
+
+    .pix-copia-cola input {
+        width: 100%;
+    }
+}

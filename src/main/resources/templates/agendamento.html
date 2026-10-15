@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -12,16 +12,16 @@
     <title>Agendamento - EstetickElite</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="../favicon.png">
+    <link rel="icon" th:href="@{/favicon.png}">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS principal -->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 
     <!-- CSS do agendamento -->
-    <link rel="stylesheet" href="../static/css/agendamento.css">
+    <link rel="stylesheet" th:href="@{/css/agendamento.css}">
 </head>
 
 <body>
@@ -36,9 +36,9 @@
             <div class="header-container">
 
                 <!-- LOGO -->
-                <a href="../index.html" class="logo-estetick">
+                <a th:href="@{/}" class="logo-estetick">
 
-                    <img src="../static/img/logo.png" alt="Logo EstetickElite">
+                    <img th:src="@{/img/logo.png}" alt="Logo EstetickElite">
 
                     <span>
                         Estetick<span>Elite</span>
@@ -52,25 +52,25 @@
                     <ul class="nav-estetick">
 
                         <li>
-                            <a href="../index.html">
+                            <a th:href="@{/}">
                                 Home
                             </a>
                         </li>
 
                         <li>
-                            <a href="cadastro.html">
+                            <a th:href="@{/cadastro}">
                                 Cadastro
                             </a>
                         </li>
 
                         <li>
-                            <a href="agendamento.html" class="active">
+                            <a th:href="@{/agendamento}" class="active" aria-current="page">
                                 Agendamento
                             </a>
                         </li>
 
                         <li>
-                            <a href="faleconosco.html">
+                            <a th:href="@{/faleconosco}">
                                 Fale conosco
                             </a>
                         </li>
@@ -82,11 +82,11 @@
                 <!-- BOTÕES -->
                 <div class="botoes-header">
 
-                    <a href="cadastro.html" class="btn-cadastrar">
+                    <a th:href="@{/cadastro}" class="btn-cadastrar">
                         Cadastrar
                     </a>
 
-                    <a href="login.html" class="btn-agendar">
+                    <a th:href="@{/login}" class="btn-agendar">
                         Fazer Login
                     </a>
 
@@ -124,12 +124,14 @@
                  FORMULÁRIO
                  ================================================= -->
 
-            <form id="formAgendamento">
+            <!-- Ajuste a rota /agendamento caso seu Controller use outro endpoint. -->
+            <form id="formAgendamento" th:action="@{/agendamento}" method="post">
+                <!-- Os nomes dos campos precisam corresponder ao DTO/Controller do projeto. -->
 
                 <!-- NOME -->
                 <div class="mb-3">
 
-                    <input type="text" class="form-control" id="nomeCliente" placeholder="Digite seu nome"
+                    <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" placeholder="Digite seu nome"
                         oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '')" required>
 
                 </div>
@@ -142,7 +144,7 @@
                         Veículo
                     </label>
 
-                    <input type="text" class="form-control" id="veiculoCliente" placeholder="Ex.: Honda Civic" required>
+                    <input type="text" class="form-control" id="veiculoCliente" name="veiculoCliente" placeholder="Ex.: Honda Civic" required>
 
                 </div>
 
@@ -150,7 +152,7 @@
                 <!-- PLACA -->
                 <div class="mb-3">
 
-                    <input type="text" class="form-control" id="placa-veiculo" placeholder="Ex.: ABC1D23" maxlength="7"
+                    <input type="text" class="form-control" id="placa-veiculo" name="placaVeiculo" placeholder="Ex.: ABC1D23" maxlength="7"
                         style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase()" required>
                 </div>
 
@@ -162,7 +164,7 @@
                         E-mail
                     </label>
 
-                    <input type="email" class="form-control" id="emailCliente" placeholder="Digite seu e-mail" required>
+                    <input type="email" class="form-control" id="emailCliente" name="emailCliente" placeholder="Digite seu e-mail" required>
 
                 </div>
 
@@ -174,7 +176,7 @@
                         Serviço
                     </label>
 
-                    <select class="form-select" id="servicoCliente" required>
+                    <select class="form-select" id="servicoCliente" name="servico" required>
 
                         <option value="">
                             Selecione um serviço
@@ -248,7 +250,7 @@
                             apagando o valor durante a digitação.
                         -->
 
-                        <input type="text" class="form-control" id="dataCliente" placeholder="DD/MM/AAAA" maxlength="10"
+                        <input type="text" class="form-control" id="dataCliente" name="dataCliente" placeholder="DD/MM/AAAA" maxlength="10"
                             inputmode="numeric" autocomplete="off" required>
 
                     </div>
@@ -261,7 +263,7 @@
                             Horário
                         </label>
 
-                        <input type="time" class="form-control" id="horarioCliente" required>
+                        <input type="time" class="form-control" id="horarioCliente" name="horarioCliente" required>
 
                     </div>
 
@@ -275,7 +277,7 @@
                         Observações
                     </label>
 
-                    <textarea class="form-control" id="observacoesCliente" rows="4"
+                    <textarea class="form-control" id="observacoesCliente" name="observacoesCliente" rows="4"
                         placeholder="Alguma observação sobre o veículo?"></textarea>
 
                 </div>
@@ -528,7 +530,7 @@
 
                     <div class="confirmacao-check">
 
-                        <input type="checkbox" id="confirmar-agendamento" required>
+                        <input type="checkbox" id="confirmar-agendamento" name="confirmacao" value="true" required>
 
                         <label for="confirmar-agendamento">
 
@@ -575,10 +577,10 @@
                     </p>
 
 
-                    <a href="../index.html"
+                    <a th:href="@{/}"
                         class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 logo-footer">
 
-                        <img src="../static/img/logo.png" alt="Logo EstetickElite" width="40" height="40" class="me-2">
+                        <img th:src="@{/img/logo.png}" alt="Logo EstetickElite" width="40" height="40" class="me-2">
 
                         Estetick<span>Elite</span>
 
@@ -589,7 +591,7 @@
 
                         <li class="nav-item">
 
-                            <a href="../index.html" class="nav-link px-2">
+                            <a th:href="@{/}" class="nav-link px-2">
                                 Home
                             </a>
 
@@ -598,7 +600,7 @@
 
                         <li class="nav-item">
 
-                            <a href="cadastro.html" class="nav-link px-2">
+                            <a th:href="@{/cadastro}" class="nav-link px-2">
                                 Cadastro
                             </a>
 
@@ -607,7 +609,7 @@
 
                         <li class="nav-item">
 
-                            <a href="agendamento.html" class="nav-link px-2">
+                            <a th:href="@{/agendamento}" class="nav-link px-2" aria-current="page">
                                 Agendamento
                             </a>
 
@@ -616,7 +618,7 @@
 
                         <li class="nav-item">
 
-                            <a href="faleconosco.html" class="nav-link px-2">
+                            <a th:href="@{/faleconosco}" class="nav-link px-2">
                                 Fale conosco
                             </a>
 
@@ -657,7 +659,7 @@
 
 
     <!-- JavaScript do agendamento -->
-    <script src="../static/js/agendamento.js"></script>
+    <script th:src="@{/js/agendamento.js}"></script>
 
 </body>
 
