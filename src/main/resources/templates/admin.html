@@ -5,58 +5,40 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="EstetickElite - Estética automotiva com qualidade, cuidado e excelência.">
+          content="EstetickElite - Painel administrativo de estética automotiva">
 
-    <meta name="author"
-          content="SamuelPrime">
+    <meta name="author" content="SamuelPrime">
 
     <title>Administração - EstetickElite</title>
 
-    <!-- Proteção do painel: validar a sessão no Controller -->
-
-    <!-- Bootstrap -->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 
-    <!-- CSS do painel -->
-    <link rel="stylesheet"
-          th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- 1. CABEÇALHO -->
 <header>
     <div class="container header-estetick">
         <div class="header-container">
 
-            <!-- LOGO -->
-            <a th:href="@{/}"
-               class="logo-estetick">
-
+            <a th:href="@{/}" class="logo-estetick">
                 <img th:src="@{/img/logo.png}"
                      alt="Logo da EstetickElite">
 
-                <span>
-                        Estetick<span>Elite</span>
-                    </span>
+                <span>Estetick<span>Elite</span></span>
             </a>
 
-            <!-- SAIR -->
             <div class="botoes-header">
-                <form th:action="@{/admin/logout}"
-                      method="post">
-
-                    <button type="submit"
-                            class="btn-agendar">
+                <form th:action="@{/admin/logout}" method="post">
+                    <button type="submit" class="btn-agendar">
                         Sair
                     </button>
                 </form>
@@ -66,29 +48,31 @@
     </div>
 </header>
 
-<!-- PAINEL -->
 <main>
     <div class="container painel-admin">
 
-        <!-- TÍTULO -->
-        <div class="titulo-admin">
-
-                <span class="admin-tag">
-                    ÁREA RESTRITA
-                </span>
+        <!-- 2. TÍTULO -->
+        <section class="titulo-admin">
+            <span class="admin-tag">ÁREA RESTRITA</span>
 
             <h1>Painel Administrativo</h1>
 
             <p>
-                Gerencie os agendamentos e acompanhe os serviços realizados.
+                Acompanhe os agendamentos e gerencie os contatos
+                recebidos pela EstetickElite.
             </p>
-        </div>
 
-        <!-- ESTATÍSTICAS -->
-        <div class="estatisticas">
+            <a th:href="@{/admin/mensagens}" class="btn-agendar">
+                Mensagens recebidas
+            </a>
+        </section>
+
+        <!-- 3. ESTATÍSTICAS -->
+        <section class="estatisticas">
 
             <div class="estatistica">
-                <span>Agendados</span>
+                <span>Agendamentos cadastrados</span>
+
                 <h2 id="totalAgendados"
                     th:text="${totalAgendados != null ? totalAgendados : 0}">
                     0
@@ -96,7 +80,8 @@
             </div>
 
             <div class="estatistica">
-                <span>Serviços Feitos</span>
+                <span>Serviços feitos</span>
+
                 <h2 id="totalFeitos"
                     th:text="${totalFeitos != null ? totalFeitos : 0}">
                     0
@@ -104,7 +89,8 @@
             </div>
 
             <div class="estatistica">
-                <span>Total de Serviços</span>
+                <span>Total de serviços</span>
+
                 <h2 id="totalServicos"
                     th:text="${totalServicos != null ? totalServicos : 0}">
                     0
@@ -112,20 +98,21 @@
             </div>
 
             <div class="estatistica">
-                <span>Taxa de Conclusão</span>
+                <span>Taxa de conclusão</span>
+
                 <h2 id="taxaConclusao"
                     th:text="${taxaConclusao != null ? taxaConclusao + '%' : '0%'}">
                     0%
                 </h2>
             </div>
 
-        </div>
+        </section>
 
-        <!-- GRÁFICOS -->
-        <div class="graficos">
+        <!-- 4. GRÁFICOS -->
+        <section class="graficos">
 
             <div class="grafico-box">
-                <h3>Status dos Serviços</h3>
+                <h3>Resumo dos agendamentos</h3>
 
                 <div class="grafico-container">
                     <canvas id="graficoStatus"></canvas>
@@ -133,124 +120,116 @@
             </div>
 
             <div class="grafico-box">
-                <h3>Serviços Agendados</h3>
+                <h3>Serviços cadastrados</h3>
 
                 <div class="grafico-container">
                     <canvas id="graficoServicos"></canvas>
                 </div>
             </div>
 
-        </div>
+        </section>
 
-        <!-- AGENDADOS -->
+        <!-- 5. LISTA DE AGENDAMENTOS -->
         <section class="secao-admin">
 
             <div class="titulo-secao">
-                <h2>Agendados para fazer</h2>
+                <h2>Agendamentos recebidos</h2>
 
                 <span class="contador"
                       id="contadorAgendados"
-                      th:text="${agendados != null ? #lists.size(agendados) : 0}">
-                        0
-                    </span>
+                      th:text="${agendamentos != null ? #lists.size(agendamentos) : 0}">
+                    0
+                </span>
             </div>
 
             <div id="listaAgendados">
 
-                <div th:if="${agendados == null or #lists.isEmpty(agendados)}">
-                    <p>Nenhum agendamento pendente no momento.</p>
+                <div th:if="${agendamentos == null or #lists.isEmpty(agendamentos)}">
+                    <p>Nenhum agendamento cadastrado no momento.</p>
                 </div>
 
-                <div th:each="agendamento : ${agendados}"
-                     class="item-agendamento">
+                <article th:each="agendamento : ${agendamentos}"
+                         class="item-agendamento">
 
-                    <h3 th:text="${agendamento.cliente != null
-                                      ? agendamento.cliente.nome
-                                      : 'Cliente não informado'}">
-                        Nome do cliente
+                    <h3>
+                        Agendamento #<span th:text="${agendamento.id}">1</span>
                     </h3>
 
                     <p>
-                        <strong>Serviço:</strong>
-                        <span th:text="${agendamento.servico != null
-                                            ? agendamento.servico.nome
-                                            : 'Não informado'}">
-                                Serviço
-                            </span>
+                        <strong>Cliente:</strong>
+                        <span th:text="${agendamento.clienteId != null
+                            ? agendamento.clienteId
+                            : 'Não informado'}">
+                            Identificação do cliente
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>Veículo:</strong>
+                        <span th:text="${agendamento.veiculo != null
+                            ? agendamento.veiculo
+                            : 'Não informado'}">
+                            Veículo
+                        </span>
                     </p>
 
                     <p>
                         <strong>Data:</strong>
-                        <span th:text="${agendamento.dataHora != null
-                                            ? #temporals.format(agendamento.dataHora, 'dd/MM/yyyy HH:mm')
-                                            : 'Não informada'}">
-                                Data do agendamento
-                            </span>
-                    </p>
-
-                </div>
-            </div>
-
-        </section>
-
-        <!-- SERVIÇOS FEITOS -->
-        <section class="secao-admin">
-
-            <div class="titulo-secao">
-                <h2>Serviços feitos</h2>
-
-                <span class="contador"
-                      id="contadorFeitos"
-                      th:text="${feitos != null ? #lists.size(feitos) : 0}">
-                        0
-                    </span>
-            </div>
-
-            <div id="listaFeitos">
-
-                <div th:if="${feitos == null or #lists.isEmpty(feitos)}">
-                    <p>Nenhum serviço concluído ainda.</p>
-                </div>
-
-                <div th:each="agendamento : ${feitos}"
-                     class="item-agendamento">
-
-                    <h3 th:text="${agendamento.cliente != null
-                                      ? agendamento.cliente.nome
-                                      : 'Cliente não informado'}">
-                        Nome do cliente
-                    </h3>
-
-                    <p>
-                        <strong>Serviço:</strong>
-                        <span th:text="${agendamento.servico != null
-                                            ? agendamento.servico.nome
-                                            : 'Não informado'}">
-                                Serviço
-                            </span>
+                        <span th:text="${agendamento.data != null
+                            ? #temporals.format(agendamento.data, 'dd/MM/yyyy')
+                            : 'Não informada'}">
+                            Data
+                        </span>
                     </p>
 
                     <p>
-                        <strong>Status:</strong>
-                        <span th:text="${agendamento.status}">
-                                CONCLUIDO
-                            </span>
+                        <strong>Horário:</strong>
+                        <span th:text="${agendamento.horario != null
+                            ? #temporals.format(agendamento.horario, 'HH:mm')
+                            : 'Não informado'}">
+                            Horário
+                        </span>
                     </p>
 
-                </div>
-            </div>
+                    <p>
+                        <strong>Código do serviço:</strong>
+                        <span th:text="${agendamento.tipoServicos != null
+                            ? agendamento.tipoServicos
+                            : 'Não informado'}">
+                            Serviço
+                        </span>
+                    </p>
 
+                    <p>
+                        <strong>Valor total:</strong>
+                        <span th:text="${agendamento.totalServicos != null
+                            ? #numbers.formatCurrency(agendamento.totalServicos)
+                            : 'Não informado'}">
+                            R$ 0,00
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>Observações:</strong>
+                        <span th:text="${agendamento.observacoes != null
+                            and !#strings.isEmpty(agendamento.observacoes)
+                            ? agendamento.observacoes
+                            : 'Nenhuma observação'}">
+                            Observações
+                        </span>
+                    </p>
+
+                </article>
+
+            </div>
         </section>
 
     </div>
 </main>
 
-<!-- Bootstrap JS -->
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
-</script>
+<!-- 6. SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- JavaScript do painel -->
 <script th:src="@{/js/admin.js}"></script>
 
 </body>

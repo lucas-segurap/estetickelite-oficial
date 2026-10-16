@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Mensagens recebidas | EstetickElite</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin.css}">
+</head>
+
+<body>
+
+<main class="container painel-admin">
+
+    <div class="titulo-admin">
+        <span class="admin-tag">ÁREA RESTRITA</span>
+        <h1>Mensagens recebidas</h1>
+        <p>Mensagens enviadas pelo formulário Fale Conosco.</p>
+
+        <a th:href="@{/admin}">
+            Voltar ao painel
+        </a>
+    </div>
+
+    <section class="secao-admin">
+
+        <div th:if="${mensagens == null or #lists.isEmpty(mensagens)}">
+            <p>Nenhuma mensagem recebida.</p>
+        </div>
+
+        <article th:each="mensagem : ${mensagens}"
+                 class="item-agendamento">
+
+            <h3 th:text="${mensagem.nome}">
+                Nome do remetente
+            </h3>
+
+            <p>
+                <strong>E-mail:</strong>
+                <span th:text="${mensagem.email}"></span>
+            </p>
+
+            <p>
+                <strong>Assunto:</strong>
+                <span th:text="${mensagem.assunto}"></span>
+            </p>
+
+            <p>
+                <strong>Mensagem:</strong>
+            </p>
+
+            <p th:text="${mensagem.mensagem}"></p>
+
+            <p>
+                <strong>Recebida em:</strong>
+                <span th:text="${mensagem.dataEnvio != null
+                    ? #temporals.format(mensagem.dataEnvio, 'dd/MM/yyyy HH:mm')
+                    : 'Data não informada'}"></span>
+            </p>
+
+        </article>
+
+    </section>
+
+</main>
+
+</body>
+</html>
