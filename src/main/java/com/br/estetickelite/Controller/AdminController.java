@@ -45,6 +45,36 @@ public class AdminController {
     }
 
     // Valida o acesso administrativo
+
+    // Abre o painel administrativo
+    @GetMapping
+    public String abrirPainel(
+            HttpSession session,
+            Model model) {
+
+        System.out.println("=== TESTE PAINEL ADMIN ===");
+        System.out.println("Sessão: " + session.getId());
+        System.out.println("Admin logado: "
+                + session.getAttribute("adminLogado"));
+
+        if (!estaAutenticado(session)) {
+            System.out.println("Acesso negado: sessão administrativa ausente.");
+            return "redirect:/admin/login";
+        }
+
+        System.out.println("Sessão válida. Abrindo admin.html.");
+
+        List<Agendamentos> agendamentos =
+                agendamentosService.listarTodos();
+
+        model.addAttribute("agendamentos", agendamentos);
+        model.addAttribute("totalServicos", agendamentos.size());
+        model.addAttribute("totalAgendados", agendamentos.size());
+        model.addAttribute("totalFeitos", 0);
+        model.addAttribute("taxaConclusao", 0);
+
+        return "admin";
+    }
     @PostMapping("/login")
     public String autenticar(
             @RequestParam("usuario") String usuario,
@@ -62,32 +92,10 @@ public class AdminController {
 
         return "redirect:/admin";
     }
-
-    // Abre o painel administrativo
-    @GetMapping
-    public String abrirPainel(
-            HttpSession session,
-            Model model) {
-
-        if (!estaAutenticado(session)) {
-            return "redirect:/admin/login";
-        }
-
-        List<Agendamentos> agendamentos =
-                agendamentosService.listarTodos();
-
-        model.addAttribute("agendamentos", agendamentos);
-        model.addAttribute("totalServicos", agendamentos.size());
-
-        // A entidade atual ainda não possui status.
-        // Por isso, não classificamos serviços como concluídos.
-        model.addAttribute("totalAgendados", agendamentos.size());
-        model.addAttribute("totalFeitos", 0);
-        model.addAttribute("taxaConclusao", 0);
-
-        return "admin";
+    @GetMapping("/login-admin.html")
+    public String redirecionarLoginAdmin() {
+        return "redirect:/admin/login";
     }
-
     // Lista as mensagens recebidas pelo Fale Conosco
     @GetMapping("/mensagens")
     public String listarMensagens(

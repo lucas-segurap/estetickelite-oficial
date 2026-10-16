@@ -24,13 +24,11 @@ public class LoginController {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
-    // Exibe a página de login
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+    // =====================================================
+    // LOGIN DO CLIENTE
+    // =====================================================
 
-    // Autentica o cliente
+
     @PostMapping("/login")
     public String autenticar(
             @RequestParam("email") String email,
@@ -41,7 +39,6 @@ public class LoginController {
                 .findByEmail(email)
                 .orElse(null);
 
-        // Verifica se o cliente existe e se a senha está correta
         if (cliente == null
                 || cliente.getSenha() == null
                 || !passwordEncoder.matches(
@@ -51,14 +48,28 @@ public class LoginController {
             return "redirect:/login?erro";
         }
 
-        // Guarda os dados do cliente na sessão
         session.setAttribute("clienteId", cliente.getId());
         session.setAttribute("clienteNome", cliente.getNome());
 
         return "redirect:/";
     }
 
-    // Testa se a sessão do cliente está funcionando
+    // =====================================================
+    // PÁGINA DE LOGIN ADMINISTRATIVO
+    // =====================================================
+
+    @GetMapping("/login-admin")
+    public String loginAdmin() {
+        return "login-admin";
+    }
+
+    // =====================================================
+    // TESTE DE SESSÃO DO CLIENTE
+    // =====================================================
+    @GetMapping("/login-admin.html")
+    public String redirecionarLoginAdmin() {
+        return "redirect:/admin/login";
+    }
     @GetMapping("/teste-sessao")
     public String testeSessao(
             HttpSession session,
@@ -67,7 +78,6 @@ public class LoginController {
         Object clienteId = session.getAttribute("clienteId");
         Object clienteNome = session.getAttribute("clienteNome");
 
-        // Se não estiver conectado, volta para o login
         if (clienteId == null) {
             return "redirect:/login?erro";
         }
@@ -78,7 +88,10 @@ public class LoginController {
         return "teste-sessao";
     }
 
-    // Encerra a sessão do cliente
+    // =====================================================
+    // LOGOUT DO CLIENTE
+    // =====================================================
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

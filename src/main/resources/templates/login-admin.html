@@ -1,26 +1,18 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-          content="Acesso administrativo da EstetickElite">
+    <meta name="description" content="Acesso administrativo da EstetickElite">
 
-    <meta name="author"
-          content="EstetickElite">
+    <meta name="author" content="EstetickElite">
 
     <title>Login Administrativo | EstetickElite</title>
 
     <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS global -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -31,115 +23,76 @@
 
 <body>
 
-<main class="login-admin">
+    <main class="login-admin">
 
-    <section class="login-admin-box"
-             aria-labelledby="tituloLogin">
+        <section class="login-admin-box" aria-labelledby="tituloLogin">
 
-        <!-- LOGO -->
-        <div class="logo-container">
-            <img
-                th:src="@{/img/logo.png}"
-                src="/img/logo.png"
-                alt="Logo EstetickElite"
-                class="logo-login">
-        </div>
-
-        <!-- IDENTIFICAÇÃO -->
-        <span class="login-tag">
-            Área restrita
-        </span>
-
-        <h1 id="tituloLogin">
-            Login Administrativo
-        </h1>
-
-        <p class="descricao-login">
-            Acesse o painel exclusivo da EstetickElite.
-        </p>
-
-        <!-- MENSAGEM DE ERRO -->
-        <div class="mensagem-login mensagem-erro"
-             th:if="${param.erro}"
-             role="alert">
-            Usuário ou senha inválidos.
-        </div>
-
-        <!-- MENSAGEM DE LOGOUT -->
-        <div class="mensagem-login mensagem-sucesso"
-             th:if="${param.logout}"
-             role="status">
-            Você saiu do sistema com segurança.
-        </div>
-
-        <!-- FORMULÁRIO -->
-        <form id="loginAdmin"
-              th:action="@{/admin/login}"
-              action="/admin/login"
-              method="post">
-
-            <!-- USUÁRIO -->
-            <div class="campo-login">
-
-                <label for="usuario">
-                    Usuário
-                </label>
-
-                <input
-                    type="text"
-                    id="usuario"
-                    name="usuario"
-                    placeholder="Digite seu usuário"
-                    autocomplete="username"
-                    maxlength="100"
-                    required
-                    autofocus>
-
+            <!-- LOGO -->
+            <div class="logo-container">
+                <img th:src="@{/img/logo.png}" src="/img/logo.png" alt="Logo EstetickElite" class="logo-login">
             </div>
 
-            <!-- SENHA -->
-            <div class="campo-login">
+            <!-- IDENTIFICAÇÃO -->
+            <span class="login-tag">
+                Área restrita
+            </span>
 
-                <label for="senha">
-                    Senha
-                </label>
+            <h1 id="tituloLogin">
+                Login Administrativo
+            </h1>
 
-                <input
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="Digite sua senha"
-                    autocomplete="current-password"
-                    required>
+            <p class="descricao-login">
+                Acesse o painel exclusivo da EstetickElite.
+            </p>
 
+            <!-- MENSAGEM DE ERRO -->
+            <div class="mensagem-login mensagem-erro" th:if="${param.erro}" role="alert">
+                Usuário ou senha inválidos.
             </div>
 
-            <!-- BOTÃO -->
-            <button type="submit" class="btn-login">
-                Entrar no painel
-                <span aria-hidden="true">→</span>
-            </button>
+            <!-- MENSAGEM DE LOGOUT -->
+            <div class="mensagem-login mensagem-sucesso" th:if="${param.logout}" role="status">
+                Você saiu do sistema com segurança.
+            </div>
 
-        </form>
+            <!-- FORMULÁRIO -->
 
-        <!-- VOLTAR -->
-        <a th:href="@{/}"
-           href="/"
-           class="voltar-site">
-            <span aria-hidden="true">←</span>
-            Voltar para o site
-        </a>
+            <form th:action="@{/admin/login}" method="post">
 
-        <!-- RODAPÉ -->
-        <footer class="login-footer">
-            <span class="linha-dourada"></span>
-            <p>ESTETICKELITE</p>
-            <small>Área administrativa protegida</small>
-        </footer>
+                <div class="campo">
+                    <label for="usuario">Usuário</label>
+                    <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required>
+                </div>
 
-    </section>
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
 
-</main>
+                <button type="submit" class="btn-login">
+                    Entrar no painel
+                </button>
+
+            </form>
+
+
+            <!-- VOLTAR -->
+            <a th:href="@{/}" href="/" class="voltar-site">
+                <span aria-hidden="true">←</span>
+                Voltar para o site
+            </a>
+
+            <!-- RODAPÉ -->
+            <footer class="login-footer">
+                <span class="linha-dourada"></span>
+                <p>ESTETICKELITE</p>
+                <small>Área administrativa protegida</small>
+            </footer>
+
+        </section>
+
+    </main>
 
 </body>
+
 </html>
