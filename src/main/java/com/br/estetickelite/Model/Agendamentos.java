@@ -38,8 +38,18 @@ public class Agendamentos {
     @Column(name = "cliente_id")
     private Long clienteId;
 
+    @Column(name = "status", length = 20)
+    private String status = "AGENDADO";
+
     public Long getClienteId() {
         return clienteId;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setClienteId(Long clienteId) {
@@ -48,7 +58,12 @@ public class Agendamentos {
     // Construtor vazio obrigatório para o JPA
     public Agendamentos() {
     }
-
+    @PrePersist
+    public void definirStatusInicial() {
+        if (status == null || status.isBlank()) {
+            status = "AGENDADO";
+        }
+    }
     // Construtor completo
     public Agendamentos(
             Long id,

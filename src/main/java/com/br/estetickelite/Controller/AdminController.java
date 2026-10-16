@@ -47,34 +47,48 @@ public class AdminController {
     // Valida o acesso administrativo
 
     // Abre o painel administrativo
+
     @GetMapping
     public String abrirPainel(
             HttpSession session,
             Model model) {
 
-        System.out.println("=== TESTE PAINEL ADMIN ===");
-        System.out.println("Sessão: " + session.getId());
-        System.out.println("Admin logado: "
-                + session.getAttribute("adminLogado"));
+        System.out.println("=== PAINEL ADMINISTRATIVO ===");
 
         if (!estaAutenticado(session)) {
-            System.out.println("Acesso negado: sessão administrativa ausente.");
             return "redirect:/admin/login";
         }
-
-        System.out.println("Sessão válida. Abrindo admin.html.");
 
         List<Agendamentos> agendamentos =
                 agendamentosService.listarTodos();
 
-        model.addAttribute("agendamentos", agendamentos);
-        model.addAttribute("totalServicos", agendamentos.size());
-        model.addAttribute("totalAgendados", agendamentos.size());
-        model.addAttribute("totalFeitos", 0);
-        model.addAttribute("taxaConclusao", 0);
+        long totalAgendados = agendamentos.stream()
+                .filter(a -> a.getStatus() == null
+                        || "AGENDADO".equalsIgnoreCase(a.getStatus()))
+                .count();
 
-        return "redirect:/admin/teste";
+        long totalFeitos = agendamentos.stream()
+                .filter(a -> "CONCLUIDO".equalsIgnoreCase(a.getStatus()))
+                .count();
+
+        long totalServicos = agendamentos.size();
+
+        double taxaConclusao = totalServicos == 0
+                ? 0
+                : totalFeitos * 100.0 / totalServicos;
+
+        model.addAttribute("agendamentos", agendamentos);
+        model.addAttribute("totalAgendados", totalAgendados);
+        model.addAttribute("totalFeitos", totalFeitos);
+        model.addAttribute("totalServicos", totalServicos);
+        model.addAttribute("taxaConclusao",
+                Math.round(taxaConclusao * 10.0) / 10.0);
+
+        
+
+        return "admin";
     }
+
     @PostMapping("/login")
     public String autenticar(
             @RequestParam("usuario") String usuario,

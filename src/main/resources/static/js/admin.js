@@ -2,91 +2,69 @@
 /* =====================================================
    ESTETICKELITE
    PAINEL ADMINISTRATIVO
-   JavaScript integrado ao Spring Boot + Thymeleaf
+   JavaScript + Spring Boot + Thymeleaf
    Identidade visual: Preto + Dourado
-===================================================== */
+   ===================================================== */
 
 document.addEventListener("DOMContentLoaded", function () {
-
     "use strict";
 
-    /* =====================================================
-       1. ELEMENTOS DO HTML
-    ===================================================== */
+    /* 1. ELEMENTOS DO HTML */
 
     const listaAgendados = document.getElementById("listaAgendados");
     const contadorAgendados = document.getElementById("contadorAgendados");
 
-    const totalAgendados = document.getElementById("totalAgendados");
-    const totalFeitos = document.getElementById("totalFeitos");
-    const totalServicos = document.getElementById("totalServicos");
-    const taxaConclusao = document.getElementById("taxaConclusao");
-
     const graficoStatus = document.getElementById("graficoStatus");
     const graficoServicos = document.getElementById("graficoServicos");
 
-    /* =====================================================
-       2. FUNÇÕES AUXILIARES
-    ===================================================== */
+    /* 2. AGENDAMENTOS RENDERIZADOS PELO THYMELEAF */
 
-    function obterAgendamentos() {
-        if (!listaAgendados) {
-            return [];
-        }
+    const agendamentos = listaAgendados
+        ? Array.from(
+            listaAgendados.querySelectorAll("article.item-agendamento")
+        )
+        : [];
 
-        return Array.from(
-            listaAgendados.querySelectorAll(
-                "article.item-agendamento"
-            )
-        );
+    if (contadorAgendados) {
+        contadorAgendados.textContent = agendamentos.length;
     }
 
-    function obterTexto(elemento) {
-        return elemento
-            ? elemento.textContent.trim()
-            : "";
-    }
+    /* 3. FUNÇÕES AUXILIARES */
 
-    function normalizarTexto(texto) {
-        return (texto || "")
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .trim()
-            .toLowerCase();
-    }
-
-    /*
-     * Localiza um campo dentro do agendamento pelo
-     * texto do elemento <strong> correspondente.
-     */
     function obterCampo(agendamento, nomeCampo) {
         const campos = agendamento.querySelectorAll("p");
 
         for (const campo of campos) {
             const titulo = campo.querySelector("strong");
 
-            if (
-                titulo &&
-                normalizarTexto(titulo.textContent)
-                    .replace(/:$/, "") ===
-                normalizarTexto(nomeCampo).replace(/:$/, "")
-            ) {
-                const valor = campo.querySelector("span");
-
-                return obterTexto(valor);
+            if (!titulo) {
+                continue;
             }
+
+            const nome = titulo.textContent
+                .replace(/:/g, "")
+                .trim()
+                .toLocaleLowerCase("pt-BR");
+
+            if (nome !== nomeCampo.toLocaleLowerCase("pt-BR")) {
+                continue;
+            }
+
+            const valor = campo.querySelector("span");
+
+            return valor ? valor.textContent.trim() : "";
         }
 
         return "";
     }
 
-    function contarPorCampo(agendamentos, campo) {
+    function contarValores(campo) {
         const contagem = {};
 
         agendamentos.forEach(function (agendamento) {
             let valor = obterCampo(agendamento, campo);
 
-            if (!valor || normalizarTexto(valor) === "nao informado") {
+            if (!valor || valor === "Não informada") {
                 valor = "Não informado";
             }
 
@@ -96,64 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return contagem;
     }
 
-    /* =====================================================
-       3. ATUALIZAÇÃO DO CONTADOR DA LISTA
-    ===================================================== */
-
-    const agendamentos = obterAgendamentos();
-    const quantidadeAgendamentos = agendamentos.length;
-
-    if (contadorAgendados) {
-        contadorAgendados.textContent = quantidadeAgendamentos;
-    }
-
-    /*
-     * Os indicadores principais são calculados pelo
-     * Spring Boot e renderizados pelo Thymeleaf.
-     *
-     * Não os sobrescrevemos com dados incompletos
-     * obtidos apenas da lista visível no HTML.
-     */
-
-    /* =====================================================
-       4. PREPARAÇÃO DOS DADOS DOS GRÁFICOS
-    ===================================================== */
-
-    const servicos = contarPorCampo(
-        agendamentos,
-        "Código do serviço"
-    );
-
-    const statusDisponiveis = {};
-
-    /*
-     * O HTML atual não contém um campo de status.
-     * Se ele for adicionado posteriormente, o gráfico
-     * poderá aproveitar os dados automaticamente.
-     */
-
-    agendamentos.forEach(function (agendamento) {
-        const status = obterCampo(agendamento, "Status");
-
-        if (status) {
-            statusDisponiveis[status] =
-                (statusDisponiveis[status] || 0) + 1;
-        }
-    });
-
-    /* =====================================================
-       5. CONFIGURAÇÃO GERAL DO CHART.JS
-    ===================================================== */
-
-    if (typeof Chart === "undefined") {
-        console.warn(
-            "EstetickElite: Chart.js não foi carregado."
-        );
-        return;
-    }
-
-    Chart.defaults.color = "#cccccc";
-    Chart.defaults.font.family = "Arial, sans-serif";
+    /* 4. CONFIGURAÇÃO VISUAL */
 
     const coresDouradas = [
         "#d4af37",
@@ -164,47 +85,57 @@ document.addEventListener("DOMContentLoaded", function () {
         "#f5e3a1"
     ];
 
-    /* =====================================================
-       6. GRÁFICO DE RESUMO DOS AGENDAMENTOS
-    ===================================================== */
+    if (typeof Chart === "undefined") {
+        console.warn("EstetickElite: Chart.js não foi carregado.");
+        return;
+    }
 
-    if (graficoStatus) {
-        const existente = Chart.getChart(graficoStatus);
+    Chart.defaults.color = "#cccccc";
+    Chart.defaults.font.family = "Arial, sans-serif";
+
+    function destruirGrafico(canvas) {
+        if (!canvas) {
+            return;
+        }
+
+        const existente = Chart.getChart(canvas);
 
         if (existente) {
             existente.destroy();
         }
+    }
 
-        const possuiStatus = Object.keys(statusDisponiveis).length > 0;
+    /* 5. GRÁFICO DE AGENDAMENTOS POR DATA */
 
-        const labelsStatus = possuiStatus
-            ? Object.keys(statusDisponiveis)
-            : ["Status não informado"];
+    if (graficoStatus) {
+        destruirGrafico(graficoStatus);
 
-        const valoresStatus = possuiStatus
-            ? Object.values(statusDisponiveis)
-            : [quantidadeAgendamentos];
-
-        const coresStatus = possuiStatus
-            ? labelsStatus.map(function (_, indice) {
-                return coresDouradas[
-                    indice % coresDouradas.length
-                ];
-            })
-            : ["#777777"];
+        const dadosDatas = contarValores("Data");
+        const entradas = Object.entries(dadosDatas).sort(function (a, b) {
+            return a[0].localeCompare(b[0], "pt-BR");
+        });
 
         new Chart(graficoStatus, {
             type: "doughnut",
 
             data: {
-                labels: labelsStatus,
+                labels: entradas.length
+                    ? entradas.map(item => item[0])
+                    : ["Sem agendamentos"],
 
                 datasets: [{
-                    label: "Agendamentos",
+                    label: "Agendamentos por data",
 
-                    data: valoresStatus,
+                    data: entradas.length
+                        ? entradas.map(item => item[1])
+                        : [1],
 
-                    backgroundColor: coresStatus,
+                    backgroundColor: entradas.length
+                        ? entradas.map(
+                            (_, indice) =>
+                                coresDouradas[indice % coresDouradas.length]
+                        )
+                        : ["#333333"],
 
                     borderColor: "#111111",
                     borderWidth: 3,
@@ -230,6 +161,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     tooltip: {
                         callbacks: {
                             label: function (context) {
+                                if (entradas.length === 0) {
+                                    return "Nenhum agendamento";
+                                }
+
                                 return context.label + ": " +
                                     context.raw + " agendamento(s)";
                             }
@@ -240,36 +175,31 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    /* =====================================================
-       7. GRÁFICO DE SERVIÇOS CADASTRADOS
-    ===================================================== */
+    /* 6. GRÁFICO POR CÓDIGO DO SERVIÇO */
 
     if (graficoServicos) {
-        const existente = Chart.getChart(graficoServicos);
+        destruirGrafico(graficoServicos);
 
-        if (existente) {
-            existente.destroy();
-        }
+        const dadosServicos = contarValores("Código do serviço");
 
-        const dadosServicos = Object.entries(servicos)
-            .sort(function (a, b) {
-                return b[1] - a[1];
-            });
+        const entradas = Object.entries(dadosServicos).sort(
+            (a, b) => b[1] - a[1]
+        );
 
         new Chart(graficoServicos, {
             type: "bar",
 
             data: {
-                labels: dadosServicos.map(function (item) {
-                    return item[0];
-                }),
+                labels: entradas.length
+                    ? entradas.map(item => item[0])
+                    : ["Sem dados"],
 
                 datasets: [{
                     label: "Quantidade de agendamentos",
 
-                    data: dadosServicos.map(function (item) {
-                        return item[1];
-                    }),
+                    data: entradas.length
+                        ? entradas.map(item => item[1])
+                        : [0],
 
                     backgroundColor: "#d4af37",
                     borderColor: "#f0d56a",
@@ -281,7 +211,6 @@ document.addEventListener("DOMContentLoaded", function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-
                 indexAxis: "y",
 
                 scales: {
@@ -317,8 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     tooltip: {
                         callbacks: {
                             label: function (context) {
-                                return context.raw +
-                                    " agendamento(s)";
+                                return context.raw + " agendamento(s)";
                             }
                         }
                     }
@@ -327,16 +255,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    /* =====================================================
-       8. FINALIZAÇÃO
-    ===================================================== */
+    /* 7. LOG DE VERIFICAÇÃO */
 
-    console.info(
-        "EstetickElite: admin.js carregado com sucesso.",
-        {
-            agendamentos: quantidadeAgendamentos,
-            servicos: Object.keys(servicos).length
-        }
-    );
-
+    console.info("EstetickElite: painel carregado.", {
+        quantidadeAgendamentos: agendamentos.length
+    });
 });

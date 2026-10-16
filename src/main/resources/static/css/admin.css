@@ -1,26 +1,35 @@
+
 /* =========================================================
    ESTETICKELITE — PAINEL ADMINISTRATIVO
-   Identidade visual: preto + dourado
-   Arquivo: static/css/admin.css
+   Identidade visual: Preto + Dourado
    ========================================================= */
 
+/* 1. VARIÁVEIS */
+
 :root {
-    --preto: #050505;
-    --preto-secundario: #0d0d0d;
-    --card: #151515;
-    --card-hover: #1c1c1c;
-    --borda: #2b2b2b;
-    --texto: #f5f5f5;
-    --texto-secundario: #bdbdbd;
-    --texto-suave: #858585;
+    --preto: #080808;
+    --preto-suave: #0e0e0e;
+    --painel: #131313;
+    --painel-hover: #191919;
+    --borda: #292929;
+
     --dourado: #d4af37;
     --dourado-claro: #f0d56a;
-    --dourado-escuro: #a98722;
-    --raio: 16px;
-    --sombra: 0 12px 32px rgba(0, 0, 0, .35);
+    --dourado-escuro: #a98725;
+
+    --branco: #f5f5f5;
+    --cinza: #a4a4a4;
+    --verde: #74c69d;
+
+    --raio: 14px;
+    --transicao: 0.25s ease;
 }
 
+/* 2. RESET */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -30,44 +39,41 @@ html {
 
 body {
     min-height: 100vh;
-    margin: 0;
     background: var(--preto);
-    color: var(--texto);
-    font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+    color: var(--branco);
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
-}
-
-button,
-input,
-select,
-textarea {
-    font: inherit;
 }
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
-/* Cabeçalho */
-
-header {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    background: linear-gradient(120deg, #050505, #171717 50%, #080808);
-    border-bottom: 1px solid rgba(212, 175, 55, .35);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, .35);
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
-header::after {
-    content: "";
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    max-width: 100%;
     display: block;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--dourado), var(--dourado-claro), var(--dourado), transparent);
 }
+
+/* 3. CABEÇALHO */
 
 .header-estetick {
-    width: 100%;
+    position: relative;
+    z-index: 10;
+    background: #0b0b0b;
+    border-bottom: 1px solid var(--borda);
 }
 
 .header-container {
@@ -76,197 +82,223 @@ header::after {
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    padding-top: 12px;
-    padding-bottom: 12px;
 }
 
 .logo-estetick {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    color: var(--texto);
-    text-decoration: none;
-    font-size: 22px;
+    flex-shrink: 0;
+    color: var(--branco);
+    font-size: 23px;
     font-weight: 800;
-    letter-spacing: 1px;
-    transition: transform .25s ease;
-}
-
-.logo-estetick:hover {
-    color: var(--texto);
-    transform: translateY(-2px);
+    letter-spacing: -0.8px;
 }
 
 .logo-estetick img {
-    display: block;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(212, 175, 55, .2));
 }
 
 .logo-estetick > span > span {
     color: var(--dourado);
 }
 
-.botoes-header {
+.nav-estetick {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
-.botoes-header form {
+.nav-link-admin {
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: var(--cinza);
+    font-size: 14px;
+    transition: var(--transicao);
+}
+
+.nav-link-admin:hover,
+.nav-link-admin[aria-current="page"] {
+    color: var(--dourado-claro);
+    background: rgba(212, 175, 55, 0.08);
+}
+
+.nav-estetick form {
     margin: 0;
 }
 
-.btn-agendar {
+/* 4. BOTÕES */
+
+.btn-agendar,
+.btn-sair {
+    min-height: 43px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 94px;
-    padding: 10px 22px;
+    gap: 9px;
+    padding: 11px 17px;
     border: 1px solid var(--dourado);
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado) 65%, #b89428);
-    color: #090909;
-    font-size: 14px;
-    font-weight: 800;
-    text-decoration: none;
+    background: var(--dourado);
+    color: #111;
+    font-size: 13px;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 5px 16px rgba(212, 175, 55, .12);
-    transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    transition:
+            background var(--transicao),
+            border-color var(--transicao),
+            transform var(--transicao);
 }
 
-.btn-agendar:hover {
-    color: #000;
-    transform: translateY(-2px);
-    filter: brightness(1.05);
-    box-shadow: 0 9px 24px rgba(212, 175, 55, .23);
+.btn-agendar:hover,
+.btn-sair:hover {
+    background: var(--dourado-claro);
+    border-color: var(--dourado-claro);
+    color: #111;
+    transform: translateY(-1px);
 }
 
-/* Área principal */
-
-main {
-    min-height: calc(100vh - 88px);
-    background:
-        radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, .075), transparent 36%),
-        linear-gradient(180deg, #111 0%, #080808 36%, #050505 100%);
+.btn-sair {
+    background: transparent;
+    color: var(--dourado-claro);
 }
+
+.btn-sair:hover {
+    background: var(--dourado);
+    color: #111;
+}
+
+/* 5. CONTEÚDO PRINCIPAL */
 
 .painel-admin {
-    max-width: 1240px;
-    padding-top: 52px;
-    padding-bottom: 76px;
+    min-height: 75vh;
+    padding: 44px 0 70px;
 }
 
-/* Título */
+.painel-admin > .container {
+    max-width: 1240px;
+}
+
+/* 6. TÍTULO */
 
 .titulo-admin {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
     margin-bottom: 34px;
-    animation: aparecer .55s ease both;
 }
 
-.admin-tag {
+.admin-tag,
+.secao-etiqueta {
     display: inline-block;
-    margin-bottom: 10px;
-    color: var(--dourado-claro);
-    font-size: 11px;
+    color: var(--dourado);
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
 }
 
 .titulo-admin h1 {
-    margin: 0 0 12px;
-    color: var(--texto);
-    font-size: clamp(30px, 4vw, 44px);
-    font-weight: 850;
-    letter-spacing: -.8px;
-    line-height: 1.15;
+    margin: 10px 0 12px;
+    color: var(--branco);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.2;
+}
+
+.titulo-admin h1 span {
+    color: var(--dourado);
 }
 
 .titulo-admin p {
-    max-width: 700px;
+    max-width: 610px;
     margin: 0;
-    color: var(--texto-secundario);
-    font-size: 15px;
+    color: var(--cinza);
+    font-size: 14px;
     line-height: 1.8;
 }
 
-/* Cards de estatísticas */
+.titulo-admin > .btn-agendar {
+    flex-shrink: 0;
+}
+
+/* 7. CARTÕES DE ESTATÍSTICAS */
 
 .estatisticas {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
-    margin-bottom: 34px;
+    margin-bottom: 30px;
 }
 
 .estatistica {
     position: relative;
     min-width: 0;
-    min-height: 142px;
-    padding: 24px 22px;
+    padding: 23px;
     overflow: hidden;
-    background: linear-gradient(145deg, #1b1b1b, #101010);
+    background: var(--painel);
     border: 1px solid var(--borda);
     border-radius: var(--raio);
-    box-shadow: var(--sombra);
-    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-    animation: aparecer .55s ease both;
-}
-
-.estatistica::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 4px;
-    background: linear-gradient(180deg, var(--dourado-claro), var(--dourado-escuro));
-}
-
-.estatistica::after {
-    content: "";
-    position: absolute;
-    right: -28px;
-    bottom: -45px;
-    width: 110px;
-    height: 110px;
-    border: 1px solid rgba(212, 175, 55, .12);
-    border-radius: 50%;
-    box-shadow: 0 0 0 14px rgba(212, 175, 55, .025), 0 0 0 29px rgba(212, 175, 55, .02);
-    pointer-events: none;
+    transition:
+            border-color var(--transicao),
+            background var(--transicao),
+            transform var(--transicao);
 }
 
 .estatistica:hover {
-    transform: translateY(-5px);
-    border-color: rgba(212, 175, 55, .55);
-    box-shadow: 0 17px 36px rgba(0, 0, 0, .48);
+    background: var(--painel-hover);
+    border-color: rgba(212, 175, 55, 0.45);
+    transform: translateY(-2px);
 }
 
-.estatistica > span {
-    display: block;
-    margin-bottom: 13px;
-    color: var(--texto-secundario);
-    font-size: 13px;
-    font-weight: 650;
+.estatistica-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.estatistica-icone {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 11px;
+    background: rgba(212, 175, 55, 0.09);
+    color: var(--dourado-claro);
+    font-size: 19px;
+}
+
+.estatistica-legenda {
+    color: var(--cinza);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    text-align: right;
 }
 
 .estatistica h2 {
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    color: var(--dourado-claro);
-    font-size: clamp(27px, 3vw, 35px);
-    font-weight: 850;
+    margin: 23px 0 5px;
+    color: var(--branco);
+    font-size: clamp(29px, 3vw, 37px);
+    font-weight: 800;
+    letter-spacing: -1px;
     line-height: 1.1;
     overflow-wrap: anywhere;
 }
 
-.estatistica:nth-child(1) { animation-delay: .04s; }
-.estatistica:nth-child(2) { animation-delay: .09s; }
-.estatistica:nth-child(3) { animation-delay: .14s; }
-.estatistica:nth-child(4) { animation-delay: .19s; }
+.estatistica p {
+    margin: 0;
+    color: var(--cinza);
+    font-size: 12px;
+}
 
-/* Gráficos */
+/* 8. GRÁFICOS */
 
 .graficos {
     display: grid;
@@ -277,275 +309,415 @@ main {
 
 .grafico-box {
     min-width: 0;
-    min-height: 380px;
     padding: 25px;
-    background: linear-gradient(145deg, #191919, #0e0e0e);
+    background: var(--painel);
     border: 1px solid var(--borda);
     border-radius: var(--raio);
-    box-shadow: var(--sombra);
-    transition: border-color .25s ease, transform .25s ease;
-    animation: aparecer .65s ease both;
 }
 
-.grafico-box:hover {
-    transform: translateY(-3px);
-    border-color: rgba(212, 175, 55, .4);
+.grafico-cabecalho {
+    margin-bottom: 20px;
 }
 
-.grafico-box h3 {
-    margin: 0 0 22px;
-    color: var(--dourado-claro);
-    font-size: 19px;
-    font-weight: 800;
+.grafico-cabecalho h2 {
+    margin: 8px 0 5px;
+    color: var(--branco);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.grafico-cabecalho p {
+    margin: 0;
+    color: var(--cinza);
+    font-size: 12px;
 }
 
 .grafico-container {
     position: relative;
     width: 100%;
-    height: 285px;
+    height: 280px;
 }
 
-.grafico-container canvas {
-    max-width: 100%;
-}
-
-/* Seções e cabeçalhos das listas */
+/* 9. SEÇÃO DE AGENDAMENTOS */
 
 .secao-admin {
-    margin-bottom: 26px;
-    padding: 26px;
-    background: linear-gradient(145deg, #181818, #0d0d0d);
+    margin-top: 12px;
+    padding: 28px;
+    background: var(--painel);
     border: 1px solid var(--borda);
     border-radius: var(--raio);
-    box-shadow: var(--sombra);
-    animation: aparecer .7s ease both;
 }
 
 .titulo-secao {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 20px;
-    padding-bottom: 17px;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 22px;
     border-bottom: 1px solid var(--borda);
 }
 
 .titulo-secao h2 {
-    margin: 0;
-    color: var(--texto);
-    font-size: 21px;
+    margin: 8px 0 6px;
+    color: var(--branco);
+    font-size: 23px;
     font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.titulo-secao p {
+    margin: 0;
+    color: var(--cinza);
+    font-size: 13px;
 }
 
 .contador {
+    min-width: 43px;
+    height: 43px;
     display: inline-flex;
-    flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
-    min-height: 40px;
-    padding: 0 12px;
-    border: 1px solid rgba(212, 175, 55, .5);
-    border-radius: 50px;
-    background: rgba(212, 175, 55, .12);
+    flex-shrink: 0;
+    padding: 0 10px;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 11px;
     color: var(--dourado-claro);
-    font-size: 14px;
-    font-weight: 850;
+    font-size: 16px;
+    font-weight: 800;
 }
 
-/* Listas de agendamentos */
+/* 10. LISTA */
 
-#listaAgendados,
-#listaFeitos {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.lista-agendamentos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
 }
 
-.item-agendamento,
-#listaAgendados > div:not(.item-agendamento),
-#listaFeitos > div:not(.item-agendamento) {
+.item-agendamento {
     min-width: 0;
-    padding: 20px 22px;
-    background: linear-gradient(135deg, #1c1c1c, #121212);
-    border: 1px solid #303030;
+    padding: 22px;
+    background: #0e0e0e;
+    border: 1px solid var(--borda);
     border-radius: 12px;
-    color: var(--texto-secundario);
-    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+    transition:
+            border-color var(--transicao),
+            background var(--transicao);
 }
 
 .item-agendamento:hover {
-    transform: translateX(3px);
-    background: linear-gradient(135deg, #202020, #151515);
-    border-color: rgba(212, 175, 55, .45);
+    background: #111;
+    border-color: rgba(212, 175, 55, 0.4);
 }
 
-.item-agendamento h3 {
-    margin: 0 0 12px;
-    color: var(--dourado-claro);
-    font-size: 17px;
-    font-weight: 800;
-    overflow-wrap: anywhere;
+.agendamento-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--borda);
 }
 
-.item-agendamento p,
-#listaAgendados > div:not(.item-agendamento) p,
-#listaFeitos > div:not(.item-agendamento) p {
+.agendamento-cabecalho h3 {
     margin: 6px 0 0;
-    color: var(--texto-secundario);
-    font-size: 14px;
-    line-height: 1.7;
-    overflow-wrap: anywhere;
-}
-
-.item-agendamento strong {
-    color: var(--texto);
+    color: var(--branco);
+    font-size: 17px;
     font-weight: 700;
 }
 
-.item-agendamento span {
-    color: var(--texto-secundario);
+.agendamento-cabecalho h3 span {
+    color: var(--dourado);
 }
 
-/* Estado vazio */
-
-#listaAgendados > div:not(.item-agendamento):has(> p),
-#listaFeitos > div:not(.item-agendamento):has(> p) {
-    padding: 24px 18px;
-    border-style: dashed;
-    border-color: #3a3a3a;
-    background: rgba(255, 255, 255, .015);
-    text-align: center;
+.identificador-agendamento {
+    padding: 6px 9px;
+    border-radius: 6px;
+    background: #1a1a1a;
+    color: var(--cinza);
+    font-size: 10px;
+    white-space: nowrap;
 }
 
-#listaAgendados > div:not(.item-agendamento):has(> p) p,
-#listaFeitos > div:not(.item-agendamento):has(> p) p {
+/* 11. DADOS DO AGENDAMENTO */
+
+.dados-agendamento {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 16px;
+}
+
+.dado-agendamento {
+    min-width: 0;
+}
+
+.dado-rotulo {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--cinza);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.dado-agendamento strong {
+    display: block;
+    color: var(--branco);
+    font-size: 13px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.dado-agendamento .valor-agendamento {
+    color: var(--dourado-claro);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+/* 12. OBSERVAÇÕES */
+
+.observacoes-agendamento {
+    margin-top: 22px;
+    padding: 15px;
+    background: #151515;
+    border: 1px solid #242424;
+    border-radius: 9px;
+}
+
+.observacoes-agendamento p {
     margin: 0;
-    color: var(--texto-suave);
+    color: #d1d1d1;
+    font-size: 12px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
 }
 
-/* Foco acessível */
+/* 13. ESTADO VAZIO */
 
-button:focus-visible,
+.estado-vazio {
+    padding: 48px 20px;
+    text-align: center;
+    background: #0e0e0e;
+    border: 1px dashed #333;
+    border-radius: 12px;
+}
+
+.estado-vazio-icone {
+    width: 54px;
+    height: 54px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background: rgba(212, 175, 55, 0.09);
+    border-radius: 50%;
+    color: var(--dourado);
+    font-size: 24px;
+}
+
+.estado-vazio h3 {
+    margin-bottom: 8px;
+    color: var(--branco);
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.estado-vazio p {
+    max-width: 430px;
+    margin: 0 auto;
+    color: var(--cinza);
+    font-size: 13px;
+}
+
+/* 14. ACESSO RÁPIDO */
+
+.acesso-rapido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    margin-top: 25px;
+    padding: 27px;
+    background:
+            linear-gradient(
+                    110deg,
+                    rgba(212, 175, 55, 0.09),
+                    rgba(212, 175, 55, 0.015) 70%
+            );
+    border: 1px solid rgba(212, 175, 55, 0.23);
+    border-radius: var(--raio);
+}
+
+.acesso-rapido h2 {
+    margin: 8px 0 6px;
+    color: var(--branco);
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.acesso-rapido p {
+    margin: 0;
+    color: var(--cinza);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.acesso-rapido .btn-agendar {
+    flex-shrink: 0;
+}
+
+/* 15. RODAPÉ */
+
+.footer-estetick {
+    padding: 25px 0;
+    background: #0b0b0b;
+    border-top: 1px solid var(--borda);
+}
+
+.footer-estetick .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-estetick p {
+    margin: 0;
+    color: var(--cinza);
+    font-size: 12px;
+}
+
+.footer-estetick p span:first-child {
+    color: var(--dourado);
+    font-weight: 800;
+}
+
+.footer-legenda {
+    color: #777;
+    font-size: 11px;
+    text-align: right;
+}
+
+/* 16. FOCO DE ACESSIBILIDADE */
+
 a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-    outline: 3px solid rgba(240, 213, 106, .8);
-    outline-offset: 3px;
+button:focus-visible {
+    outline: 2px solid var(--dourado-claro);
+    outline-offset: 4px;
 }
 
-/* Animações */
+/* 17. TABLETS */
 
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(14px);
+@media (max-width: 991px) {
+    .painel-admin {
+        padding-top: 35px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-/* Responsividade */
-
-@media (max-width: 1100px) {
     .estatisticas {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .painel-admin {
-        padding-top: 42px;
-    }
-}
-
-@media (max-width: 900px) {
     .graficos {
         grid-template-columns: 1fr;
     }
 
-    .grafico-box {
-        min-height: 350px;
+    .grafico-container {
+        height: 300px;
     }
 
-    .header-container {
-        gap: 16px;
+    .lista-agendamentos {
+        grid-template-columns: 1fr;
+    }
+
+    .titulo-admin {
+        align-items: flex-start;
     }
 }
+
+/* 18. CELULARES */
 
 @media (max-width: 600px) {
     .header-container {
         min-height: 72px;
         gap: 12px;
-        padding-top: 12px;
-        padding-bottom: 12px;
     }
 
     .logo-estetick {
         gap: 8px;
-        font-size: 17px;
-        letter-spacing: .4px;
+        font-size: 19px;
     }
 
     .logo-estetick img {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
     }
 
-    .btn-agendar {
-        min-width: 72px;
-        padding: 9px 14px;
+    .nav-estetick {
+        gap: 5px;
     }
 
-    .painel-admin {
-        padding-top: 32px;
-        padding-bottom: 44px;
-    }
-
-    .titulo-admin {
-        margin-bottom: 26px;
-    }
-
-    .titulo-admin h1 {
-        font-size: 30px;
-    }
-
-    .titulo-admin p {
-        font-size: 14px;
-    }
-
-    .estatisticas {
-        gap: 12px;
-        margin-bottom: 25px;
-    }
-
-    .estatistica {
-        min-height: 116px;
-        padding: 19px 17px;
-    }
-
-    .estatistica > span {
-        margin-bottom: 10px;
+    .nav-link-admin {
+        padding: 8px;
         font-size: 12px;
     }
 
-    .estatistica h2 {
-        font-size: 28px;
+    .btn-sair {
+        min-height: 38px;
+        padding: 8px 10px;
+        font-size: 12px;
     }
 
-    .grafico-box {
-        min-height: 320px;
+    .painel-admin {
+        padding: 28px 0 42px;
+    }
+
+    .titulo-admin {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        margin-bottom: 25px;
+    }
+
+    .titulo-admin h1 {
+        font-size: 29px;
+    }
+
+    .titulo-admin > .btn-agendar {
+        align-self: flex-start;
+    }
+
+    .estatisticas {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .estatistica {
         padding: 19px;
     }
 
-    .grafico-box h3 {
-        font-size: 17px;
+    .estatistica h2 {
+        margin-top: 16px;
+        font-size: 31px;
+    }
+
+    .graficos {
+        gap: 14px;
+        margin-bottom: 25px;
+    }
+
+    .grafico-box {
+        padding: 18px;
+    }
+
+    .grafico-cabecalho h2 {
+        font-size: 16px;
     }
 
     .grafico-container {
-        height: 240px;
+        height: 250px;
     }
 
     .secao-admin {
@@ -553,51 +725,72 @@ textarea:focus-visible {
     }
 
     .titulo-secao {
-        gap: 10px;
+        align-items: flex-start;
+        gap: 12px;
     }
 
     .titulo-secao h2 {
-        font-size: 17px;
+        font-size: 20px;
     }
 
-    .contador {
-        min-width: 35px;
-        min-height: 35px;
-        padding: 0 9px;
+    .item-agendamento {
+        padding: 17px;
     }
 
-    .item-agendamento,
-    #listaAgendados > div:not(.item-agendamento),
-    #listaFeitos > div:not(.item-agendamento) {
-        padding: 16px;
+    .dados-agendamento {
+        gap: 18px 12px;
+    }
+
+    .acesso-rapido {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 21px;
+    }
+
+    .footer-estetick .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .footer-legenda {
+        text-align: left;
     }
 }
 
+/* 19. CELULARES ESTREITOS */
+
 @media (max-width: 380px) {
-    .estatisticas {
+    .logo-estetick {
+        font-size: 16px;
+    }
+
+    .logo-estetick img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-link-admin {
+        font-size: 11px;
+    }
+
+    .dados-agendamento {
         grid-template-columns: 1fr;
     }
 
-    .header-container {
-        flex-wrap: wrap;
-    }
-
-    .botoes-header {
-        margin-left: auto;
-    }
-
-    .titulo-admin h1 {
-        font-size: 27px;
+    .identificador-agendamento {
+        font-size: 9px;
     }
 }
+
+/* 20. MOVIMENTO REDUZIDO */
 
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
         scroll-behavior: auto !important;
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }
