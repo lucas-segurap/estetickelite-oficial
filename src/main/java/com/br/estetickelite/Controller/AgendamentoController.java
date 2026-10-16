@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Map;
 
 @Controller
@@ -28,15 +29,19 @@ public class AgendamentoController {
         this.agendamentosService = agendamentosService;
     }
 
+    // =====================================================
+    // ABRIR PÁGINA DE AGENDAMENTO
+    // Não exige login para visualizar a página.
+    // =====================================================
+
     @GetMapping("/agendamento")
-    public String abrirAgendamento(HttpSession session) {
-
-        if (session.getAttribute("clienteId") == null) {
-            return "redirect:/login";
-        }
-
+    public String abrirAgendamento() {
         return "agendamento";
     }
+
+    // =====================================================
+    // SALVAR AGENDAMENTO
+    // =====================================================
 
     @PostMapping("/agendamento")
     public String salvarAgendamento(
@@ -44,37 +49,49 @@ public class AgendamentoController {
             @RequestParam("servico") String servico,
             @RequestParam("dataCliente") String dataTexto,
             @RequestParam("horarioCliente") String horarioTexto,
-            @RequestParam(value = "observacoesCliente",
+            @RequestParam(
+                    value = "observacoesCliente",
                     required = false) String observacoes,
             @RequestParam("pagamento") String pagamento,
-            @RequestParam(value = "confirmacao",
+            @RequestParam(
+                    value = "confirmacao",
                     defaultValue = "false") boolean confirmacao,
             HttpSession session) {
 
+        // O cliente precisa estar conectado para salvar.
         Object clienteIdSessao = session.getAttribute("clienteId");
 
         if (clienteIdSessao == null) {
-            return "redirect:/login";
+            return "redirect:/login?necessario";
         }
 
+        // Verifica a confirmação do formulário.
         if (!confirmacao) {
             return "redirect:/agendamento?erro=confirmacao";
         }
 
         try {
+            // =============================================
+            // VALIDAR DATA E HORÁRIO
+            // =============================================
+
             DateTimeFormatter formatoData =
                     DateTimeFormatter.ofPattern("dd/MM/uuuu")
-                            .withResolverStyle(
-                                    java.time.format.ResolverStyle.STRICT);
+                            .withResolverStyle(ResolverStyle.STRICT);
 
             LocalDate data = LocalDate.parse(
-                    dataTexto, formatoData);
+                    dataTexto,
+                    formatoData);
 
             LocalTime horario = LocalTime.parse(horarioTexto);
 
             if (data.isBefore(LocalDate.now())) {
                 return "redirect:/agendamento?erro=data";
             }
+
+            // =============================================
+            // SERVIÇOS DISPONÍVEIS
+            // =============================================
 
             Map<String, Integer> servicos = Map.ofEntries(
                     Map.entry("Lavagem técnica", 1),
@@ -89,6 +106,10 @@ public class AgendamentoController {
                     Map.entry("Combo Premium", 10),
                     Map.entry("Combo Elite", 11)
             );
+
+            // =============================================
+            // PREÇOS DOS SERVIÇOS
+            // =============================================
 
             Map<String, BigDecimal> precos = Map.ofEntries(
                     Map.entry("Lavagem técnica", new BigDecimal("80.00")),
@@ -111,6 +132,10 @@ public class AgendamentoController {
                 return "redirect:/agendamento?erro=servico";
             }
 
+            // =============================================
+            // FORMA DE PAGAMENTO
+            // =============================================
+
             Integer formaPagamento = switch (pagamento) {
                 case "Pix" -> 1;
                 case "Cartão" -> 2;
@@ -122,10 +147,15 @@ public class AgendamentoController {
                 return "redirect:/agendamento?erro=pagamento";
             }
 
+            // =============================================
+            // CRIAR AGENDAMENTO
+            // =============================================
+
             Agendamentos agendamento = new Agendamentos();
 
             agendamento.setClienteId(
                     Long.valueOf(clienteIdSessao.toString()));
+
             agendamento.setVeiculo(veiculo);
             agendamento.setData(data);
             agendamento.setHorario(horario);
@@ -134,6 +164,7 @@ public class AgendamentoController {
             agendamento.setTotalServicos(total);
             agendamento.setFormaPag(formaPagamento);
 
+            // Salvar no banco de dados.
             agendamentosService.salvar(agendamento);
 
             return "redirect:/agendamento?sucesso";
