@@ -35,7 +35,16 @@ public class Agendamentos {
     private Integer formaPag;
 
     private LocalDate data;
+    @Column(name = "cliente_id")
+    private Long clienteId;
 
+    public Long getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
+    }
     // Construtor vazio obrigatório para o JPA
     public Agendamentos() {
     }

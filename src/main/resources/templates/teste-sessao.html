@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Sessão | EstetickElite</title>
+</head>
+
+<body>
+
+<h1>Sessão do cliente</h1>
+
+<p>
+    Cliente conectado:
+    <strong th:text="${clienteNome}"></strong>
+</p>
+
+<p>
+    ID do cliente:
+    <strong th:text="${clienteId}"></strong>
+</p>
+
+<a th:href="@{/}">Voltar ao início</a>
+
+</body>
+</html>

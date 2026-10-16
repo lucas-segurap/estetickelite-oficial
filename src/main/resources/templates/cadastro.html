@@ -44,6 +44,24 @@
         <div th:if="${sucesso}" class="alert alert-success" role="status" th:text="${sucesso}"></div>
         <div th:if="${erro}" class="alert alert-danger" role="alert" th:text="${erro}"></div>
 
+        <div class="alert alert-danger"
+             role="alert"
+             th:if="${erroCadastro}"
+             th:text="${erroCadastro}">
+        </div>
+
+        <div class="alert alert-danger"
+             role="alert"
+             th:if="${erroSenha}"
+             th:text="${erroSenha}">
+        </div>
+
+        <div class="alert alert-success"
+             role="alert"
+             th:if="${mensagem}"
+             th:text="${mensagem}">
+        </div>
+
         <form id="formCadastro" th:action="@{/cadastro}" th:object="${cliente}" method="post">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome completo</label>
