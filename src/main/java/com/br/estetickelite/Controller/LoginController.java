@@ -28,7 +28,10 @@ public class LoginController {
     // LOGIN DO CLIENTE
     // =====================================================
 
-
+    @GetMapping("/login")
+    public String abrirLoginCliente() {
+        return "login";
+    }
     @PostMapping("/login")
     public String autenticar(
             @RequestParam("email") String email,
@@ -58,18 +61,7 @@ public class LoginController {
     // PÁGINA DE LOGIN ADMINISTRATIVO
     // =====================================================
 
-    @GetMapping("/login-admin")
-    public String loginAdmin() {
-        return "login-admin";
-    }
 
-    // =====================================================
-    // TESTE DE SESSÃO DO CLIENTE
-    // =====================================================
-    @GetMapping("/login-admin.html")
-    public String redirecionarLoginAdmin() {
-        return "redirect:/admin/login";
-    }
     @GetMapping("/teste-sessao")
     public String testeSessao(
             HttpSession session,

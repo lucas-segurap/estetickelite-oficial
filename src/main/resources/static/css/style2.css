@@ -1,0 +1,1072 @@
+
+/* =========================================================
+   ESTETICKELITE
+   CSS GLOBAL
+   Identidade visual: Preto + Dourado
+   ========================================================= */
+
+/* =========================
+   1. VARIÁVEIS GLOBAIS
+   ========================= */
+
+:root {
+    --preto: #000000;
+    --preto-secundario: #111111;
+    --preto-card: #161616;
+    --cinza: #222222;
+    --cinza-texto: #cccccc;
+    --dourado: #d4af37;
+    --dourado-claro: #f0d56a;
+    --branco: #ffffff;
+
+    --borda: rgba(212, 175, 55, 0.25);
+    --sombra: 0 8px 25px rgba(0, 0, 0, 0.35);
+
+    --transicao: all 0.3s ease;
+    --raio: 12px;
+}
+
+/* =========================
+   2. RESET
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--preto);
+    color: var(--branco);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: var(--dourado);
+    text-decoration: none;
+    transition: var(--transicao);
+}
+
+a:hover {
+    color: var(--dourado-claro);
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul,
+ol {
+    list-style-position: inside;
+}
+
+/* =========================
+   3. TEXTOS E TÍTULOS
+   ========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--dourado);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+h2 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
+h3 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+p {
+    margin-bottom: 16px;
+    color: var(--cinza-texto);
+}
+
+.texto-dourado {
+    color: var(--dourado);
+}
+
+.texto-branco {
+    color: var(--branco);
+}
+
+.texto-centralizado {
+    text-align: center;
+}
+
+.titulo-secao {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.titulo-secao h2 {
+    margin-bottom: 12px;
+}
+
+.titulo-secao p {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* =========================
+   4. CONTAINERS
+   ========================= */
+
+.container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+}
+
+.secao {
+    padding: 70px 0;
+}
+
+.secao-escura {
+    background-color: var(--preto-secundario);
+}
+
+.container-img {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--raio);
+}
+
+.container-img img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* =========================
+   5. CABEÇALHO ESTETICKELITE
+   ========================= */
+
+.header-estetick {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding: 12px 5%;
+
+    background-color: rgba(0, 0, 0, 0.96);
+    border-bottom: 1px solid var(--borda);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header-estetick .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.header-estetick .logo img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.header-estetick .logo h1,
+.header-estetick .logo span {
+    margin: 0;
+    color: var(--dourado);
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.header-estetick nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+.header-estetick nav a {
+    position: relative;
+    color: var(--branco);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 0;
+}
+
+.header-estetick nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background-color: var(--dourado);
+    transition: var(--transicao);
+}
+
+.header-estetick nav a:hover,
+.header-estetick nav a.ativo {
+    color: var(--dourado);
+}
+
+.header-estetick nav a:hover::after,
+.header-estetick nav a.ativo::after {
+    width: 100%;
+}
+
+.header-estetick .botoes-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Caso o cabeçalho utilize links de botão */
+
+.header-estetick .btn-header {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 9px 16px;
+
+    border: 1px solid var(--dourado);
+    border-radius: 6px;
+
+    color: var(--dourado);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.header-estetick .btn-header:hover {
+    background-color: var(--dourado);
+    color: var(--preto);
+}
+
+/* =========================
+   6. BOTÕES
+   ========================= */
+
+.btn,
+.btn-primary,
+.btn-dourado,
+.btn-outline-dourado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 44px;
+    padding: 11px 22px;
+
+    border-radius: 7px;
+    border: 1px solid transparent;
+
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+
+    transition: var(--transicao);
+    cursor: pointer;
+}
+
+.btn-primary,
+.btn-dourado {
+    background-color: var(--dourado);
+    color: var(--preto);
+    border-color: var(--dourado);
+}
+
+.btn-primary:hover,
+.btn-dourado:hover {
+    background-color: var(--dourado-claro);
+    border-color: var(--dourado-claro);
+    color: var(--preto);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+.btn-outline-dourado {
+    background-color: transparent;
+    color: var(--dourado);
+    border-color: var(--dourado);
+}
+
+.btn-outline-dourado:hover {
+    background-color: var(--dourado);
+    color: var(--preto);
+}
+
+.btn-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 22px;
+    border-radius: 7px;
+    border: 1px solid var(--cinza);
+
+    background-color: var(--cinza);
+    color: var(--branco);
+
+    font-weight: 700;
+    transition: var(--transicao);
+}
+
+.btn-secundario:hover {
+    background-color: #333333;
+    color: var(--dourado);
+}
+
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-dourado:focus-visible,
+.btn-outline-dourado:focus-visible,
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--dourado-claro);
+    outline-offset: 3px;
+}
+
+/* =========================
+   7. BANNER PRINCIPAL
+   ========================= */
+
+.banner-principal {
+    position: relative;
+    min-height: 480px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 5%;
+    text-align: center;
+
+    background-color: var(--preto-secundario);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.banner-principal .banner-conteudo {
+    position: relative;
+    z-index: 1;
+    width: min(850px, 100%);
+}
+
+.banner-principal h1 {
+    color: var(--dourado);
+    margin-bottom: 20px;
+}
+
+.banner-principal p {
+    max-width: 700px;
+    margin: 0 auto 28px;
+    font-size: 1.1rem;
+    color: var(--branco);
+}
+
+.banner-principal .botoes-banner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* =========================
+   8. CARDS
+   ========================= */
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    align-items: stretch;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+
+    background-color: var(--preto-card);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--dourado);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.12);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    background-color: var(--cinza);
+}
+
+.card-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    background-color: var(--cinza);
+}
+
+.card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 22px;
+}
+
+.card-title {
+    width: 100%;
+    margin-bottom: 12px;
+
+    color: var(--dourado);
+    font-size: 1.25rem;
+}
+
+.card-text {
+    flex: 1;
+    color: var(--cinza-texto);
+    margin-bottom: 18px;
+}
+
+.card h4 {
+    color: var(--dourado);
+    margin-bottom: 12px;
+}
+
+.card .btn {
+    margin-top: auto;
+}
+
+.card-preco {
+    display: block;
+    margin: 8px 0 18px;
+    color: var(--dourado-claro);
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+/* =========================
+   9. CARDS DE SERVIÇOS
+   ========================= */
+
+.card-servico {
+    text-align: center;
+}
+
+.card-servico .card-img-top {
+    height: 240px;
+}
+
+.card-servico .card-body {
+    align-items: center;
+    text-align: center;
+}
+
+.card-servico .card-title {
+    font-size: 1.3rem;
+}
+
+.card-servico .card-text {
+    width: 100%;
+}
+
+.card-servico .card-text strong {
+    color: var(--dourado-claro);
+}
+
+/* =========================
+   10. COMBOS E PROMOÇÕES
+   ========================= */
+
+.combos-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.card-combo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    overflow: hidden;
+    background-color: var(--preto-card);
+    border: 1px solid var(--dourado);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+}
+
+.card-combo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.15);
+}
+
+.card-combo img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.card-combo .card-body {
+    padding: 24px;
+}
+
+.card-combo .preco {
+    color: var(--dourado-claro);
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+/* =========================
+   11. FORMULÁRIOS
+   ========================= */
+
+.formulario {
+    width: min(650px, 100%);
+    margin: 0 auto;
+    padding: 30px;
+
+    background-color: var(--preto-card);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.formulario label,
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: var(--dourado);
+    font-weight: 700;
+}
+
+.formulario input,
+.formulario textarea,
+.formulario select,
+.form-group input,
+.form-group textarea,
+.form-group select {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+
+    padding: 12px 14px;
+
+    background-color: var(--preto-secundario);
+    color: var(--branco);
+
+    border: 1px solid #444444;
+    border-radius: 6px;
+
+    outline: none;
+    transition: var(--transicao);
+}
+
+.formulario textarea,
+.form-group textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus,
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+}
+
+.formulario input::placeholder,
+.formulario textarea::placeholder,
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #888888;
+}
+
+.formulario select option,
+.form-group select option {
+    background-color: var(--preto-secundario);
+    color: var(--branco);
+}
+
+.formulario button,
+.formulario .btn {
+    width: 100%;
+}
+
+/* =========================
+   12. MENSAGENS
+   ========================= */
+
+.alerta {
+    padding: 13px 16px;
+    margin-bottom: 20px;
+
+    border: 1px solid transparent;
+    border-radius: 7px;
+}
+
+.alerta-sucesso {
+    background-color: rgba(40, 167, 69, 0.12);
+    border-color: rgba(40, 167, 69, 0.5);
+    color: #8ce99a;
+}
+
+.alerta-erro {
+    background-color: rgba(220, 53, 69, 0.12);
+    border-color: rgba(220, 53, 69, 0.5);
+    color: #ff9aa5;
+}
+
+.alerta-aviso {
+    background-color: rgba(212, 175, 55, 0.12);
+    border-color: var(--borda);
+    color: var(--dourado-claro);
+}
+
+/* =========================
+   13. LOGIN
+   ========================= */
+
+.login-container {
+    width: min(450px, 92%);
+    margin: 60px auto;
+    padding: 35px;
+
+    background-color: var(--preto-card);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+}
+
+.login-container .logo-login {
+    display: block;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+}
+
+.login-container h1,
+.login-container h2 {
+    text-align: center;
+}
+
+.login-container .texto-ajuda {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-container .link-secundario {
+    display: block;
+    margin-top: 18px;
+    text-align: center;
+}
+
+/* =========================
+   14. BOTÃO ADMINISTRATIVO
+   ========================= */
+
+.btn-admin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-height: 42px;
+    padding: 10px 16px;
+
+    background-color: transparent;
+    color: var(--dourado);
+
+    border: 1px solid var(--dourado);
+    border-radius: 6px;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    transition: var(--transicao);
+}
+
+.btn-admin:hover {
+    background-color: var(--dourado);
+    color: var(--preto);
+}
+
+/* =========================
+   15. TABELAS
+   ========================= */
+
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--preto-card);
+}
+
+thead {
+    background-color: var(--cinza);
+}
+
+th,
+td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #333333;
+}
+
+th {
+    color: var(--dourado);
+    font-weight: 700;
+}
+
+td {
+    color: var(--cinza-texto);
+}
+
+tbody tr:hover {
+    background-color: rgba(212, 175, 55, 0.05);
+}
+
+/* =========================
+   16. RODAPÉ
+   ========================= */
+
+.footer-estetick,
+footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 40px 5% 20px;
+
+    background-color: var(--preto-secundario);
+    border-top: 1px solid var(--borda);
+}
+
+.footer-container {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+}
+
+.footer-coluna h3,
+.footer-estetick h3,
+footer h3 {
+    margin-bottom: 16px;
+    color: var(--dourado);
+    font-size: 1.15rem;
+}
+
+.footer-coluna p,
+.footer-estetick p,
+footer p {
+    color: var(--cinza-texto);
+    font-size: 0.95rem;
+}
+
+.footer-nav,
+.footer-estetick nav,
+footer nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.footer-nav a,
+.footer-estetick nav a,
+footer nav a {
+    color: var(--cinza-texto);
+}
+
+.footer-nav a:hover,
+.footer-estetick nav a:hover,
+footer nav a:hover {
+    color: var(--dourado);
+}
+
+.footer-direitos {
+    width: min(1200px, 100%);
+    margin: 30px auto 0;
+    padding-top: 20px;
+
+    border-top: 1px solid #333333;
+    text-align: center;
+}
+
+.footer-direitos p {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+}
+
+/* =========================
+   17. UTILITÁRIOS
+   ========================= */
+
+.flex {
+    display: flex;
+}
+
+.flex-centro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-entre {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* =========================
+   18. RESPONSIVIDADE
+   ========================= */
+
+@media (max-width: 1000px) {
+    .header-estetick {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .header-estetick nav {
+        gap: 16px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    html {
+        scroll-padding-top: 150px;
+    }
+
+    .header-estetick {
+        position: relative;
+        padding: 15px 4%;
+    }
+
+    .header-estetick .logo img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .header-estetick .logo h1,
+    .header-estetick .logo span {
+        font-size: 1.15rem;
+    }
+
+    .header-estetick nav {
+        width: 100%;
+        gap: 10px 16px;
+    }
+
+    .header-estetick nav a {
+        font-size: 0.88rem;
+    }
+
+    .header-estetick .botoes-header {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .secao {
+        padding: 45px 0;
+    }
+
+    .banner-principal {
+        min-height: 400px;
+        padding: 50px 5%;
+    }
+
+    .banner-principal p {
+        font-size: 1rem;
+    }
+
+    .cards-container,
+    .combos-container {
+        grid-template-columns: 1fr;
+    }
+
+    .card-img-top,
+    .card-servico .card-img-top {
+        height: 220px;
+    }
+
+    .card-img {
+        height: 220px;
+    }
+
+    .card-combo img {
+        height: 220px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .formulario,
+    .login-container {
+        padding: 22px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .footer-estetick,
+    footer {
+        padding: 30px 5% 20px;
+    }
+
+    .btn,
+    .btn-primary,
+    .btn-dourado,
+    .btn-outline-dourado {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 380px) {
+    .header-estetick nav {
+        gap: 8px 12px;
+    }
+
+    .header-estetick nav a {
+        font-size: 0.82rem;
+    }
+
+    .card-body {
+        padding: 16px;
+    }
+
+    .formulario,
+    .login-container {
+        padding: 18px;
+    }
+}
+
+/* =========================
+   FIM DO CSS GLOBAL
+   ========================= */
