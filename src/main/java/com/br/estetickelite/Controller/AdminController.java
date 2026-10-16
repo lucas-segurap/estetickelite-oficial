@@ -73,7 +73,7 @@ public class AdminController {
         model.addAttribute("totalFeitos", 0);
         model.addAttribute("taxaConclusao", 0);
 
-        return "admin";
+        return "redirect:/admin/teste";
     }
     @PostMapping("/login")
     public String autenticar(
@@ -81,21 +81,28 @@ public class AdminController {
             @RequestParam("senha") String senha,
             HttpSession session) {
 
-        if (usuario == null || senha == null
-                || !usuarioAdmin.equals(usuario)
+        System.out.println("=== LOGIN ADMINISTRATIVO ===");
+        System.out.println("Usuário recebido: " + usuario);
+
+        if (!usuarioAdmin.equals(usuario)
                 || !senhaAdmin.equals(senha)) {
 
+            System.out.println("Credenciais inválidas.");
             return "redirect:/admin/login?erro";
         }
 
         session.setAttribute("adminLogado", true);
 
+        System.out.println("Login validado.");
+        System.out.println("Sessão: " + session.getId());
+        System.out.println("Admin logado: "
+                + session.getAttribute("adminLogado"));
+
         return "redirect:/admin";
     }
-    @GetMapping("/login-admin.html")
-    public String redirecionarLoginAdmin() {
-        return "redirect:/admin/login";
-    }
+
+
+
     // Lista as mensagens recebidas pelo Fale Conosco
     @GetMapping("/mensagens")
     public String listarMensagens(
@@ -128,4 +135,5 @@ public class AdminController {
                 session.getAttribute("adminLogado")
         );
     }
+
 }
