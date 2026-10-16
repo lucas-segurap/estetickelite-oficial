@@ -1,4 +1,4 @@
 package com.br.estetickelite.Service;
 
-public class AgendamentoService {
+public class VeiculosService {
 }
