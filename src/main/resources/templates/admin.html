@@ -1,554 +1,190 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Painel administrativo da EstetickElite para gerenciamento de agendamentos.">
-
-    <meta name="author" content="SamuelPrime">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Painel Administrativo | EstetickElite</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <!-- CSS do painel -->
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<!-- =====================================================
-     CABEÇALHO
-     ===================================================== -->
+<header>
+    <div>
+        <h1>EstetickElite</h1>
+        <p class="subtitulo">Painel de gerenciamento de agendamentos</p>
+    </div>
 
-<header class="header-estetick">
-    <div class="container">
-        <div class="header-container">
+    <div>
+        <a class="botao" th:href="@{/admin/mensagens}">
+            Mensagens
+        </a>
 
-            <a th:href="@{/}"
-               class="logo-estetick"
-               aria-label="Ir para a página inicial">
-
-                <img th:src="@{/img/logo.png}"
-                     alt="Logo da EstetickElite">
-
-                <span>Estetick<span>Elite</span></span>
-            </a>
-
-            <nav class="nav-estetick"
-                 aria-label="Navegação administrativa">
-
-                <a th:href="@{/admin}"
-                   class="nav-link-admin"
-                   aria-current="page">
-                    Painel
-                </a>
-
-                <a th:href="@{/admin/mensagens}"
-                   class="nav-link-admin">
-                    Mensagens
-                </a>
-
-                <form th:action="@{/admin/logout}"
-                      method="post">
-
-                    <button type="submit"
-                            class="btn-sair">
-                        <span aria-hidden="true">↪</span>
-                        Sair
-                    </button>
-                </form>
-
-            </nav>
-
-        </div>
+        <form th:action="@{/admin/logout}" method="post"
+              style="display:inline">
+            <button class="botao" type="submit">Sair</button>
+        </form>
     </div>
 </header>
 
-<!-- =====================================================
-     CONTEÚDO PRINCIPAL
-     ===================================================== -->
-
-<main class="painel-admin">
-
-    <div class="container">
-
-        <!-- TÍTULO DO PAINEL -->
-
-        <section class="titulo-admin">
-
-            <div>
-                <span class="admin-tag">
-                    ÁREA RESTRITA
-                </span>
-
-                <h1>
-                    Painel <span>Administrativo</span>
-                </h1>
-
-                <p>
-                    Gerencie os agendamentos e acompanhe as
-                    informações da EstetickElite em um só lugar.
-                </p>
-            </div>
-
-            <a th:href="@{/admin/mensagens}"
-               class="btn-agendar">
-
-                <span aria-hidden="true">✉</span>
-                Ver mensagens recebidas
-            </a>
-
-        </section>
-
-        <!-- =================================================
-             INDICADORES
-             ================================================= -->
-
-        <section class="estatisticas"
-                 aria-label="Resumo dos agendamentos">
-
-            <article class="estatistica">
-
-                <div class="estatistica-topo">
-                    <span class="estatistica-icone"
-                          aria-hidden="true">▤</span>
-
-                    <span class="estatistica-legenda">
-                        CADASTRADOS
-                    </span>
-                </div>
-
-                <h2 id="totalAgendados"
-                    th:text="${agendamentos != null
-                        ? #lists.size(agendamentos)
-                        : 0}">
-                    0
-                </h2>
-
-                <p>Agendamentos registrados</p>
-            </article>
-
-            <article class="estatistica">
-
-                <div class="estatistica-topo">
-                    <span class="estatistica-icone"
-                          aria-hidden="true">🚘</span>
-
-                    <span class="estatistica-legenda">
-                        VEÍCULOS
-                    </span>
-                </div>
-
-                <h2 id="totalVeiculos">0</h2>
-
-                <p>Veículos nos agendamentos exibidos</p>
-            </article>
-
-            <article class="estatistica">
-
-                <div class="estatistica-topo">
-                    <span class="estatistica-icone"
-                          aria-hidden="true">✦</span>
-
-                    <span class="estatistica-legenda">
-                        SERVIÇOS
-                    </span>
-                </div>
-
-                <h2 id="totalServicos">0</h2>
-
-                <p>Códigos de serviço distintos</p>
-            </article>
-
-        </section>
-
-        <!-- =================================================
-             GRÁFICOS
-             ================================================= -->
-
-        <section class="graficos"
-                 aria-label="Gráficos dos agendamentos">
-
-            <article class="grafico-box">
-
-                <div class="grafico-cabecalho">
-                    <div>
-                        <span class="secao-etiqueta">
-                            VISÃO GERAL
-                        </span>
-
-                        <h2>Agendamentos por data</h2>
-
-                        <p>
-                            Distribuição dos registros por dia.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grafico-container">
-                    <canvas id="graficoStatus"
-                            aria-label="Gráfico de agendamentos por data"
-                            role="img">
-                    </canvas>
-                </div>
-
-            </article>
-
-            <article class="grafico-box">
-
-                <div class="grafico-cabecalho">
-                    <div>
-                        <span class="secao-etiqueta">
-                            DISTRIBUIÇÃO
-                        </span>
-
-                        <h2>Serviços agendados</h2>
-
-                        <p>
-                            Quantidade de agendamentos por código de serviço.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grafico-container">
-                    <canvas id="graficoServicos"
-                            aria-label="Gráfico de agendamentos por código de serviço"
-                            role="img">
-                    </canvas>
-                </div>
-
-            </article>
-
-        </section>
-
-        <!-- =================================================
-             LISTA DE AGENDAMENTOS
-             ================================================= -->
-
-        <section class="secao-admin">
-
-            <div class="titulo-secao">
-
-                <div>
-                    <span class="secao-etiqueta">
-                        GERENCIAMENTO
-                    </span>
-
-                    <h2>Agendamentos recebidos</h2>
-
-                    <p>
-                        Consulte os dados dos veículos e os detalhes
-                        de cada agendamento.
-                    </p>
-                </div>
-
-                <span class="contador"
-                      id="contadorAgendados"
-                      th:text="${agendamentos != null
-                          ? #lists.size(agendamentos)
-                          : 0}">
-                    0
-                </span>
-
-            </div>
-
-            <!-- ESTADO VAZIO -->
-
-            <div class="estado-vazio"
-                 th:if="${agendamentos == null
-                     or #lists.isEmpty(agendamentos)}">
-
-                <span class="estado-vazio-icone"
-                      aria-hidden="true">▤</span>
-
-                <h3>Nenhum agendamento encontrado</h3>
-
-                <p>
-                    Quando um cliente realizar um agendamento,
-                    os dados aparecerão nesta seção.
-                </p>
-
-            </div>
-
-            <!-- LISTA -->
-
-            <div id="listaAgendados"
-                 class="lista-agendamentos">
-
-                <article th:each="agendamento : ${agendamentos}"
-                         class="item-agendamento">
-
-                    <div class="agendamento-cabecalho">
-
-                        <div>
-                            <span class="secao-etiqueta">
-                                REGISTRO
-                            </span>
-
-                            <h3>
-                                Agendamento
-                                <span th:text="'#' + ${agendamento.id}">
-                                    #1
-                                </span>
-                            </h3>
-                        </div>
-
-                        <span class="identificador-agendamento"
-                              th:text="'ID: ' + ${agendamento.id}">
-                            ID: 1
-                        </span>
-
-                    </div>
-
-                    <div class="dados-agendamento">
-
-                        <div class="dado-agendamento">
-
-                            <span class="dado-rotulo">
-                                Cliente
-                            </span>
-
-                            <strong
-                                    th:text="${agendamento.clienteId != null
-                                    ? 'Cliente #' + agendamento.clienteId
-                                    : 'Não informado'}">
-                                Cliente
-                            </strong>
-
-                        </div>
-
-                        <div class="dado-agendamento">
-
-                            <span class="dado-rotulo">
-                                Veículo
-                            </span>
-
-                            <strong
-                                    th:text="${agendamento.veiculo != null
-                                    and !#strings.isEmpty(agendamento.veiculo)
-                                    ? agendamento.veiculo
-                                    : 'Não informado'}">
-                                Veículo
-                            </strong>
-
-                        </div>
-
-                        <div class="dado-agendamento">
-
-                            <span class="dado-rotulo">
-                                Data
-                            </span>
-
-                            <strong
-                                    th:text="${agendamento.data != null
-                                    ? #temporals.format(agendamento.data, 'dd/MM/yyyy')
-                                    : 'Não informada'}">
-                                Data
-                            </strong>
-
-                        </div>
-
-                        <div class="dado-agendamento">
-
-                            <span class="dado-rotulo">
-                                Horário
-                            </span>
-
-                            <strong
-                                    th:text="${agendamento.horario != null
-                                    ? #temporals.format(agendamento.horario, 'HH:mm')
-                                    : 'Não informado'}">
-                                Horário
-                            </strong>
-
-                        </div>
-
-                        <div class="dado-agendamento">
-
-                            <span class="dado-rotulo">
-                                Código do serviço
-                            </span>
-
-                            <strong
-                                    th:text="${agendamento.tipoServicos != null
-                                    ? agendamento.tipoServicos
-                                    : 'Não informado'}">
-                                Serviço
-                            </strong>
-
-                        </div>
-
-                        <div class="dado-agendamento">
-
-                            <span class="dado-rotulo">
-                                Valor total
-                            </span>
-
-                            <strong class="valor-agendamento"
-                                    th:text="${agendamento.totalServicos != null
-                                    ? #numbers.formatCurrency(agendamento.totalServicos)
-                                    : 'Não informado'}">
-                                R$ 0,00
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                    <div class="observacoes-agendamento">
-
-                        <span class="dado-rotulo">
-                            Observações do cliente
-                        </span>
-
-                        <p
-                                th:text="${agendamento.observacoes != null
-                                and !#strings.isEmpty(agendamento.observacoes)
-                                ? agendamento.observacoes
-                                : 'Nenhuma observação informada.'}">
-                            Observações
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-        </section>
-
-        <!-- =================================================
-             ACESSO RÁPIDO
-             ================================================= -->
-
-        <section class="acesso-rapido">
-
-            <div>
-                <span class="secao-etiqueta">
-                    CENTRAL DE ATENDIMENTO
-                </span>
-
-                <h2>Precisa consultar os contatos?</h2>
-
-                <p>
-                    Acesse as mensagens enviadas pelos clientes
-                    através do formulário de contato.
-                </p>
-            </div>
-
-            <a th:href="@{/admin/mensagens}"
-               class="btn-agendar">
-                Abrir mensagens
-                <span aria-hidden="true">→</span>
-            </a>
-
-        </section>
-
-    </div>
-
-</main>
-
-<!-- =====================================================
-     RODAPÉ
-     ===================================================== -->
-
-<footer class="footer-estetick">
-
-    <div class="container">
-
-        <p>
-            <span>EstetickElite</span>
-            &copy; <span th:text="${#dates.year(#dates.createNow())}">2026</span>
-            — Painel Administrativo
+<section class="resumo">
+    <article class="cartao">
+        <p>Total de agendamentos</p>
+        <span class="numero" th:text="${totalServicos}">0</span>
+    </article>
+
+    <article class="cartao">
+        <p>Agendados</p>
+        <span class="numero" th:text="${totalAgendados}">0</span>
+    </article>
+
+    <article class="cartao">
+        <p>Em andamento</p>
+        <span class="numero" th:text="${totalEmAndamento}">0</span>
+    </article>
+
+    <article class="cartao">
+        <p>Concluídos</p>
+        <span class="numero" th:text="${totalFeitos}">0</span>
+    </article>
+
+    <article class="cartao">
+        <p>Cancelados</p>
+        <span class="numero" th:text="${totalCancelados}">0</span>
+    </article>
+</section>
+
+<h2 class="secao-titulo">Agendamentos recebidos</h2>
+
+<section class="lista">
+
+    <article class="agendamento"
+             th:each="agendamento : ${agendamentos}">
+
+        <h3>
+            Agendamento #
+            <span th:text="${agendamento.id}">1</span>
+        </h3>
+
+        <p class="status"
+           th:text="${agendamento.status != null ? agendamento.status : 'AGENDADO'}">
+            AGENDADO
         </p>
 
-        <span class="footer-legenda">
-            Cuidado, precisão e excelência automotiva.
-        </span>
+        <p class="linha">
+            <strong>Cliente:</strong>
+            <span th:text="${agendamento.clienteId != null
+                ? 'Cliente #' + agendamento.clienteId
+                : 'Não informado'}">
+                Cliente #1
+            </span>
+        </p>
 
+        <p class="linha">
+            <strong>Veículo:</strong>
+            <span th:text="${agendamento.veiculo}">Veículo</span>
+        </p>
+
+        <p class="linha">
+            <strong>Data:</strong>
+            <span th:text="${agendamento.data != null
+                ? #temporals.format(agendamento.data, 'dd/MM/yyyy')
+                : 'Não informada'}">
+                22/10/2026
+            </span>
+        </p>
+
+        <p class="linha">
+            <strong>Horário:</strong>
+            <span th:text="${agendamento.horario != null
+                ? #temporals.format(agendamento.horario, 'HH:mm')
+                : 'Não informado'}">
+                10:00
+            </span>
+        </p>
+
+        <p class="linha">
+            <strong>Código do serviço:</strong>
+            <span th:text="${agendamento.tipoServicos}">1</span>
+        </p>
+
+        <p class="linha">
+            <strong>Valor:</strong>
+            R$
+            <span th:text="${agendamento.totalServicos != null
+                ? #numbers.formatDecimal(agendamento.totalServicos, 1, 'POINT', 2, 'COMMA')
+                : '0,00'}">
+                80,00
+            </span>
+        </p>
+
+        <p class="linha">
+            <strong>Pagamento:</strong>
+            <span th:switch="${agendamento.formaPag}">
+                <span th:case="1">Pix</span>
+                <span th:case="2">Cartão</span>
+                <span th:case="3">Pagamento em loja</span>
+                <span th:case="*">Não informado</span>
+            </span>
+        </p>
+
+        <p class="linha">
+            <strong>Observações:</strong>
+            <span th:text="${agendamento.observacoes != null
+                and !agendamento.observacoes.isBlank()
+                ? agendamento.observacoes
+                : 'Sem observações'}">
+                Sem observações
+            </span>
+        </p>
+
+        <div class="acoes">
+
+            <form th:if="${agendamento.status == 'AGENDADO'}"
+                  th:action="@{/admin/agendamentos/{id}/iniciar(id=${agendamento.id})}"
+                  method="post">
+                <button class="botao" type="submit">
+                    Iniciar atendimento
+                </button>
+            </form>
+
+            <form th:if="${agendamento.status == 'EM_ANDAMENTO'}"
+                  th:action="@{/admin/agendamentos/{id}/concluir(id=${agendamento.id})}"
+                  method="post">
+                <button class="botao" type="submit">
+                    Concluir
+                </button>
+            </form>
+
+            <form th:if="${agendamento.status != 'CONCLUIDO'
+                          and agendamento.status != 'CANCELADO'}"
+                  th:action="@{/admin/agendamentos/{id}/cancelar(id=${agendamento.id})}"
+                  method="post"
+                  onsubmit="return confirm('Deseja cancelar este agendamento?')">
+                <button class="botao perigo" type="submit">
+                    Cancelar
+                </button>
+            </form>
+
+            <form th:action="@{/admin/agendamentos/{id}/excluir(id=${agendamento.id})}"
+                  method="post"
+                  onsubmit="return confirm('Deseja excluir definitivamente este registro?')">
+                <button class="botao perigo" type="submit">
+                    Excluir
+                </button>
+            </form>
+
+        </div>
+    </article>
+
+    <div class="vazio" th:if="${#lists.isEmpty(agendamentos)}">
+        <h3>Nenhum agendamento encontrado</h3>
+        <p>Quando um cliente concluir um agendamento, ele aparecerá aqui.</p>
     </div>
 
-</footer>
-
-<!-- SCRIPTS -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
-<script th:src="@{/js/admin.js}"></script>
-
-<!-- Indicadores calculados com os registros renderizados -->
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const lista = document.getElementById("listaAgendados");
-
-        const veiculosElemento = document.getElementById("totalVeiculos");
-        const servicosElemento = document.getElementById("totalServicos");
-
-        if (!lista) {
-            return;
-        }
-
-        const agendamentos = Array.from(
-            lista.querySelectorAll("article.item-agendamento")
-        );
-
-        const veiculos = new Set();
-        const servicos = new Set();
-
-        agendamentos.forEach(function (agendamento) {
-            const campos = agendamento.querySelectorAll(".dado-agendamento");
-
-            campos.forEach(function (campo) {
-                const rotulo = campo.querySelector(".dado-rotulo");
-                const valor = campo.querySelector("strong");
-
-                if (!rotulo || !valor) {
-                    return;
-                }
-
-                const nome = rotulo.textContent.trim().toLowerCase();
-                const texto = valor.textContent.trim();
-
-                if (
-                    nome === "veículo" &&
-                    texto &&
-                    texto !== "Não informado"
-                ) {
-                    veiculos.add(texto.toLowerCase());
-                }
-
-                if (
-                    nome === "código do serviço" &&
-                    texto &&
-                    texto !== "Não informado"
-                ) {
-                    servicos.add(texto);
-                }
-            });
-        });
-
-        if (veiculosElemento) {
-            veiculosElemento.textContent = veiculos.size;
-        }
-
-        if (servicosElemento) {
-            servicosElemento.textContent = servicos.size;
-        }
-    });
-</script>
+</section>
 
 </body>
 </html>

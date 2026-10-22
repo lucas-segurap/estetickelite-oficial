@@ -180,38 +180,235 @@
                 <textarea id="observacoesCliente"
                           name="observacoesCliente"></textarea>
 
-                <p>Forma de pagamento</p>
 
-                <label>
-                    <input type="radio"
-                           name="pagamento"
-                           value="Pix"
-                           required>
-                    Pix
-                </label>
 
-                <label>
-                    <input type="radio"
-                           name="pagamento"
-                           value="Cartão">
-                    Cartão
-                </label>
+                <!-- =====================================================
+                     ESTETICKELITE - PAGAMENTO DEMONSTRATIVO
+                ===================================================== -->
 
-                <label>
-                    <input type="radio"
-                           name="pagamento"
-                           value="Pagamento em loja">
-                    Pagamento em loja
-                </label>
+                <section class="pagamento-section" id="secaoPagamento">
 
-                <label>
-                    <input type="checkbox"
-                           name="confirmacao"
-                           value="true"
-                           required>
-                    Confirmo as informações do agendamento.
-                </label>
+                    <div class="pagamento-cabecalho">
+                        <span class="pagamento-etiqueta">ETAPA FINAL</span>
+                        <h2>Forma de pagamento</h2>
+                        <p>Escolha como pretende pagar pelo serviço.</p>
+                    </div>
 
+                    <div class="pagamento-opcoes">
+
+                        <!-- OPÇÃO PIX -->
+                        <label class="pagamento-opcao" for="pagamentoPix">
+
+                            <input
+                                    type="radio"
+                                    id="pagamentoPix"
+                                    name="pagamento"
+                                    value="1"
+                                    required
+                            >
+
+                            <span class="pagamento-icone pix-icone">₱</span>
+
+                            <span class="pagamento-opcao-texto">
+                <strong>Pix</strong>
+                <small>Pagamento instantâneo</small>
+            </span>
+
+                            <span class="pagamento-seletor"></span>
+                        </label>
+
+                        <!-- OPÇÃO CARTÃO -->
+                        <label class="pagamento-opcao" for="pagamentoCartao">
+
+                            <input
+                                    type="radio"
+                                    id="pagamentoCartao"
+                                    name="pagamento"
+                                    value="2"
+                                    required
+                            >
+
+                            <span class="pagamento-icone cartao-icone">▤</span>
+
+                            <span class="pagamento-opcao-texto">
+                <strong>Cartão</strong>
+                <small>Crédito ou débito</small>
+            </span>
+
+                            <span class="pagamento-seletor"></span>
+                        </label>
+
+                    </div>
+
+                    <!-- PAINEL PIX -->
+                    <div class="pagamento-detalhes" id="areaPix" hidden>
+
+                        <div class="pagamento-detalhes-cabecalho">
+                            <h3>Pagamento via Pix</h3>
+                            <span class="pagamento-status-demo">DEMONSTRAÇÃO</span>
+                        </div>
+
+                        <p class="pagamento-descricao">
+                            Aqui será exibido o QR Code gerado pelo sistema de
+                            pagamento quando a integração real for implementada.
+                        </p>
+
+                        <div class="pix-conteudo">
+
+                            <div class="pix-qr-ilustrativo" aria-label="Ilustração de QR Code">
+                                <div class="pix-qr-centro">
+                                    <span>PIX</span>
+                                </div>
+                            </div>
+
+                            <div class="pix-informacoes">
+                                <strong>QR Code ilustrativo</strong>
+
+                                <p>
+                                    Este desenho não representa um código Pix válido.
+                                    Nenhum pagamento pode ser realizado por ele.
+                                </p>
+
+                                <button
+                                        type="button"
+                                        class="btn-pix-demo"
+                                        id="copiarPixDemo"
+                                >
+                                    Entendi
+                                </button>
+
+                                <p
+                                        class="mensagem-pix-demo"
+                                        id="mensagemPixDemo"
+                                        aria-live="polite"
+                                ></p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- PAINEL CARTÃO -->
+                    <div class="pagamento-detalhes" id="areaCartao" hidden>
+
+                        <div class="pagamento-detalhes-cabecalho">
+                            <h3>Cartão</h3>
+                            <span class="pagamento-status-demo">VISUALIZAÇÃO</span>
+                        </div>
+
+                        <p class="pagamento-descricao">
+                            Visualize um exemplo de cartão. Não informe dados de
+                            um cartão verdadeiro nesta demonstração.
+                        </p>
+
+                        <!-- CARTÃO ILUSTRATIVO -->
+                        <div class="cartao-visual" aria-label="Prévia ilustrativa do cartão">
+
+                            <div class="cartao-visual-topo">
+                                <span>ESTETICKELITE</span>
+                                <span class="cartao-chip">▦</span>
+                            </div>
+
+                            <div class="cartao-numero" id="cartaoNumeroPreview">
+                                •••• •••• •••• ••••
+                            </div>
+
+                            <div class="cartao-visual-rodape">
+                                <div>
+                                    <small>TITULAR</small>
+                                    <strong id="cartaoTitularPreview">NOME DO TITULAR</strong>
+                                </div>
+
+                                <div>
+                                    <small>VALIDADE</small>
+                                    <strong id="cartaoValidadePreview">MM/AA</strong>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- CAMPOS APENAS VISUAIS -->
+                        <div class="cartao-formulario">
+
+                            <div class="campo-cartao campo-cartao-completo">
+                                <label for="numeroCartaoDemo">Número ilustrativo</label>
+                                <input
+                                        type="text"
+                                        id="numeroCartaoDemo"
+                                        inputmode="numeric"
+                                        maxlength="19"
+                                        placeholder="0000 0000 0000 0000"
+                                        autocomplete="off"
+                                >
+                            </div>
+
+                            <div class="campo-cartao campo-cartao-completo">
+                                <label for="titularCartaoDemo">Nome ilustrativo</label>
+                                <input
+                                        type="text"
+                                        id="titularCartaoDemo"
+                                        maxlength="30"
+                                        placeholder="NOME DO TITULAR"
+                                        autocomplete="off"
+                                >
+                            </div>
+
+                            <div class="campo-cartao">
+                                <label for="validadeCartaoDemo">Validade</label>
+                                <input
+                                        type="text"
+                                        id="validadeCartaoDemo"
+                                        inputmode="numeric"
+                                        maxlength="5"
+                                        placeholder="MM/AA"
+                                        autocomplete="off"
+                                >
+                            </div>
+
+                            <div class="campo-cartao">
+                                <label for="cvvCartaoDemo">CVV ilustrativo</label>
+                                <input
+                                        type="text"
+                                        id="cvvCartaoDemo"
+                                        inputmode="numeric"
+                                        maxlength="4"
+                                        placeholder="000"
+                                        autocomplete="off"
+                                >
+                            </div>
+
+                        </div>
+
+                        <p class="aviso-cartao-demo">
+                            <strong>Atenção:</strong> os campos acima são apenas
+                            demonstrativos. Não utilize informações bancárias reais.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- CONFIRMAÇÃO DO AGENDAMENTO -->
+                <div class="confirmacao-agendamento">
+
+                    <label for="confirmacao">
+                        <input
+                                type="checkbox"
+                                id="confirmacao"
+                                name="confirmacao"
+                                value="true"
+                                required
+                        >
+
+                        <span>
+            Confirmo que os dados do meu agendamento estão corretos.
+        </span>
+                    </label>
+
+                </div>
+
+                <!-- BOTÃO DE ENVIO -->
                 <button type="submit">
                     Confirmar agendamento
                 </button>
@@ -324,6 +521,7 @@
 
     <!-- JavaScript do agendamento -->
     <script th:src="@{/js/agendamento.js}"></script>
+    <script th:src="@{/js/pagamento.js}"></script>
 
 </body>
 

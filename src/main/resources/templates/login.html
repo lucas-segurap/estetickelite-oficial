@@ -20,7 +20,7 @@
     <link rel="icon" type="image/png" th:href="@{/favicon.png}">
 
     <!-- CSS DA PÁGINA -->
-    <link rel="stylesheet" th:href="@{/css/cadastro.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
     <!-- CSS GLOBAL -->
 
 
@@ -34,23 +34,21 @@
 <body>
 
     <!-- HEADER -->
-    <header>
+
+    <!-- CABEÇALHO PRINCIPAL -->
+    <header class="header-principal">
 
         <div class="container header-estetick">
 
             <div class="header-container">
 
                 <!-- LOGO -->
-                <a th:href="@{/}"
-                   class="logo-estetick"
-                   aria-label="Página inicial EstetickElite">
+                <a th:href="@{/}" class="logo-estetick">
 
                     <img th:src="@{/img/logo.png}"
-                         alt="Logo da EstetickElite">
+                         alt="Logo EstetickElite">
 
-                    <span>
-                        Estetick<span>Elite</span>
-                    </span>
+                    <span>Estetick<span>Elite</span></span>
 
                 </a>
 
@@ -60,27 +58,19 @@
                     <ul class="nav-estetick">
 
                         <li>
-                            <a th:href="@{/}">
-                                Home
-                            </a>
+                            <a th:href="@{/}">Home</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/cadastro}">
-                                Cadastro
-                            </a>
+                            <a th:href="@{/cadastro}">Cadastro</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/agendamento}">
-                                Agendamento
-                            </a>
+                            <a th:href="@{/agendamento}">Agendamento</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/faleconosco}">
-                                Fale conosco
-                            </a>
+                            <a th:href="@{/faleconosco}">Fale conosco</a>
                         </li>
 
                     </ul>
@@ -96,14 +86,9 @@
                     </a>
 
                     <a th:href="@{/login}"
-                       class="btn-agendar">
+                       class="btn-agendar active"
+                       aria-current="page">
                         Fazer Login
-                    </a>
-
-                    <a th:href="@{/admin/login}"
-                       class="btn-admin"
-                       aria-label="Acesso administrativo"
-                       title="Acesso administrativo">
                     </a>
 
                 </div>
@@ -113,6 +98,7 @@
         </div>
 
     </header>
+
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main>

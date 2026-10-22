@@ -1,11 +1,9 @@
-
 package com.br.estetickelite.Controller;
 
 import com.br.estetickelite.Model.Agendamentos;
 import com.br.estetickelite.Service.AgendamentosService;
 
 import jakarta.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +13,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 
 @Controller
@@ -24,24 +22,14 @@ public class AgendamentoController {
 
     private final AgendamentosService agendamentosService;
 
-    public AgendamentoController(
-            AgendamentosService agendamentosService) {
+    public AgendamentoController(AgendamentosService agendamentosService) {
         this.agendamentosService = agendamentosService;
     }
-
-    // =====================================================
-    // ABRIR PÁGINA DE AGENDAMENTO
-    // Não exige login para visualizar a página.
-    // =====================================================
 
     @GetMapping("/agendamento")
     public String abrirAgendamento() {
         return "agendamento";
     }
-
-    // =====================================================
-    // SALVAR AGENDAMENTO
-    // =====================================================
 
     @PostMapping("/agendamento")
     public String salvarAgendamento(
@@ -49,50 +37,35 @@ public class AgendamentoController {
             @RequestParam("servico") String servico,
             @RequestParam("dataCliente") String dataTexto,
             @RequestParam("horarioCliente") String horarioTexto,
-            @RequestParam(
-                    value = "observacoesCliente",
-                    required = false) String observacoes,
+            @RequestParam(value = "observacoesCliente", required = false)
+            String observacoes,
             @RequestParam("pagamento") String pagamento,
-            @RequestParam(
-                    value = "confirmacao",
-                    defaultValue = "false") boolean confirmacao,
+            @RequestParam(value = "confirmacao", defaultValue = "false")
+            boolean confirmacao,
             HttpSession session) {
 
-        // O cliente precisa estar conectado para salvar.
         Object clienteIdSessao = session.getAttribute("clienteId");
 
+        // O cliente precisa estar conectado.
         if (clienteIdSessao == null) {
             return "redirect:/login?necessario";
         }
 
-        // Verifica a confirmação do formulário.
         if (!confirmacao) {
             return "redirect:/agendamento?erro=confirmacao";
         }
 
         try {
-            // =============================================
-            // VALIDAR DATA E HORÁRIO
-            // =============================================
-
             DateTimeFormatter formatoData =
                     DateTimeFormatter.ofPattern("dd/MM/uuuu")
                             .withResolverStyle(ResolverStyle.STRICT);
 
-            LocalDate data = LocalDate.parse(
-                    dataTexto,
-                    formatoData);
-
+            LocalDate data = LocalDate.parse(dataTexto, formatoData);
             LocalTime horario = LocalTime.parse(horarioTexto);
 
             if (data.isBefore(LocalDate.now())) {
                 return "redirect:/agendamento?erro=data";
             }
-
-            // =============================================
-            // SERVIÇOS DISPONÍVEIS
-            // =============================================
-
             Map<String, Integer> servicos = Map.ofEntries(
                     Map.entry("Lavagem técnica", 1),
                     Map.entry("Enceramento Wax", 2),
@@ -107,10 +80,6 @@ public class AgendamentoController {
                     Map.entry("Combo Elite", 11)
             );
 
-            // =============================================
-            // PREÇOS DOS SERVIÇOS
-            // =============================================
-
             Map<String, BigDecimal> precos = Map.ofEntries(
                     Map.entry("Lavagem técnica", new BigDecimal("80.00")),
                     Map.entry("Enceramento Wax", new BigDecimal("250.00")),
@@ -124,17 +93,12 @@ public class AgendamentoController {
                     Map.entry("Combo Premium", new BigDecimal("750.00")),
                     Map.entry("Combo Elite", new BigDecimal("1300.00"))
             );
-
             Integer tipoServico = servicos.get(servico);
             BigDecimal total = precos.get(servico);
 
             if (tipoServico == null || total == null) {
                 return "redirect:/agendamento?erro=servico";
             }
-
-            // =============================================
-            // FORMA DE PAGAMENTO
-            // =============================================
 
             Integer formaPagamento = switch (pagamento) {
                 case "Pix" -> 1;
@@ -147,30 +111,38 @@ public class AgendamentoController {
                 return "redirect:/agendamento?erro=pagamento";
             }
 
-            // =============================================
-            // CRIAR AGENDAMENTO
-            // =============================================
-
             Agendamentos agendamento = new Agendamentos();
 
             agendamento.setClienteId(
-                    Long.valueOf(clienteIdSessao.toString()));
-
-            agendamento.setVeiculo(veiculo);
+                    Long.valueOf(clienteIdSessao.toString())
+            );
+            agendamento.setVeiculo(veiculo.trim());
             agendamento.setData(data);
             agendamento.setHorario(horario);
-            agendamento.setObservacoes(observacoes);
+            agendamento.setObservacoes(
+                    observacoes == null ? "" : observacoes.trim()
+            );
             agendamento.setTipoServicos(tipoServico);
             agendamento.setTotalServicos(total);
             agendamento.setFormaPag(formaPagamento);
+            agendamento.setStatus("AGENDADO");
 
-            // Salvar no banco de dados.
-            agendamentosService.salvar(agendamento);
+            Agendamentos salvo = agendamentosService.salvar(agendamento);
 
+            System.out.println("=== AGENDAMENTO SALVO ===");
+            System.out.println("ID: " + salvo.getId());
+            System.out.println("Cliente ID: " + salvo.getClienteId());
+            System.out.println("Veículo: " + salvo.getVeiculo());
+            System.out.println("Data: " + salvo.getData());
+            System.out.println("Horário: " + salvo.getHorario());
+
+            // O cliente permanece na página pública.
             return "redirect:/agendamento?sucesso";
 
         } catch (DateTimeParseException e) {
             return "redirect:/agendamento?erro=data";
+        } catch (NumberFormatException e) {
+            return "redirect:/login?necessario";
         }
     }
 }

@@ -1,4 +1,3 @@
-
 package com.br.estetickelite.Service;
 
 import com.br.estetickelite.Model.Agendamentos;
@@ -33,13 +32,13 @@ public class AgendamentosService {
     }
 
     public Agendamentos buscarPorId(Long id) {
-        return agendamentosRepository.findById(id)
-                .orElse(null);
+        return agendamentosRepository.findById(id).orElse(null);
     }
 
     @Transactional
     public void iniciarAtendimento(Long id) {
         Agendamentos agendamento = obterAgendamento(id);
+
         validarStatus(agendamento, "AGENDADO");
 
         agendamento.setStatus("EM_ANDAMENTO");
@@ -49,6 +48,7 @@ public class AgendamentosService {
     @Transactional
     public void concluir(Long id) {
         Agendamentos agendamento = obterAgendamento(id);
+
         validarStatus(agendamento, "EM_ANDAMENTO");
 
         agendamento.setStatus("CONCLUIDO");
@@ -58,13 +58,13 @@ public class AgendamentosService {
     @Transactional
     public void cancelar(Long id) {
         Agendamentos agendamento = obterAgendamento(id);
-
         String status = agendamento.getStatus();
 
         if ("CONCLUIDO".equalsIgnoreCase(status)
                 || "CANCELADO".equalsIgnoreCase(status)) {
             throw new IllegalStateException(
-                    "Este agendamento não pode ser cancelado.");
+                    "Este agendamento não pode ser cancelado."
+            );
         }
 
         agendamento.setStatus("CANCELADO");
@@ -75,7 +75,8 @@ public class AgendamentosService {
     public void excluir(Long id) {
         if (!agendamentosRepository.existsById(id)) {
             throw new IllegalArgumentException(
-                    "Agendamento não encontrado: " + id);
+                    "Agendamento não encontrado: " + id
+            );
         }
 
         agendamentosRepository.deleteById(id);
@@ -84,18 +85,22 @@ public class AgendamentosService {
     private Agendamentos obterAgendamento(Long id) {
         return agendamentosRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(
-                        "Agendamento não encontrado: " + id));
+                        "Agendamento não encontrado: " + id
+                ));
     }
 
     private void validarStatus(
             Agendamentos agendamento,
             String statusEsperado) {
 
-        if (!statusEsperado.equalsIgnoreCase(
+        if (agendamento.getStatus() == null
+                || !statusEsperado.equalsIgnoreCase(
                 agendamento.getStatus())) {
+
             throw new IllegalStateException(
-                    "A ação não é permitida para o status atual: "
-                            + agendamento.getStatus());
+                    "O agendamento precisa estar com status "
+                            + statusEsperado + "."
+            );
         }
     }
 }

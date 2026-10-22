@@ -658,3 +658,589 @@ footer {
         animation: none !important;
     }
 }
+
+/* =====================================================
+   ESTETICKELITE
+   PAGAMENTO - PRETO E DOURADO
+===================================================== */
+
+.pagamento-section {
+    width: 100%;
+    margin: 35px auto;
+    padding: 28px;
+    background: #111111;
+    border: 1px solid #292929;
+    border-radius: 16px;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.pagamento-section *,
+.pagamento-section *::before,
+.pagamento-section *::after {
+    box-sizing: border-box;
+}
+
+.pagamento-cabecalho {
+    margin-bottom: 24px;
+}
+
+.pagamento-etiqueta {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #d4af37;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.pagamento-cabecalho h2 {
+    margin: 0 0 9px;
+    color: #f0d56a;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.pagamento-cabecalho p,
+.pagamento-descricao {
+    color: #bdbdbd;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.pagamento-cabecalho p {
+    margin: 0;
+}
+
+/* OPÇÕES DE PAGAMENTO */
+
+.pagamento-opcoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.pagamento-opcao {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 18px;
+    background: #181818;
+    border: 1px solid #393939;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.pagamento-opcao:hover {
+    border-color: #a88a27;
+    transform: translateY(-2px);
+}
+
+.pagamento-opcao:has(input:checked) {
+    background: #211d10;
+    border-color: #d4af37;
+    box-shadow: 0 0 0 1px #d4af37;
+}
+
+.pagamento-opcao input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.pagamento-opcao:focus-within {
+    outline: 2px solid #f0d56a;
+    outline-offset: 3px;
+}
+
+.pagamento-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.pix-icone,
+.cartao-icone {
+    background: #2a2515;
+    color: #f0d56a;
+}
+
+.pagamento-opcao-texto {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.pagamento-opcao-texto strong {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.pagamento-opcao-texto small {
+    color: #aaaaaa;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pagamento-seletor {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border: 2px solid #777777;
+    border-radius: 50%;
+}
+
+.pagamento-opcao:has(input:checked) .pagamento-seletor {
+    border: 5px solid #d4af37;
+    background: #ffffff;
+}
+
+/* PAINÉIS */
+
+.pagamento-detalhes {
+    margin-top: 22px;
+    padding: 24px;
+    background: #0c0c0c;
+    border: 1px solid #303030;
+    border-radius: 12px;
+    animation: pagamentoEntrada 0.25s ease;
+}
+
+.pagamento-detalhes[hidden] {
+    display: none !important;
+}
+
+@keyframes pagamentoEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pagamento-detalhes-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.pagamento-detalhes-cabecalho h3 {
+    margin: 0;
+    color: #f0d56a;
+    font-size: 19px;
+}
+
+.pagamento-status-demo {
+    padding: 6px 9px;
+    color: #f0d56a;
+    background: #292311;
+    border: 1px solid #5b4b1c;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.pagamento-descricao {
+    margin: 13px 0 22px;
+}
+
+/* PIX */
+
+.pix-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.pix-qr-ilustrativo {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 2px;
+    width: 180px;
+    height: 180px;
+    padding: 12px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 5px solid #d4af37;
+    border-radius: 8px;
+    background-image:
+            repeating-conic-gradient(
+                    #111111 0% 25%,
+                    #ffffff 0% 50%
+            );
+    background-size: 14px 14px;
+}
+
+.pix-qr-ilustrativo::before,
+.pix-qr-ilustrativo::after {
+    content: "";
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background: #ffffff;
+    border: 7px solid #111111;
+    outline: 5px solid #ffffff;
+    outline-offset: -11px;
+}
+
+.pix-qr-ilustrativo::before {
+    top: 9px;
+    left: 9px;
+}
+
+.pix-qr-ilustrativo::after {
+    right: 9px;
+    bottom: 9px;
+}
+
+.pix-qr-centro {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 34px;
+    color: #111111;
+    background: #f0d56a;
+    border: 3px solid #111111;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 900;
+    transform: translate(-50%, -50%);
+}
+
+.pix-informacoes {
+    flex: 1;
+    min-width: 200px;
+    max-width: 350px;
+}
+
+.pix-informacoes > strong {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.pix-informacoes p {
+    color: #aaaaaa;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.btn-pix-demo {
+    padding: 12px 20px;
+    color: #111111;
+    background: #d4af37;
+    border: 1px solid #d4af37;
+    border-radius: 7px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-pix-demo:hover {
+    background: #f0d56a;
+}
+
+.mensagem-pix-demo {
+    margin-bottom: 0;
+}
+
+/* CARTÃO ILUSTRATIVO */
+
+.cartao-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 380px;
+    min-height: 215px;
+    margin: 0 auto 28px;
+    padding: 24px;
+    overflow: hidden;
+    color: #ffffff;
+    background: linear-gradient(135deg, #292929, #101010 65%, #302710);
+    border: 1px solid #d4af37;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgb(0 0 0 / 35%);
+}
+
+.cartao-visual::after {
+    content: "";
+    position: absolute;
+    top: -65px;
+    right: -65px;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgb(212 175 55 / 25%);
+    border-radius: 50%;
+    box-shadow:
+            0 0 0 20px rgb(212 175 55 / 5%),
+            0 0 0 40px rgb(212 175 55 / 5%);
+    pointer-events: none;
+}
+
+.cartao-visual-topo,
+.cartao-visual-rodape {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.cartao-visual-topo > span:first-child {
+    color: #f0d56a;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.cartao-chip {
+    color: #f0d56a;
+    font-size: 27px;
+}
+
+.cartao-numero {
+    position: relative;
+    z-index: 1;
+    margin: 20px 0;
+    color: #ffffff;
+    font-size: clamp(16px, 4vw, 22px);
+    letter-spacing: 2px;
+    overflow-wrap: anywhere;
+}
+
+.cartao-visual-rodape > div {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.cartao-visual-rodape small {
+    color: #bcbcbc;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.cartao-visual-rodape strong {
+    color: #f0d56a;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+/* CAMPOS DEMONSTRATIVOS */
+
+.cartao-formulario {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.campo-cartao {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.campo-cartao-completo {
+    grid-column: 1 / -1;
+}
+
+.campo-cartao label {
+    color: #dddddd;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.campo-cartao input {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px;
+    color: #ffffff;
+    background: #181818;
+    border: 1px solid #414141;
+    border-radius: 7px;
+    outline: none;
+    font: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.campo-cartao input::placeholder {
+    color: #777777;
+}
+
+.campo-cartao input:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 2px rgb(212 175 55 / 12%);
+}
+
+.aviso-cartao-demo {
+    margin: 20px 0 0;
+    padding: 13px;
+    color: #e1d5ae;
+    background: #211d10;
+    border-left: 3px solid #d4af37;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+    .pagamento-section {
+        margin: 24px auto;
+        padding: 18px;
+        border-radius: 12px;
+    }
+
+    .pagamento-cabecalho h2 {
+        font-size: 22px;
+    }
+
+    .pagamento-opcoes {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .pagamento-opcao {
+        padding: 15px;
+    }
+
+    .pagamento-detalhes {
+        padding: 17px;
+    }
+
+    .pix-conteudo {
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .pix-informacoes {
+        width: 100%;
+        max-width: none;
+    }
+
+    .cartao-visual {
+        min-height: 190px;
+        padding: 19px;
+    }
+
+    .cartao-formulario {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .campo-cartao-completo {
+        grid-column: auto;
+    }
+}
+
+/* =====================================================
+   ESTETICKELITE
+   CORES DOS PLACEHOLDERS
+===================================================== */
+
+/* Campos de texto, e-mail, telefone, data e outros */
+input::placeholder,
+textarea::placeholder {
+    color: #a6a6a6;
+    opacity: 1;
+}
+
+/* Campos da área de pagamento */
+.pagamento-section input::placeholder,
+.pagamento-section textarea::placeholder {
+    color: #b5a66e;
+    opacity: 1;
+}
+
+/* Campos demonstrativos do cartão */
+.campo-cartao input::placeholder {
+    color: #b5a66e;
+    opacity: 1;
+}
+
+/* Compatibilidade com navegadores */
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #a6a6a6;
+    opacity: 1;
+}
+
+/* Quando o usuário clica no campo */
+input:focus::placeholder,
+textarea:focus::placeholder {
+    color: #777777;
+    opacity: 1;
+}
+
+/* Campos desabilitados */
+input:disabled::placeholder,
+textarea:disabled::placeholder {
+    color: #777777;
+    opacity: 1;
+}
+
+/* CONFIRMAÇÃO DO AGENDAMENTO */
+
+.confirmacao-agendamento {
+    margin: 24px 0;
+    padding: 16px;
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 8px;
+}
+
+.confirmacao-agendamento label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.confirmacao-agendamento input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: #d4af37;
+    cursor: pointer;
+}

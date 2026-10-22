@@ -1,13 +1,12 @@
-
 package com.br.estetickelite.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -35,54 +34,21 @@ public class Agendamentos {
     private Integer formaPag;
 
     private LocalDate data;
+
     @Column(name = "cliente_id")
     private Long clienteId;
 
     @Column(name = "status", length = 20)
     private String status = "AGENDADO";
 
-    public Long getClienteId() {
-        return clienteId;
-    }
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
-    }
-    // Construtor vazio obrigatório para o JPA
     public Agendamentos() {
     }
+
     @PrePersist
     public void definirStatusInicial() {
         if (status == null || status.isBlank()) {
             status = "AGENDADO";
         }
-    }
-    // Construtor completo
-    public Agendamentos(
-            Long id,
-            String veiculo,
-            LocalTime horario,
-            String observacoes,
-            Integer tipoServicos,
-            BigDecimal totalServicos,
-            Integer formaPag,
-            LocalDate data) {
-
-        this.id = id;
-        this.veiculo = veiculo;
-        this.horario = horario;
-        this.observacoes = observacoes;
-        this.tipoServicos = tipoServicos;
-        this.totalServicos = totalServicos;
-        this.formaPag = formaPag;
-        this.data = data;
     }
 
     public Long getId() {
@@ -147,5 +113,21 @@ public class Agendamentos {
 
     public void setData(LocalDate data) {
         this.data = data;
+    }
+
+    public Long getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -1,0 +1,843 @@
+/* ========================================================
+       ESTETICKELITE
+       CSS DA PÁGINA DE LOGIN E CADASTRO
+       Identidade visual: Preto + Dourado
+       ========================================================= */
+
+
+/* =========================================================
+   1. VARIÁVEIS GLOBAIS
+   ========================================================= */
+
+:root {
+    --preto: #080808;
+    --preto-secundario: #111111;
+    --cinza-escuro: #161616;
+    --cinza-borda: #292929;
+    --cinza-texto: #cccccc;
+    --dourado: #d4af37;
+    --dourado-claro: #f0d56a;
+    --branco: #ffffff;
+
+    --transicao: 0.3s ease;
+    --sombra-dourada: 0 0 20px rgba(212, 175, 55, 0.10);
+}
+
+
+/* =========================================================
+   2. RESET E CONFIGURAÇÕES GERAIS
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--preto);
+    color: var(--branco);
+
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--dourado);
+    text-decoration: none;
+    transition: color var(--transicao);
+}
+
+a:hover {
+    color: var(--dourado-claro);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+
+
+/* =========================================================
+   3. CABEÇALHO PADRÃO ESTETICKELITE
+   Compatível com o HTML de login e cadastro
+   ========================================================= */
+
+.header-principal {
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    background-color: var(--preto-secundario);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.header-principal .header-estetick {
+    width: 100%;
+}
+
+.header-principal .header-container {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.header-principal .logo-estetick {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: var(--branco);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.header-principal .logo-estetick img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.header-principal .logo-estetick span span {
+    color: var(--dourado);
+}
+
+.header-principal .logo-estetick:hover {
+    color: var(--dourado-claro);
+}
+
+.header-principal nav {
+    margin: 0;
+}
+
+.header-principal .nav-estetick {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-principal .nav-estetick li {
+    margin: 0;
+    padding: 0;
+}
+
+.header-principal .nav-estetick a {
+    display: inline-block;
+    color: var(--cinza-texto);
+    font-size: 0.94rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--transicao), transform var(--transicao);
+}
+
+.header-principal .nav-estetick a:hover,
+.header-principal .nav-estetick a[aria-current="page"] {
+    color: var(--dourado);
+}
+
+.header-principal .nav-estetick a:hover {
+    transform: translateY(-2px);
+}
+
+.header-principal .botoes-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.header-principal .btn-cadastrar,
+.header-principal .btn-agendar {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 17px;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--transicao), color var(--transicao),
+    border-color var(--transicao), transform var(--transicao);
+}
+
+.header-principal .btn-cadastrar {
+    color: var(--dourado);
+    border: 1px solid var(--dourado);
+    background-color: transparent;
+}
+
+.header-principal .btn-cadastrar:hover {
+    color: var(--preto);
+    background-color: var(--dourado);
+    transform: translateY(-2px);
+}
+
+.header-principal .btn-agendar {
+    color: var(--preto) !important;
+    background-color: var(--dourado) !important;
+    border: 1px solid var(--dourado) !important;
+}
+
+.header-principal .btn-agendar:hover {
+    color: var(--preto) !important;
+    background-color: var(--dourado-claro) !important;
+    border-color: var(--dourado-claro) !important;
+    transform: translateY(-2px);
+}
+
+/* Botão de acesso administrativo */
+.header-principal .btn-admin {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 50%;
+    background-color: var(--cinza-escuro);
+    transition: background-color var(--transicao), border-color var(--transicao),
+    transform var(--transicao);
+}
+
+.header-principal .btn-admin::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid var(--dourado);
+    border-radius: 50%;
+}
+
+.header-principal .btn-admin::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    width: 17px;
+    height: 9px;
+    border: 2px solid var(--dourado);
+    border-bottom: 0;
+    border-radius: 10px 10px 5px 5px;
+}
+
+.header-principal .btn-admin:hover {
+    background-color: var(--dourado);
+    border-color: var(--dourado);
+    transform: translateY(-2px);
+}
+
+.header-principal .btn-admin:hover::before,
+.header-principal .btn-admin:hover::after {
+    border-color: var(--preto);
+}
+
+/* =========================================================
+   8. CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+main {
+    width: 100%;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 65px 20px;
+
+    background:
+            radial-gradient(
+                    ellipse at top,
+                    rgba(212, 175, 55, 0.055),
+                    transparent 65%
+            ),
+            var(--preto);
+}
+
+
+/* =========================================================
+   9. CARTÃO DE LOGIN E CADASTRO
+   ========================================================= */
+
+.cadastro {
+    width: 100%;
+    max-width: 480px;
+
+    margin: 0 auto;
+    padding: 38px;
+
+    background-color: var(--preto-secundario);
+
+    border: 1px solid rgba(212, 175, 55, 0.30);
+    border-radius: 14px;
+
+    box-shadow:
+            0 15px 45px rgba(0, 0, 0, 0.35),
+            var(--sombra-dourada);
+}
+
+.cadastro h1 {
+    margin-bottom: 12px;
+
+    color: var(--dourado);
+    font-size: clamp(1.8rem, 4vw, 2.25rem);
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+.cadastro p {
+    color: var(--cinza-texto);
+}
+
+.cadastro .text-center p {
+    font-size: 0.96rem;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   10. RÓTULOS DOS CAMPOS
+   ========================================================= */
+
+.cadastro .form-label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--dourado-claro);
+    font-size: 0.94rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   11. CAMPOS DE ENTRADA
+   ========================================================= */
+
+.cadastro .form-control {
+    width: 100%;
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+    color: var(--branco);
+    background-color: var(--cinza-escuro);
+
+    border: 1px solid var(--cinza-borda);
+    border-radius: 7px;
+
+    font-size: 0.96rem;
+
+    transition:
+            border-color var(--transicao),
+            box-shadow var(--transicao),
+            background-color var(--transicao);
+}
+
+.cadastro .form-control::placeholder {
+    color: #858585;
+    opacity: 1;
+}
+
+.cadastro .form-control:hover {
+    border-color: #665727;
+}
+
+.cadastro .form-control:focus {
+    color: var(--branco);
+    background-color: #1a1a1a;
+
+    border-color: var(--dourado);
+
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    outline: none;
+}
+
+
+/* =========================================================
+   12. BOTÃO PRINCIPAL DO FORMULÁRIO
+   ========================================================= */
+
+.btn-estetick {
+    min-height: 49px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 20px;
+
+    color: var(--preto) !important;
+    background-color: var(--dourado);
+
+    border: 1px solid var(--dourado);
+    border-radius: 7px;
+
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    transition:
+            background-color var(--transicao),
+            border-color var(--transicao),
+            box-shadow var(--transicao),
+            transform var(--transicao);
+}
+
+.btn-estetick:hover {
+    color: var(--preto) !important;
+    background-color: var(--dourado-claro);
+
+    border-color: var(--dourado-claro);
+
+    box-shadow: 0 5px 18px rgba(212, 175, 55, 0.18);
+    transform: translateY(-2px);
+}
+
+.btn-estetick:active {
+    transform: translateY(0);
+}
+
+.btn-estetick:focus-visible {
+    outline: 3px solid var(--branco);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   13. MENSAGENS DE ALERTA DO BOOTSTRAP
+   ========================================================= */
+
+.cadastro .alert {
+    margin-bottom: 22px;
+    padding: 13px 15px;
+
+    border-radius: 7px;
+    font-size: 0.91rem;
+    line-height: 1.5;
+}
+
+.cadastro .alert-danger {
+    color: #ffd6d6;
+    background-color: #351616;
+    border: 1px solid #743232;
+}
+
+.cadastro .alert-success {
+    color: #d7f5dc;
+    background-color: #142b1a;
+    border: 1px solid #28683a;
+}
+
+
+/* =========================================================
+   14. LINK PARA CADASTRO OU LOGIN
+   ========================================================= */
+
+.cadastro .login-link {
+    margin-top: 25px;
+    margin-bottom: 0;
+
+    text-align: center;
+    font-size: 0.93rem;
+}
+
+.cadastro .login-link a,
+.cadastro > p a {
+    color: var(--dourado);
+    font-weight: 700;
+
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 4px;
+
+    transition:
+            color var(--transicao),
+            text-decoration-color var(--transicao);
+}
+
+.cadastro .login-link a:hover,
+.cadastro > p a:hover {
+    color: var(--dourado-claro);
+    text-decoration-color: var(--dourado-claro);
+}
+
+
+/* =========================================================
+   15. MENSAGENS DE VALIDAÇÃO
+   ========================================================= */
+
+.field-error {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #ff8e8e;
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+.form-text {
+    display: block;
+    margin-top: 6px;
+
+    color: #a9a9a9;
+    font-size: 0.82rem;
+}
+
+
+/* =========================================================
+   16. RODAPÉ
+   ========================================================= */
+
+footer {
+    width: 100%;
+    margin-top: auto;
+
+    background-color: var(--preto-secundario);
+    border-top: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.footer-estetick {
+    width: 100%;
+}
+
+.footer-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.footer-main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+
+.copyright {
+    margin: 0;
+
+    color: #a9a9a9;
+    font-size: 0.83rem;
+}
+
+.logo-footer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    color: var(--branco);
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.logo-footer img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-footer span span {
+    color: var(--dourado);
+}
+
+.logo-footer:hover {
+    color: var(--dourado-claro);
+}
+
+
+/* =========================================================
+   17. LINKS DO RODAPÉ
+   ========================================================= */
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 15px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.footer-links a,
+footer .nav-estetick a {
+    color: var(--cinza-texto);
+    font-size: 0.84rem;
+    transition: color var(--transicao);
+}
+
+.footer-links a:hover,
+footer .nav-estetick a:hover {
+    color: var(--dourado);
+}
+
+
+/* =========================================================
+   18. FRASE INSTITUCIONAL
+   ========================================================= */
+
+.linha-dourada {
+    border-top: 1px solid rgba(212, 175, 55, 0.20);
+}
+
+.footer-tagline,
+.linha-dourada small {
+    color: var(--dourado);
+    font-size: 0.86rem;
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   19. ACESSIBILIDADE
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--dourado-claro);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   20. TABLETS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .header-principal .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+
+        gap: 18px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .header-principal .header-container nav {
+        order: 3;
+        width: 100%;
+    }
+
+    .header-principal .nav-estetick {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .header-principal .botoes-header {
+        gap: 8px;
+    }
+
+    .footer-main {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .copyright,
+    .logo-footer,
+    .footer-links {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+}
+
+
+/* =========================================================
+   21. CELULARES
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .header-principal .header-container {
+        gap: 15px;
+    }
+
+    .header-principal .logo-estetick {
+        font-size: 1.2rem;
+    }
+
+    .header-principal .logo-estetick img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .header-principal .header-container nav {
+        overflow: visible;
+    }
+
+    .header-principal .nav-estetick {
+        gap: 12px 18px;
+    }
+
+    .header-principal .nav-estetick a {
+        font-size: 0.85rem;
+    }
+
+    .header-principal .botoes-header {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .header-principal .btn-cadastrar,
+    .header-principal .btn-agendar {
+        padding: 9px 13px;
+        font-size: 0.84rem;
+    }
+
+    main {
+        padding: 38px 15px;
+    }
+
+    .cadastro {
+        max-width: 100%;
+        padding: 27px 21px;
+
+        border-radius: 10px;
+    }
+
+    .cadastro h1 {
+        font-size: 1.8rem;
+    }
+
+    .cadastro .form-control {
+        min-height: 46px;
+        font-size: 16px;
+    }
+
+    .btn-estetick {
+        min-height: 47px;
+    }
+
+    .footer-main {
+        gap: 18px;
+    }
+
+    .footer-links {
+        gap: 10px 15px;
+    }
+
+    .footer-links a,
+    footer .nav-estetick a {
+        font-size: 0.8rem;
+    }
+
+}
+
+
+/* =========================================================
+   22. CELULARES MUITO PEQUENOS
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .cadastro {
+        padding: 23px 16px;
+    }
+
+    .logo-estetick {
+        font-size: 1.08rem;
+    }
+
+    .nav-estetick {
+        gap: 10px;
+    }
+
+    .nav-estetick a {
+        font-size: 0.8rem;
+    }
+
+    .botoes-header {
+        gap: 7px;
+    }
+
+    .btn-cadastrar,
+    .btn-agendar {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+}
+
+/* =========================================================
+   CORREÇÃO DO BOTÃO FAZER LOGIN DO FORMULÁRIO
+   ========================================================= */
+
+.cadastro form button.btn-estetick {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 49px;
+
+    background-color: #d4af37 !important;
+    color: #080808 !important;
+
+    border: 1px solid #d4af37 !important;
+    border-radius: 7px;
+
+    font-size: 1rem;
+    font-weight: 800;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cadastro form button.btn-estetick:hover {
+    background-color: #f0d56a !important;
+    color: #080808 !important;
+
+    border-color: #f0d56a !important;
+    box-shadow: 0 5px 18px rgba(212, 175, 55, 0.2);
+}
+
+.cadastro form button.btn-estetick:focus,
+.cadastro form button.btn-estetick:active {
+    background-color: #d4af37 !important;
+    color: #080808 !important;
+
+    border-color: #d4af37 !important;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2) !important;
+}
