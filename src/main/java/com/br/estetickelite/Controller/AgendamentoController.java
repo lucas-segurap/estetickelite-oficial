@@ -1,9 +1,11 @@
+
 package com.br.estetickelite.Controller;
 
 import com.br.estetickelite.Model.Agendamentos;
 import com.br.estetickelite.Service.AgendamentosService;
 
 import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,20 +35,36 @@ public class AgendamentoController {
 
     @PostMapping("/agendamento")
     public String salvarAgendamento(
-            @RequestParam("veiculoCliente") String veiculo,
-            @RequestParam("servico") String servico,
-            @RequestParam("dataCliente") String dataTexto,
-            @RequestParam("horarioCliente") String horarioTexto,
+
+            @RequestParam("veiculoCliente")
+            String veiculo,
+
+            @RequestParam("placaCliente")
+            String placa,
+
+            @RequestParam("servico")
+            String servico,
+
+            @RequestParam("dataCliente")
+            String dataTexto,
+
+            @RequestParam("horarioCliente")
+            String horarioTexto,
+
             @RequestParam(value = "observacoesCliente", required = false)
             String observacoes,
-            @RequestParam("pagamento") String pagamento,
+
+            @RequestParam("pagamento")
+            String pagamento,
+
             @RequestParam(value = "confirmacao", defaultValue = "false")
             boolean confirmacao,
+
             HttpSession session) {
 
         Object clienteIdSessao = session.getAttribute("clienteId");
 
-        // O cliente precisa estar conectado.
+        // Verifica se o cliente está conectado.
         if (clienteIdSessao == null) {
             return "redirect:/login?necessario";
         }
@@ -55,17 +73,33 @@ public class AgendamentoController {
             return "redirect:/agendamento?erro=confirmacao";
         }
 
+        // Validação do veículo.
+        if (veiculo == null || veiculo.isBlank()) {
+            return "redirect:/agendamento?erro=veiculo";
+        }
+
+        // Normalização e validação da placa.
+        placa = placa.trim().toUpperCase();
+
+        if (!placa.matches("^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$")) {
+            return "redirect:/agendamento?erro=placa";
+        }
+
         try {
+
             DateTimeFormatter formatoData =
                     DateTimeFormatter.ofPattern("dd/MM/uuuu")
                             .withResolverStyle(ResolverStyle.STRICT);
 
             LocalDate data = LocalDate.parse(dataTexto, formatoData);
+
             LocalTime horario = LocalTime.parse(horarioTexto);
 
             if (data.isBefore(LocalDate.now())) {
                 return "redirect:/agendamento?erro=data";
             }
+
+            // Códigos dos serviços.
             Map<String, Integer> servicos = Map.ofEntries(
                     Map.entry("Lavagem técnica", 1),
                     Map.entry("Enceramento Wax", 2),
@@ -80,6 +114,7 @@ public class AgendamentoController {
                     Map.entry("Combo Elite", 11)
             );
 
+            // Preços dos serviços.
             Map<String, BigDecimal> precos = Map.ofEntries(
                     Map.entry("Lavagem técnica", new BigDecimal("80.00")),
                     Map.entry("Enceramento Wax", new BigDecimal("250.00")),
@@ -93,17 +128,21 @@ public class AgendamentoController {
                     Map.entry("Combo Premium", new BigDecimal("750.00")),
                     Map.entry("Combo Elite", new BigDecimal("1300.00"))
             );
+
             Integer tipoServico = servicos.get(servico);
+
             BigDecimal total = precos.get(servico);
 
             if (tipoServico == null || total == null) {
                 return "redirect:/agendamento?erro=servico";
             }
 
+            // Forma de pagamento.
+            // O HTML envia 1 para Pix e 2 para Cartão.
             Integer formaPagamento = switch (pagamento) {
-                case "Pix" -> 1;
-                case "Cartão" -> 2;
-                case "Pagamento em loja" -> 3;
+                case "1" -> 1;
+                case "2" -> 2;
+                case "3" -> 3;
                 default -> null;
             };
 
@@ -111,37 +150,54 @@ public class AgendamentoController {
                 return "redirect:/agendamento?erro=pagamento";
             }
 
+            // Criação do agendamento.
             Agendamentos agendamento = new Agendamentos();
 
             agendamento.setClienteId(
                     Long.valueOf(clienteIdSessao.toString())
             );
+
             agendamento.setVeiculo(veiculo.trim());
+
+            agendamento.setPlaca(placa);
+
             agendamento.setData(data);
+
             agendamento.setHorario(horario);
+
             agendamento.setObservacoes(
                     observacoes == null ? "" : observacoes.trim()
             );
+
             agendamento.setTipoServicos(tipoServico);
+
             agendamento.setTotalServicos(total);
+
             agendamento.setFormaPag(formaPagamento);
+
             agendamento.setStatus("AGENDADO");
 
+            // Salva no banco.
             Agendamentos salvo = agendamentosService.salvar(agendamento);
 
             System.out.println("=== AGENDAMENTO SALVO ===");
             System.out.println("ID: " + salvo.getId());
             System.out.println("Cliente ID: " + salvo.getClienteId());
             System.out.println("Veículo: " + salvo.getVeiculo());
+            System.out.println("Placa: " + salvo.getPlaca());
+            System.out.println("Serviço: " + salvo.getTipoServicos());
+            System.out.println("Valor: " + salvo.getTotalServicos());
             System.out.println("Data: " + salvo.getData());
             System.out.println("Horário: " + salvo.getHorario());
 
-            // O cliente permanece na página pública.
             return "redirect:/agendamento?sucesso";
 
         } catch (DateTimeParseException e) {
+
             return "redirect:/agendamento?erro=data";
+
         } catch (NumberFormatException e) {
+
             return "redirect:/login?necessario";
         }
     }

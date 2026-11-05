@@ -1,3 +1,4 @@
+
 package com.br.estetickelite.Model;
 
 import jakarta.persistence.Column;
@@ -21,6 +22,9 @@ public class Agendamentos {
     private Long id;
 
     private String veiculo;
+
+    @Column(name = "placa", length = 7, nullable = false)
+    private String placa;
 
     private LocalTime horario;
 
@@ -65,6 +69,14 @@ public class Agendamentos {
 
     public void setVeiculo(String veiculo) {
         this.veiculo = veiculo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public LocalTime getHorario() {

@@ -1,4 +1,5 @@
 
+
 /* =========================================================
    ESTETICKELITE
    CSS GLOBAL
@@ -1070,3 +1071,261 @@ footer nav a:hover {
 /* =========================
    FIM DO CSS GLOBAL
    ========================= */
+
+
+
+/* =========================================================
+   AJUSTES VISUAIS — ESTETICKELITE
+   Adicionei esta camada ao final do CSS original para
+   modernizar o visual sem exigir mudanças no HTML.
+   ========================================================= */
+
+/* Fundo com profundidade e melhor leitura */
+body {
+    background:
+            radial-gradient(ellipse at 50% -15%, rgba(212, 175, 55, 0.09), transparent 42%),
+            var(--preto);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+::selection {
+    color: var(--preto);
+    background: var(--dourado-claro);
+}
+
+/* Cabeçalho mais refinado */
+.header-estetick {
+    background: rgba(8, 8, 8, 0.88);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom-color: rgba(212, 175, 55, 0.18);
+}
+
+.header-estetick .logo img {
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.15));
+}
+
+.header-estetick nav a {
+    transition: color 0.25s ease, opacity 0.25s ease;
+}
+
+.header-estetick nav a:hover {
+    opacity: 0.9;
+}
+
+/* Botões com acabamento mais moderno */
+.btn,
+.btn-primary,
+.btn-dourado,
+.btn-outline-dourado,
+.btn-secundario,
+.btn-admin,
+.header-estetick .btn-header {
+    border-radius: 9px;
+    letter-spacing: 0.2px;
+}
+
+.btn-primary,
+.btn-dourado {
+    background-image: linear-gradient(135deg, #f0d56a, #d4af37 58%, #b99122);
+    box-shadow: 0 5px 16px rgba(212, 175, 55, 0.16);
+}
+
+.btn-primary:hover,
+.btn-dourado:hover {
+    box-shadow: 0 8px 22px rgba(212, 175, 55, 0.24);
+}
+
+.btn-outline-dourado:hover,
+.btn-admin:hover,
+.header-estetick .btn-header:hover {
+    box-shadow: 0 5px 16px rgba(212, 175, 55, 0.14);
+}
+
+/* Cards com bordas e sombras mais discretas */
+.card,
+.card-combo,
+.formulario,
+.login-container {
+    border-color: rgba(212, 175, 55, 0.20);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+.card,
+.card-combo {
+    transition:
+            transform 0.28s ease,
+            border-color 0.28s ease,
+            box-shadow 0.28s ease;
+}
+
+.card:hover,
+.card-combo:hover {
+    border-color: rgba(240, 213, 106, 0.75);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.38),
+    0 0 22px rgba(212, 175, 55, 0.07);
+}
+
+.card-img-top,
+.card-img,
+.card-combo img {
+    transition: transform 0.45s ease;
+}
+
+.card:hover .card-img-top,
+.card:hover .card-img,
+.card-combo:hover img {
+    transform: scale(1.025);
+}
+
+/* Campos de formulário mais consistentes */
+.formulario input,
+.formulario textarea,
+.formulario select,
+.form-group input,
+.form-group textarea,
+.form-group select {
+    border-radius: 8px;
+    background-color: #0d0d0d;
+}
+
+.formulario input:hover,
+.formulario textarea:hover,
+.formulario select:hover,
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    border-color: #77705a;
+}
+
+.formulario input:focus,
+.formulario textarea:focus,
+.formulario select:focus,
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--dourado-claro);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.14);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Tabelas administrativas */
+.tabela-container {
+    background: var(--preto-card);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+table {
+    min-width: 600px;
+}
+
+thead th {
+    background: #202020;
+    white-space: nowrap;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+/* Rodapé */
+.footer-estetick,
+footer {
+    background:
+            linear-gradient(180deg, rgba(212, 175, 55, 0.025), transparent 45%),
+            var(--preto-secundario);
+}
+
+/* Imagens e elementos longos não devem estourar o layout */
+.container,
+.container-fluid,
+.row,
+[class*="col-"] {
+    min-width: 0;
+}
+
+pre,
+code {
+    overflow-wrap: anywhere;
+}
+
+/* Melhor experiência em telas médias */
+@media (max-width: 1000px) {
+    .header-estetick {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .header-estetick nav {
+        row-gap: 8px;
+    }
+}
+
+/* Celulares */
+@media (max-width: 650px) {
+    .header-estetick {
+        gap: 12px;
+    }
+
+    .header-estetick .logo {
+        justify-content: center;
+    }
+
+    .header-estetick nav {
+        justify-content: center;
+    }
+
+    .banner-principal {
+        min-height: 360px;
+    }
+
+    .banner-principal h1 {
+        font-size: clamp(1.9rem, 9vw, 2.7rem);
+    }
+
+    .botoes-banner {
+        align-items: stretch;
+    }
+
+    .botoes-banner .btn,
+    .botoes-banner .btn-primary,
+    .botoes-banner .btn-dourado,
+    .botoes-banner .btn-outline-dourado {
+        width: 100%;
+    }
+
+    .formulario,
+    .login-container {
+        width: min(100% - 28px, 520px);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .secao {
+        padding: 42px 0;
+    }
+}
+
+/* Respeita quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

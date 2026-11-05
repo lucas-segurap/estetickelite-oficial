@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(titulo)">
+
+    <!-- CONFIGURAÇÕES -->
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description"
+          content="EstetickElite - Estética automotiva com qualidade, cuidado e excelência.">
+
+    <meta name="author" content="Lucas Segura">
+
+    <meta name="keywords"
+          content="estética automotiva, lavagem, polimento, enceramento, vitrificação">
+
+    <!-- TÍTULO -->
+    <title th:text="${titulo} + ' | EstetickElite'">
+        EstetickElite
+    </title>
+
+    <!-- FAVICON -->
+    <link rel="icon"
+          type="image/png"
+          th:href="@{/favicon.png}">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+          crossorigin="anonymous">
+
+    <!-- CSS PERSONALIZADO -->
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+</head>
+</html>

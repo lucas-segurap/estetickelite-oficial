@@ -1,506 +1,488 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="EstetickElite - Estética automotiva com qualidade, cuidado e excelência.">
-    <meta name="author" content="Lucas Segura">
-    <meta name="keywords"
-          content="estética automotiva, lavagem, polimento, enceramento, vitrificação">
-
-    <title>EstetickElite | Estética Automotiva</title>
-
-    <link rel="icon" type="image/png" th:href="@{/favicon.png}">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+<head th:replace="~{fragments/head :: head('Página inicial')}">
 </head>
-
 <body>
+<!-- ================================================== -->
+<!-- CABEÇALHO -->
+<!-- ================================================== -->
+<header th:replace="~{fragments/header :: header}">
+</header>
+<!-- ================================================== -->
+<!-- CONTEÚDO PRINCIPAL -->
+<!-- ================================================== -->
+<main>
+    <!-- APRESENTAÇÃO DA EMPRESA -->
+    <section class="container-img">
 
-    <!-- HEADER -->
-    <header class="header-estetick">
-        <div class="container">
-            <div class="header-container">
+        <h1>Bem-vindo à EstetickElite!</h1>
 
-                <a th:href="@{/}" class="logo-estetick"
-                   aria-label="Página inicial EstetickElite">
-                    <img th:src="@{/img/logo.png}" alt="Logo da EstetickElite">
-                    <span>Estetick<span>Elite</span></span>
-                </a>
+        <p>
+            A EstetickElite é uma empresa de estética automotiva
+            criada com o objetivo de oferecer cuidados de qualidade
+            para veículos, unindo limpeza, conservação e atenção
+            aos detalhes.
+        </p>
 
-                <nav aria-label="Menu principal">
-                    <ul class="nav-estetick">
-                        <li>
-                            <a th:href="@{/}" class="active">Home</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/cadastro}">Cadastro</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/agendamento}">Agendamento</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/faleconosco}">Fale conosco</a>
-                        </li>
-                    </ul>
-                </nav>
+        <p>
+            Nosso propósito é proporcionar aos clientes uma
+            experiência diferenciada, deixando cada veículo mais
+            limpo, bem cuidado e com uma aparência renovada.
+        </p>
 
-                <div class="botoes-header">
-                    <a th:href="@{/cadastro}" class="btn-cadastrar">
-                        Cadastrar
-                    </a>
+        <p>
+            Trabalhamos com serviços pensados para diferentes
+            necessidades, desde uma limpeza mais simples até
+            cuidados mais completos.
+        </p>
 
-                    <a th:href="@{/login}" class="btn-agendar">
-                        Fazer Login
-                    </a>
-                </div>
+        <p>
+            <strong>
+                EstetickElite — cuidado, qualidade e atenção em cada detalhe.
+            </strong>
+        </p>
 
-            </div>
-        </div>
-    </header>
+    </section>
+    <!-- ================================================== -->    <!-- NOSSOS SERVIÇOS -->
+    <!-- ================================================== -->
+    <section class="container servicos">
+        <!-- TÍTULO DA SEÇÃO -->
+        <div class="text-center mb-5">
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main>
-
-        <!-- APRESENTAÇÃO -->
-        <section class="container-img">
-            <h1>Bem-vindo à EstetickElite!</h1>
+            <h2>Nossos Serviços</h2>
 
             <p>
-                A EstetickElite é uma empresa de estética automotiva
-                criada com o objetivo de oferecer cuidados de qualidade
-                para veículos, unindo limpeza, conservação e atenção
-                aos detalhes.
-
-                <br><br>
-
-                Nosso propósito é proporcionar aos clientes uma
-                experiência diferenciada, deixando cada veículo mais
-                limpo, bem cuidado e com uma aparência renovada.
-
-                <br><br>
-
-                Trabalhamos com serviços pensados para diferentes
-                necessidades, desde uma limpeza mais simples até
-                cuidados mais completos.
-
-                <br><br>
-
-                <strong>
-                    EstetickElite — cuidado, qualidade e atenção em cada detalhe.
-                </strong>
+                Cuidados especiais para manter seu veículo impecável.
             </p>
-        </section>
 
-        <!-- SERVIÇOS -->
-        <section class="container servicos">
+        </div>
+        <!-- CARDS DE SERVIÇOS -->
+        <div class="row g-4">
+            <!-- SERVIÇO 1 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
 
-            <div class="text-center mb-5">
-                <h2>Nossos Serviços</h2>
-                <p>Cuidados especiais para manter seu veículo impecável.</p>
-            </div>
+                <div class="card card-servico w-100">
 
-            <div class="row g-4">
+                    <img th:src="@{/img/1-1.webp}"
+                         class="card-img-top"
+                         alt="Lavagem técnica"
+                         loading="lazy">
 
-                <!-- SERVIÇO 1 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/1-1.webp}"
-                             class="card-img-top"
-                             alt="Lavagem técnica"
-                             loading="lazy">
+                    <div class="card-body">
 
-                        <div class="card-body">
-                            <h5 class="card-title mb-0" style="min-height: 40px;">
-                                Lavagem técnica
-                            </h5>
+                        <h5 class="card-title">
+                            Lavagem técnica
+                        </h5>
 
-                            <p class="card-text">
-                                Lavagem completa do veículo, incluindo rodas e áreas
-                                de difícil acesso, com proteção para facilitar
-                                futuras lavagens.
-                            </p>
+                        <p class="card-text">
+                            Lavagem completa do veículo, incluindo rodas
+                            e áreas de difícil acesso, com proteção para
+                            facilitar futuras lavagens.
+                        </p>
 
-                            <h4 class="preco">R$ 80,00</h4>
+                        <h4 class="preco">R$ 80,00</h4>
 
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
                     </div>
-                </div>
 
-                <!-- SERVIÇO 2 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/2.webp}"
-                             class="card-img-top"
-                             alt="Enceramento Wax"
-                             loading="lazy">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Enceramento Wax</h5>
-
-                            <p class="card-text">
-                                Cria uma película de proteção sobre a lataria e ajuda
-                                a proteger a pintura contra os efeitos dos raios solares.
-                            </p>
-
-                            <h4 class="preco">R$ 250,00</h4>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SERVIÇO 3 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/3-1.webp}"
-                             class="card-img-top"
-                             alt="Revitalização de plásticos"
-                             loading="lazy">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Revitalização de Plásticos</h5>
-
-                            <p class="card-text">
-                                Recupera a aparência dos plásticos que sofrem com
-                                exposição ao sol, chuva e desgaste natural.
-                            </p>
-
-                            <h4 class="preco">R$ 480,00</h4>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SERVIÇO 4 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/4.webp}"
-                             class="card-img-top"
-                             alt="Polimento de pintura"
-                             loading="lazy">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Polimento de Pintura</h5>
-
-                            <p class="card-text">
-                                Reaviva a cor e o brilho da lataria, ajudando a
-                                melhorar a aparência da pintura.
-                            </p>
-
-                            <h4 class="preco">R$ 700,00</h4>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SERVIÇO 5 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/5.webp}"
-                             class="card-img-top"
-                             alt="Revitalização de plásticos internos"
-                             loading="lazy">
-
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Revitalização de Plásticos Internos
-                            </h5>
-
-                            <p class="card-text">
-                                Recupera a aparência dos plásticos internos que
-                                sofreram desgaste ao longo do tempo.
-                            </p>
-
-                            <h4 class="preco">R$ 380,00</h4>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SERVIÇO 6 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/6..png}"
-                             class="card-img-top"
-                             alt="Vitrificação de vidros"
-                             loading="lazy">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Vitrificação de Vidros</h5>
-
-                            <p class="card-text">
-                                Ajuda a evitar a fixação de sujeiras nos vidros
-                                e melhora a visibilidade durante a condução.
-                            </p>
-
-                            <h4 class="preco">R$ 600,00</h4>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SERVIÇO 7 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/7.webp}"
-                             class="card-img-top"
-                             alt="Descontaminação de pintura"
-                             loading="lazy">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Descontaminação de Pintura</h5>
-
-                            <p class="card-text">
-                                Remove contaminantes que deixam a pintura áspera
-                                e prejudicam sua aparência.
-                            </p>
-
-                            <h4 class="preco">R$ 580,00</h4>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SERVIÇO 8 -->
-                <div class="col-12 col-md-6 col-lg-3 d-flex">
-                    <div class="card card-servico w-100">
-                        <img th:src="@{/img/8.webp}"
-                             class="card-img-top"
-                             alt="Polimento de faróis"
-                             loading="lazy">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Polimento de Faróis</h5>
-
-                            <p class="card-text">
-                                Ajuda a reduzir opacidade e marcas superficiais,
-                                melhorando a aparência dos faróis.
-                            </p>
-
-                            <h4 class="preco">R$ 150,00</h4>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
                 </div>
 
             </div>
-        </section>
+            <!-- SERVIÇO 2 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
 
-        <!-- COMBOS -->
-        <section class="container combos py-5">
+                <div class="card card-servico w-100">
 
-            <div class="text-center mb-5">
-                <h2>Combos EstetickElite</h2>
-                <p>
-                    Cuidados completos para deixar seu veículo sempre impecável.
-                </p>
-            </div>
+                    <img th:src="@{/img/2.webp}"
+                         class="card-img-top"
+                         alt="Enceramento Wax"
+                         loading="lazy">
 
-            <div class="row g-4">
+                    <div class="card-body">
 
-                <!-- COMBO START -->
-                <div class="col-12 col-md-4 d-flex">
-                    <div class="card combo-card text-center w-100">
-                        <div class="card-body">
-                            <h4>Combo Start</h4>
+                        <h5 class="card-title">
+                            Enceramento Wax
+                        </h5>
 
-                            <p>
-                                Lavagem Técnica
-                                <br>+<br>
-                                Enceramento Wax
-                            </p>
+                        <p class="card-text">
+                            Cria uma película de proteção sobre a lataria
+                            e ajuda a proteger a pintura contra os efeitos
+                            dos raios solares.
+                        </p>
 
-                            <p class="preco-antigo">De R$ 330,00</p>
-                            <h3>R$ 300,00</h3>
+                        <h4 class="preco">R$ 250,00</h4>
 
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
                     </div>
-                </div>
 
-                <!-- COMBO PREMIUM -->
-                <div class="col-12 col-md-4 d-flex">
-                    <div class="card combo-card combo-premium text-center w-100">
-                        <div class="card-body">
-                            <h4>Combo Premium</h4>
-
-                            <p>
-                                Lavagem Técnica
-                                <br>+<br>
-                                Revitalização de Plásticos
-                                <br>+<br>
-                                Vitrificação de Vidros
-                            </p>
-
-                            <p class="preco-antigo">De R$ 1.160,00</p>
-                            <h3>R$ 750,00</h3>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- COMBO ELITE -->
-                <div class="col-12 col-md-4 d-flex">
-                    <div class="card combo-card text-center w-100">
-                        <div class="card-body">
-                            <h4>Combo Elite</h4>
-
-                            <p>
-                                Lavagem Técnica
-                                <br>+<br>
-                                Enceramento Wax
-                                <br>+<br>
-                                Descontaminação de Pintura
-                                <br>+<br>
-                                Polimento de Pintura
-                            </p>
-
-                            <p class="preco-antigo">De R$ 1.610,00</p>
-                            <h3>R$ 1.300,00</h3>
-
-                            <a th:href="@{/agendamento}" class="btn btn-primary">
-                                Agendar
-                            </a>
-                        </div>
-                    </div>
                 </div>
 
             </div>
+            <!-- SERVIÇO 3 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
 
-            <!-- CANTINHO DA ESTETICK -->
-            <br><br>
+                <div class="card card-servico w-100">
 
-            <div class="text-center mb-5">
-                <h2>Cantinho da Estetick</h2>
+                    <img th:src="@{/img/3-1.webp}"
+                         class="card-img-top"
+                         alt="Revitalização de plásticos"
+                         loading="lazy">
 
-                <h3>
-                    Para você que gosta de limpar seu próprio carro,
-                    a EstetickElite oferece equipamentos para isso.
-                </h3>
+                    <div class="card-body">
 
-                <p>Uso exclusivo seu</p>
+                        <h5 class="card-title">
+                            Revitalização de Plásticos
+                        </h5>
 
-                <br>
+                        <p class="card-text">
+                            Recupera a aparência dos plásticos que sofrem
+                            com exposição ao sol, chuva e desgaste natural.
+                        </p>
 
-                <img th:src="@{/img/usoseu.png}"
-                     alt="Serviços adicionais"
-                     class="card-img">
+                        <h4 class="preco">R$ 480,00</h4>
 
-                <br><br>
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
 
-                <h3>
-                    Traga seu carro e faça a sua limpeza,
-                    aquela que só você sabe fazer.
-                </h3>
-            </div>
+                    </div>
 
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-estetick">
-            <div class="container footer-container">
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center py-4">
-
-                    <p class="col-md-4 mb-0 copyright">
-                        © 2026 EstetickElite. Todos os direitos reservados.
-                    </p>
-
-                    <a th:href="@{/}"
-                       class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 logo-footer">
-
-                        <img th:src="@{/img/logo.png}"
-                             alt="Logo EstetickElite"
-                             width="40"
-                             height="40"
-                             class="me-2">
-
-                        Estetick<span>Elite</span>
-                    </a>
-
-                    <ul class="nav col-md-4 justify-content-end nav-estetick">
-
-                        <li class="nav-item">
-                            <a th:href="@{/}" class="nav-link px-2 active">
-                                Home
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a th:href="@{/cadastro}" class="nav-link px-2">
-                                Cadastro
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a th:href="@{/agendamento}" class="nav-link px-2">
-                                Agendamento
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a th:href="@{/fale-conosco}" class="nav-link px-2">
-                                Fale conosco
-                            </a>
-                        </li>
-
-                    </ul>
                 </div>
 
-                <div class="text-center py-3 linha-dourada">
-                    <small style="color: #d4af37;">
-                        Estética automotiva com qualidade e excelência.
-                    </small>
+            </div>
+            <!-- SERVIÇO 4 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
+
+                <div class="card card-servico w-100">
+
+                    <img th:src="@{/img/4.webp}"
+                         class="card-img-top"
+                         alt="Polimento de pintura"
+                         loading="lazy">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Polimento de Pintura
+                        </h5>
+
+                        <p class="card-text">
+                            Reaviva a cor e o brilho da lataria, ajudando
+                            a melhorar a aparência da pintura.
+                        </p>
+
+                        <h4 class="preco">R$ 700,00</h4>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- SERVIÇO 5 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
+
+                <div class="card card-servico w-100">
+
+                    <img th:src="@{/img/5.webp}"
+                         class="card-img-top"
+                         alt="Revitalização de plásticos internos"
+                         loading="lazy">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Revitalização de Plásticos Internos
+                        </h5>
+
+                        <p class="card-text">
+                            Recupera a aparência dos plásticos internos
+                            que sofreram desgaste ao longo do tempo.
+                        </p>
+
+                        <h4 class="preco">R$ 380,00</h4>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- SERVIÇO 6 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
+
+                <div class="card card-servico w-100">
+
+                    <img th:src="@{/img/6..png}"
+                         class="card-img-top"
+                         alt="Vitrificação de vidros"
+                         loading="lazy">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Vitrificação de Vidros
+                        </h5>
+
+                        <p class="card-text">
+                            Ajuda a evitar a fixação de sujeiras nos vidros
+                            e melhora a visibilidade durante a condução.
+                        </p>
+
+                        <h4 class="preco">R$ 600,00</h4>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- SERVIÇO 7 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
+
+                <div class="card card-servico w-100">
+
+                    <img th:src="@{/img/7.webp}"
+                         class="card-img-top"
+                         alt="Descontaminação de pintura"
+                         loading="lazy">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Descontaminação de Pintura
+                        </h5>
+
+                        <p class="card-text">
+                            Remove contaminantes que deixam a pintura
+                            áspera e prejudicam sua aparência.
+                        </p>
+
+                        <h4 class="preco">R$ 580,00</h4>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- SERVIÇO 8 -->
+            <div class="col-12 col-md-6 col-lg-3 d-flex">
+
+                <div class="card card-servico w-100">
+
+                    <img th:src="@{/img/8.webp}"
+                         class="card-img-top"
+                         alt="Polimento de faróis"
+                         loading="lazy">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Polimento de Faróis
+                        </h5>
+
+                        <p class="card-text">
+                            Ajuda a reduzir opacidade e marcas superficiais,
+                            melhorando a aparência dos faróis.
+                        </p>
+
+                        <h4 class="preco">R$ 150,00</h4>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
                 </div>
 
             </div>
         </div>
-    </footer>
+    </section>
+    <!-- ================================================== -->
+    <!-- COMBOS ESTETICKELITE -->
+    <!-- ================================================== -->
+    <section class="container combos py-5">
+        <!-- TÍTULO -->
+        <div class="text-center mb-5">
+            <h2>Combos EstetickElite</h2>
+            <p>
+                Cuidados completos para deixar seu veículo sempre impecável.
+            </p>
+        </div>
 
-    <!-- BOOTSTRAP JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+        <!-- CARDS DOS COMBOS -->
+        <div class="row g-4">
 
 
-    <!-- JAVASCRIPT PERSONALIZADO -->
-    <!--script th:src="@{/js/script.js}"></script-->
+            <!-- COMBO START -->
+            <div class="col-12 col-md-4 d-flex">
 
+                <div class="card combo-card text-center w-100">
+
+                    <div class="card-body">
+
+                        <h4>Combo Start</h4>
+
+                        <p>
+                            Lavagem Técnica
+                            <br>+
+                            <br>Enceramento Wax
+                        </p>
+
+                        <p class="preco-antigo">
+                            De R$ 330,00
+                        </p>
+
+                        <h3>R$ 300,00</h3>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMBO PREMIUM -->
+            <div class="col-12 col-md-4 d-flex">
+
+                <div class="card combo-card combo-premium text-center w-100">
+
+                    <div class="card-body">
+
+                        <h4>Combo Premium</h4>
+
+                        <p>
+                            Lavagem Técnica
+                            <br>+
+                            <br>Revitalização de Plásticos
+                            <br>+
+                            <br>Vitrificação de Vidros
+                        </p>
+
+                        <p class="preco-antigo">
+                            De R$ 1.160,00
+                        </p>
+
+                        <h3>R$ 750,00</h3>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMBO ELITE -->
+            <div class="col-12 col-md-4 d-flex">
+
+                <div class="card combo-card text-center w-100">
+
+                    <div class="card-body">
+
+                        <h4>Combo Elite</h4>
+
+                        <p>
+                            Lavagem Técnica
+                            <br>+
+                            <br>Enceramento Wax
+                            <br>+
+                            <br>Descontaminação de Pintura
+                            <br>+
+                            <br>Polimento de Pintura
+                        </p>
+
+                        <p class="preco-antigo">
+                            De R$ 1.610,00
+                        </p>
+
+                        <h3>R$ 1.300,00</h3>
+
+                        <a th:href="@{/agendamento}" class="btn btn-primary">
+                            Agendar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================== -->
+        <!-- CANTINHO DA ESTETICK -->
+        <!-- ================================================== -->
+
+        <section class="text-center mt-5">
+
+            <h2>Cantinho da Estetick</h2>
+
+            <h3>
+                Para você que gosta de limpar seu próprio carro,
+                a EstetickElite oferece equipamentos para isso.
+            </h3>
+
+            <p>Uso exclusivo seu</p>
+
+            <img th:src="@{/img/usoseu.png}"
+                 alt="Espaço de limpeza para uso exclusivo do cliente"
+                 class="card-img"
+                 loading="lazy">
+
+            <h3>
+                Traga seu carro e faça a sua limpeza,
+                aquela que só você sabe fazer.
+            </h3>
+
+        </section>
+
+    </section>
+</main>
+<!-- ================================================== -->
+<!-- RODAPÉ -->
+<!-- ================================================== -->
+<footer th:replace="~{fragments/footer :: footer}">
+</footer>
+<!-- ================================================== -->
+<!-- JAVASCRIPT -->
+<!-- ================================================== -->
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous">
+</script>
+<!-- JavaScript personalizado -->
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>
