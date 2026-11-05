@@ -1,202 +1,801 @@
-/* EstetickElite — identidade visual compartilhada: preto e dourado */
+
+/* =========================================================
+   ESTETICKELITE — FALE CONOSCO
+   Identidade visual: preto, dourado e sofisticação
+========================================================= */
+
+
+/* =========================================================
+   1. VARIÁVEIS
+========================================================= */
+
 :root {
-    --preto: #080808;
-    --preto-2: #111111;
-    --preto-3: #181818;
-    --cinza: #222222;
-    --cinza-texto: #cccccc;
-    --branco: #ffffff;
-    --dourado: #d4af37;
-    --dourado-claro: #f0d56a;
-    --sombra: 0 15px 40px rgba(0,0,0,.45);
-    --transicao: .3s ease;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-    margin: 0; min-height: 100vh; overflow-x: hidden;
-    background: radial-gradient(circle at top, rgba(212,175,55,.08), transparent 35%),
-                linear-gradient(135deg,#080808 0%,#111 50%,#080808 100%);
-    color: var(--branco); font-family: "Segoe UI", Arial, sans-serif;
-}
-a { transition: var(--transicao); }
-header {
-    position: sticky; top: 0; z-index: 1000;
-    background: rgba(8,8,8,.96); border-bottom: 1px solid rgba(212,175,55,.35);
-    backdrop-filter: blur(12px);
-}
-.header-estetick { max-width: 1200px; margin: auto; }
-.header-container {
-    min-height: 82px; display: flex; align-items: center;
-    justify-content: space-between; gap: 22px;
-}
-.logo-estetick {
-    display: flex; align-items: center; gap: 10px; color: #fff;
-    text-decoration: none; font-size: 1.3rem; font-weight: 800; white-space: nowrap;
-}
-.logo-estetick img { width: 48px; height: 48px; object-fit: contain; }
-.logo-estetick span span, .logo-footer span { color: var(--dourado); }
-.nav-estetick {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    list-style: none; margin: 0; padding: 0;
-}
-.nav-estetick a {
-    position: relative; display: block; padding: 10px 12px; color: #f0f0f0;
-    text-decoration: none; font-weight: 600;
-}
-.nav-estetick a::after {
-    content: ""; position: absolute; left: 12px; right: 12px; bottom: 3px;
-    height: 2px; background: var(--dourado); transform: scaleX(0); transition: var(--transicao);
-}
-.nav-estetick a:hover, .nav-estetick a.active { color: var(--dourado-claro); }
-.nav-estetick a:hover::after, .nav-estetick a.active::after { transform: scaleX(1); }
-.botoes-header { display: flex; align-items: center; gap: 10px; }
-.btn-cadastrar, .btn-agendar {
-    display: inline-flex; align-items: center; justify-content: center; min-height: 42px;
-    padding: 9px 16px; border-radius: 8px; text-decoration: none; font-weight: 700;
-}
-.btn-cadastrar { color: var(--dourado-claro); border: 1px solid var(--dourado); background: transparent; }
-.btn-cadastrar:hover { color: #080808; background: var(--dourado); transform: translateY(-2px); }
-.btn-agendar { color: #080808; background: linear-gradient(135deg,var(--dourado),var(--dourado-claro)); border: 1px solid var(--dourado); }
-.btn-agendar:hover { color: #080808; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212,175,55,.25); }
-main.container { max-width: 900px; padding-top: 55px; padding-bottom: 65px; }
-.agendamento, .cadastro {
-    position: relative; max-width: 760px; margin: 0 auto; padding: clamp(24px,5vw,42px);
-    background: linear-gradient(145deg,#151515,#0b0b0b);
-    border: 1px solid rgba(212,175,55,.3); border-radius: 18px;
-    box-shadow: var(--sombra); overflow: hidden; animation: entrarCard .65s ease both;
-}
-.agendamento::before, .cadastro::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg,transparent,var(--dourado),var(--dourado-claro),var(--dourado),transparent);
-}
-.agendamento h1, .cadastro h1 {
-    color: var(--dourado); font-size: clamp(2rem,5vw,2.8rem); font-weight: 800;
-    letter-spacing: .5px; text-align: center; margin-bottom: 10px;
-}
-.agendamento .text-center > p:not(.eyebrow), .cadastro-intro { color: var(--cinza-texto); text-align: center; margin-bottom: 25px; }
-.eyebrow { color: var(--dourado-claro); font-size: .75rem; letter-spacing: 2px; text-align: center; font-weight: 800; margin-bottom: 8px; }
-.form-label { color: #eee; font-weight: 650; margin-bottom: 8px; }
-.form-control, .form-select {
-    min-height: 48px; color: #fff !important; background-color: #0d0d0d !important;
-    border: 1px solid #3a3a3a !important; border-radius: 9px !important;
-    padding: 11px 14px; transition: var(--transicao);
-}
-.form-control::placeholder { color: #777; }
-.form-control:hover, .form-select:hover { border-color: #665522 !important; }
-.form-control:focus, .form-select:focus {
-    background-color: #101010 !important; border-color: var(--dourado) !important;
-    box-shadow: 0 0 0 3px rgba(212,175,55,.1) !important; color: #fff !important;
-}
-textarea.form-control { min-height: 115px; resize: vertical; }
-.form-select option { background: #111; color: #fff; }
-.btn-estetick {
-    position: relative; overflow: hidden; min-height: 49px; padding: 12px 20px;
-    color: #080808; font-weight: 800; letter-spacing: .3px; border: 1px solid var(--dourado);
-    border-radius: 9px; background: linear-gradient(135deg,var(--dourado),#b89428);
-    transition: var(--transicao);
-}
-.btn-estetick:hover { color: #080808; background: linear-gradient(135deg,var(--dourado-claro),var(--dourado)); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,.2); }
-.btn-estetick:active { transform: translateY(0); }
-.confirmacao-agendamento { padding: 15px; background: rgba(212,175,55,.05); border: 1px solid rgba(212,175,55,.2); border-radius: 10px; }
-.confirmacao-check { display: flex; align-items: flex-start; gap: 11px; }
-.confirmacao-check input { margin-top: 5px; accent-color: var(--dourado); flex: 0 0 auto; }
-.confirmacao-check label { color: #ccc; font-size: .92rem; line-height: 1.5; }
-.field-error { display: block; color: #ff8d8d; margin-top: 5px; }
-.payment-note, .form-footnote, .form-text { display: block; color: #999; font-size: .82rem; margin-top: 9px; }
-.form-footnote { text-align: center; margin-bottom: 0; }
-.login-link { margin: 22px 0 0; text-align: center; color: #bbb; }
-.login-link a { color: var(--dourado-claro); font-weight: 700; text-decoration: none; }
-.login-link a:hover { text-decoration: underline; }
-.alert { border-radius: 9px; }
-.footer-estetick { border-top: 1px solid rgba(212,175,55,.25); background: #080808; }
-.footer-container { max-width: 1200px; }
-.footer-main { display: flex; flex-wrap: wrap; gap: 18px; justify-content: space-between; align-items: center; padding-top: 25px; padding-bottom: 20px; }
-.copyright { color: #aaa; font-size: .85rem; margin: 0; }
-.logo-footer { display: inline-flex; gap: 8px; align-items: center; color: #fff; text-decoration: none; font-weight: 800; }
-.logo-footer img { object-fit: contain; }
-.footer-links { display: flex; flex-wrap: wrap; gap: 5px; list-style: none; padding: 0; margin: 0; }
-.footer-links a { color: #bbb; text-decoration: none; padding: 6px; font-size: .9rem; }
-.footer-links a:hover { color: var(--dourado-claro); }
-.footer-tagline { text-align: center; padding: 15px 0; color: var(--dourado-claro); border-top: 1px solid rgba(212,175,55,.12); font-size: .85rem; }
-@keyframes entrarCard { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-@media (max-width: 1000px) {
-    .header-container { flex-wrap: wrap; justify-content: center; padding-top: 12px; padding-bottom: 14px; gap: 10px 20px; }
-    .header-container nav { order: 3; width: 100%; }
-    .nav-estetick { flex-wrap: wrap; }
-}
-@media (max-width: 600px) {
-    main.container { padding-top: 28px; padding-bottom: 35px; }
-    .header-container { gap: 12px; }
-    .logo-estetick { font-size: 1.15rem; }
-    .logo-estetick img { width: 40px; height: 40px; }
-    .nav-estetick { gap: 0; }
-    .nav-estetick a { padding: 8px; font-size: .9rem; }
-    .botoes-header { width: 100%; justify-content: center; }
-    .btn-cadastrar, .btn-agendar { flex: 1; max-width: 170px; }
-    .agendamento, .cadastro { padding: 24px 18px; border-radius: 14px; }
-    .footer-main { justify-content: center; text-align: center; }
-    .copyright { width: 100%; }
-    .footer-links { justify-content: center; }
-}
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    --contato-preto: #080808;
+    --contato-card: #111111;
+    --contato-card-2: #161616;
+
+    --contato-dourado: #d4af37;
+    --contato-dourado-claro: #f0d56a;
+
+    --contato-branco: #ffffff;
+    --contato-cinza: #cccccc;
+    --contato-cinza-2: #888888;
+
+    --contato-borda: rgba(212, 175, 55, 0.25);
+
+    --contato-sombra:
+            0 18px 45px rgba(0, 0, 0, 0.4);
+
+    --contato-transicao: 0.3s ease;
 }
 
-/* Ajustes específicos da página de agendamento */
-main.container { max-width: 900px; }
-.agendamento { max-width: 800px; }
-.agendamento .row { --bs-gutter-x: 1rem; }
 
-/* Ajustes específicos da página Fale Conosco */
+/* =========================================================
+   2. ÁREA PRINCIPAL
+========================================================= */
+
 main.contato {
-    max-width: 1000px;
-    margin: 48px auto 65px;
-    padding: 0 18px;
-}
-.contato-intro { margin-bottom: 28px; }
-.contato-intro > p:not(.eyebrow) { color: #ccc; }
-.contato-carousel {
-    overflow: hidden;
-    border: 1px solid rgba(212,175,55,.4);
-    border-radius: 16px;
-    background: #111;
-    box-shadow: 0 12px 32px rgba(0,0,0,.35);
-}
-.contato-carousel .carousel-item img {
     width: 100%;
-    height: clamp(210px, 34vw, 390px);
-    object-fit: cover;
+    max-width: 1100px;
+
+    margin: 65px auto 80px;
+    padding: 0 22px;
+
+    animation: contatoEntrada 0.7s ease both;
 }
-.contato-card {
-    height: 100%;
-    padding: clamp(22px, 3vw, 30px);
-    background: linear-gradient(145deg,#151515,#090909);
-    border: 1px solid rgba(212,175,55,.32);
-    border-radius: 14px;
-    box-shadow: 0 10px 28px rgba(0,0,0,.25);
+
+@keyframes contatoEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-.contato-card h2 {
-    color: var(--dourado);
-    font-size: 1.45rem;
-    font-weight: 800;
+
+
+/* =========================================================
+   3. APRESENTAÇÃO
+========================================================= */
+
+.contato-intro {
+    max-width: 760px;
+
+    margin: 0 auto 45px;
+
+    text-align: center;
+}
+
+.contato-intro .eyebrow {
+    display: inline-block;
+
     margin-bottom: 14px;
+
+    color: var(--contato-dourado-claro);
+
+    font-size: 0.76rem;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
+
+.contato-intro h1 {
+    margin-bottom: 16px;
+
+    color: var(--contato-dourado);
+
+    font-size: clamp(2.2rem, 5vw, 3.3rem);
+    font-weight: 850;
+
+    letter-spacing: -1px;
+}
+
+.contato-intro > p:not(.eyebrow) {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: var(--contato-cinza);
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   4. CARROSSEL
+========================================================= */
+
+.contato-carousel {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 45px;
+
+    background: var(--contato-card);
+
+    border: 1px solid var(--contato-borda);
+    border-radius: 18px;
+
+    box-shadow: var(--contato-sombra);
+}
+
+.contato-carousel .carousel-inner {
+    border-radius: inherit;
+}
+
+.contato-carousel .carousel-item {
+    position: relative;
+}
+
+.contato-carousel .carousel-item img {
+    display: block;
+
+    width: 100%;
+    height: clamp(240px, 38vw, 430px);
+
+    object-fit: cover;
+
+    filter: brightness(0.78);
+
+    transition: transform 0.8s ease;
+}
+
+.contato-carousel .carousel-item.active img {
+    transform: scale(1.02);
+}
+
+.contato-carousel .carousel-caption {
+    bottom: 35px;
+
+    z-index: 2;
+
+    text-shadow: 0 2px 12px #000;
+}
+
+.contato-carousel .carousel-caption h5 {
+    color: var(--contato-dourado-claro);
+
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 800;
+}
+
+.contato-carousel .carousel-caption p {
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.contato-carousel .carousel-control-prev,
+.contato-carousel .carousel-control-next {
+    width: 9%;
+}
+
+.contato-carousel .carousel-indicators [data-bs-target] {
+    width: 25px;
+    height: 4px;
+
+    border-radius: 10px;
+
+    background-color: var(--contato-dourado);
+}
+
+
+/* =========================================================
+   5. ESTRUTURA DOS CARDS
+========================================================= */
+
+.contato .row {
+    --bs-gutter-x: 24px;
+    --bs-gutter-y: 24px;
+}
+
+.contato-card {
+    position: relative;
+
+    height: 100%;
+
+    padding: clamp(25px, 4vw, 36px);
+
+    overflow: hidden;
+
+    background:
+            linear-gradient(
+                    145deg,
+                    #181818 0%,
+                    #101010 55%,
+                    #090909 100%
+            );
+
+    border: 1px solid var(--contato-borda);
+    border-radius: 16px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+
+    transition:
+            transform var(--contato-transicao),
+            border-color var(--contato-transicao),
+            box-shadow var(--contato-transicao);
+}
+
+.contato-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+            90deg,
+            transparent,
+            var(--contato-dourado),
+            var(--contato-dourado-claro),
+            transparent
+    );
+
+    opacity: 0.8;
+}
+
+.contato-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(212, 175, 55, 0.55);
+
+    box-shadow:
+            0 18px 42px rgba(0, 0, 0, 0.45),
+            0 0 20px rgba(212, 175, 55, 0.06);
+}
+
+
+/* =========================================================
+   6. TÍTULOS E TEXTOS DOS CARDS
+========================================================= */
+
+.contato-card h2 {
+    margin-bottom: 20px;
+
+    color: var(--contato-dourado);
+
+    font-size: 1.55rem;
+    font-weight: 800;
+}
+
 .contato-card h3 {
-    color: var(--dourado-claro);
-    font-size: 1rem;
+    margin-top: 25px;
+    margin-bottom: 9px;
+
+    color: var(--contato-dourado-claro);
+
+    font-size: 1.02rem;
     font-weight: 750;
-    margin-top: 22px;
-    margin-bottom: 7px;
 }
-.contato-card p { color: #ddd; line-height: 1.65; }
-.contato-card hr { border-color: #444; opacity: 1; }
-.contato-card a { color: var(--dourado-claro); text-decoration: none; overflow-wrap: anywhere; }
-.contato-card a:hover { text-decoration: underline; }
-.contato-card .form-select { min-height: 48px; }
-.contato-card textarea.form-control { min-height: 130px; }
-.field-error { display: block; color: #ff8d8d; margin-top: 5px; }
-@media (max-width: 600px) {
-    main.contato { margin-top: 28px; margin-bottom: 40px; padding: 0 14px; }
-    .contato-carousel .carousel-item img { height: 220px; }
+
+.contato-card p {
+    color: #d0d0d0;
+
+    font-size: 0.94rem;
+    line-height: 1.8;
+}
+
+.contato-card hr {
+    margin: 22px 0;
+
+    border-color: rgba(212, 175, 55, 0.2);
+    opacity: 1;
+}
+
+
+/* =========================================================
+   7. LINKS E INFORMAÇÕES
+========================================================= */
+
+.contato-card a {
+    color: var(--contato-dourado-claro);
+
+    text-decoration: none;
+
+    overflow-wrap: anywhere;
+
+    transition: color var(--contato-transicao);
+}
+
+.contato-card a:hover {
+    color: var(--contato-branco);
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   8. FORMULÁRIO
+========================================================= */
+
+.contato-card .form-label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #eeeeee;
+
+    font-size: 0.92rem;
+    font-weight: 650;
+}
+
+.contato-card .form-control,
+.contato-card .form-select {
+    width: 100%;
+
+    min-height: 49px;
+
+    padding: 12px 15px;
+
+    color: #ffffff !important;
+
+    background-color: #0b0b0b !important;
+
+    border: 1px solid #383838 !important;
+    border-radius: 9px !important;
+
+    font-size: 0.94rem;
+
+    transition:
+            border-color var(--contato-transicao),
+            box-shadow var(--contato-transicao);
+}
+
+.contato-card .form-control::placeholder {
+    color: #777777;
+}
+
+.contato-card .form-control:hover,
+.contato-card .form-select:hover {
+    border-color: #77652d !important;
+}
+
+.contato-card .form-control:focus,
+.contato-card .form-select:focus {
+    color: #ffffff !important;
+
+    background-color: #101010 !important;
+
+    border-color: var(--contato-dourado) !important;
+
+    box-shadow:
+            0 0 0 3px rgba(212, 175, 55, 0.12) !important;
+
+    outline: none;
+}
+
+.contato-card .form-select option {
+    color: #ffffff;
+    background: #111111;
+}
+
+.contato-card textarea.form-control {
+    min-height: 145px;
+
+    resize: vertical;
+}
+
+.contato-card .form-text {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #999999;
+
+    font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   9. BOTÃO DE ENVIO
+========================================================= */
+
+.contato-card .btn-estetick,
+.contato-card button[type="submit"] {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 50px;
+
+    padding: 13px 20px;
+
+    color: #080808;
+
+    background: linear-gradient(
+            135deg,
+            var(--contato-dourado),
+            var(--contato-dourado-claro)
+    );
+
+    border: 1px solid var(--contato-dourado);
+    border-radius: 9px;
+
+    font-size: 0.96rem;
+    font-weight: 800;
+
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+
+    transition: var(--contato-transicao);
+}
+
+.contato-card .btn-estetick:hover,
+.contato-card button[type="submit"]:hover {
+    color: #080808;
+
+    background: linear-gradient(
+            135deg,
+            var(--contato-dourado-claro),
+            var(--contato-dourado)
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 9px 25px rgba(212, 175, 55, 0.18);
+}
+
+.contato-card .btn-estetick:active,
+.contato-card button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   10. MENSAGENS E VALIDAÇÃO
+========================================================= */
+
+.contato-card .alert {
+    border-radius: 9px;
+}
+
+.contato-card .field-error {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #ff8989;
+
+    font-size: 0.84rem;
+}
+
+.contato-card .form-control.is-invalid {
+    border-color: #dc5555 !important;
+}
+
+
+/* =========================================================
+   11. ACESSIBILIDADE
+========================================================= */
+
+.contato-card a:focus-visible,
+.contato-card button:focus-visible,
+.contato-carousel button:focus-visible {
+    outline: 2px solid var(--contato-dourado-claro);
+    outline-offset: 4px;
+}
+
+
+/* =========================================================
+   12. TABLETS
+========================================================= */
+
+@media (max-width: 768px) {
+
+    main.contato {
+        margin-top: 40px;
+        margin-bottom: 50px;
+
+        padding: 0 18px;
+    }
+
+    .contato-intro {
+        margin-bottom: 30px;
+    }
+
+    .contato-carousel {
+        margin-bottom: 30px;
+    }
+
+    .contato-carousel .carousel-item img {
+        height: 280px;
+    }
+
+    .contato-card {
+        padding: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   13. CELULARES
+========================================================= */
+
+@media (max-width: 576px) {
+
+    main.contato {
+        margin-top: 28px;
+        margin-bottom: 40px;
+
+        padding: 0 14px;
+    }
+
+    .contato-intro h1 {
+        font-size: 2.1rem;
+    }
+
+    .contato-intro > p:not(.eyebrow) {
+        font-size: 0.94rem;
+    }
+
+    .contato-carousel {
+        border-radius: 12px;
+    }
+
+    .contato-carousel .carousel-item img {
+        height: 220px;
+    }
+
+    .contato-carousel .carousel-caption {
+        bottom: 20px;
+    }
+
+    .contato-carousel .carousel-caption p {
+        font-size: 0.8rem;
+    }
+
+    .contato-card {
+        padding: 22px 18px;
+
+        border-radius: 12px;
+    }
+
+    .contato-card h2 {
+        font-size: 1.35rem;
+    }
+
+    .contato-card p {
+        font-size: 0.9rem;
+    }
+
+}
+
+
+/* =========================================================
+   14. REDUÇÃO DE MOVIMENTO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    main.contato {
+        animation: none;
+    }
+
+    .contato-card,
+    .contato-carousel img,
+    .contato-card button {
+        transition: none !important;
+    }
+
+    .contato-card:hover,
+    .contato-card button:hover {
+        transform: none;
+    }
+
+}
+
+/* =====================================================
+   FOOTER - ESTETICKELITE
+   IDENTIDADE VISUAL: PRETO + DOURADO
+===================================================== */
+
+footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 0;
+
+    background: linear-gradient(
+            135deg,
+            #030303,
+            #121212,
+            #030303
+    );
+
+    color: var(--branco);
+    border-top: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.6);
+
+    position: relative;
+}
+
+/* Linha dourada */
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+            90deg,
+            transparent,
+            var(--dourado),
+            var(--dourado-claro),
+            var(--dourado),
+            transparent
+    );
+}
+
+/* Estrutura */
+
+.footer-estetick {
+    width: 100%;
+    background: transparent;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1320px;
+    min-height: 120px;
+
+    margin: 0 auto;
+    padding: 28px 20px 18px;
+}
+
+/* Organização principal */
+
+.footer-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+/* Logo */
+
+.footer-estetick .logo-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--branco);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.footer-estetick .logo-footer:hover {
+    color: var(--branco);
+}
+
+.footer-estetick .logo-footer img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer-estetick .logo-footer > span > span {
+    color: var(--dourado);
+}
+
+/* Links */
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-estetick .footer-links a,
+.footer-estetick .nav-link {
+    color: #999999;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-estetick .footer-links a:hover,
+.footer-estetick .nav-link:hover {
+    color: var(--dourado);
+}
+
+/* Direitos autorais */
+
+.footer-estetick .copyright {
+    margin: 0;
+    color: #999999;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Linha divisória */
+
+.footer-estetick .linha-dourada {
+    margin-top: 18px;
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+/* Frase institucional */
+
+.footer-tagline {
+    margin-top: 15px;
+    padding-top: 12px;
+
+    color: var(--dourado);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Acesso administrativo */
+
+.btn-admin {
+    color: #555555;
+    font-size: 11px;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.btn-admin:hover {
+    color: var(--dourado);
+    opacity: 1;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+    .footer-container {
+        text-align: center;
+        padding: 25px 16px 18px;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 12px 18px;
+    }
+
+    .footer-estetick .copyright {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer-links {
+        gap: 10px 14px;
+    }
+
+    .footer-estetick .footer-links a {
+        font-size: 12px;
+    }
 }

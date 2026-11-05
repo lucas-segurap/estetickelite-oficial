@@ -60,69 +60,93 @@ img {
    3. CABEÇALHO
 ===================================================== */
 
-header {
-    position: relative;
-    z-index: 10;
-    width: 100%;
+/* =====================================================
+   HEADER - ESTETICKELITE
+   IDENTIDADE VISUAL: PRETO + DOURADO
+===================================================== */
 
-    background-color: var(--preto-secundario);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-}
-
+header,
 .header-estetick {
     width: 100%;
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 0 20px;
+    background: linear-gradient(135deg, #030303, #111111, #050505);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 1000;
 }
 
-.header-container {
-    min-height: 90px;
+/* Linha dourada */
+
+.header-estetick::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            var(--dourado),
+            var(--dourado-claro),
+            var(--dourado),
+            transparent
+    );
+}
+
+/* Container */
+
+.header-estetick .header-container {
+    width: 100%;
+    max-width: 1320px;
+    min-height: 85px;
+    margin: 0 auto;
+    padding: 15px 20px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    gap: 24px;
-    padding: 15px 0;
+    gap: 30px;
 }
 
 /* Logo */
 
-.logo-estetick {
+.header-estetick .logo-estetick {
     display: inline-flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+
+    color: var(--branco);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
     flex-shrink: 0;
 
-    color: var(--branco);
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: 0.3px;
-    text-decoration: none;
+    transition: transform 0.3s ease;
 }
 
-.logo-estetick:hover {
+.header-estetick .logo-estetick:hover {
     color: var(--branco);
+    transform: translateY(-2px);
 }
 
-.logo-estetick img {
-    width: 48px;
-    height: 48px;
+.header-estetick .logo-estetick img {
+    width: 52px;
+    height: 52px;
     object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.25));
 }
 
-.logo-estetick > span > span {
+.header-estetick .logo-estetick > span > span {
     color: var(--dourado);
 }
 
 /* Navegação */
 
-.header-container nav {
+.header-estetick nav {
     min-width: 0;
 }
 
-.nav-estetick {
+.header-estetick .nav-estetick {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,101 +158,153 @@ header {
     list-style: none;
 }
 
-.nav-estetick li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.header-container nav .nav-estetick a {
+.header-estetick .nav-estetick a {
     position: relative;
     display: inline-block;
-    padding: 8px 0;
+    padding: 10px 0;
 
     color: var(--cinza-texto);
-    font-size: 0.94rem;
+    font-size: 15px;
     font-weight: 600;
     text-decoration: none;
 
-    transition: color var(--transicao);
+    transition: color 0.3s ease;
 }
 
-.header-container nav .nav-estetick a::after {
+.header-estetick .nav-estetick a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 3px;
 
     width: 0;
     height: 2px;
 
-    background-color: var(--dourado);
-    transition: width var(--transicao);
+    background: var(--dourado);
+    transition: width 0.3s ease;
 }
 
-.header-container nav .nav-estetick a:hover,
-.header-container nav .nav-estetick a.active {
+.header-estetick .nav-estetick a:hover,
+.header-estetick .nav-estetick a.active {
     color: var(--dourado);
 }
 
-.header-container nav .nav-estetick a:hover::after,
-.header-container nav .nav-estetick a.active::after {
+.header-estetick .nav-estetick a:hover::after,
+.header-estetick .nav-estetick a.active::after {
     width: 100%;
 }
 
-/* Botões do cabeçalho */
+/* Botões */
 
-.botoes-header {
+.header-estetick .botoes-header {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     flex-shrink: 0;
-    gap: 16px;
 }
 
-.btn-cadastrar,
-.btn-agendar {
-    min-height: 40px;
-
+.header-estetick .botoes-header a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 9px 16px;
-    border: 1px solid var(--dourado);
-    border-radius: 6px;
+    min-height: 40px;
+    padding: 10px 18px;
 
-    font-size: 0.85rem;
+    border-radius: 7px;
+    font-size: 14px;
     font-weight: 700;
-    white-space: nowrap;
     text-decoration: none;
+    white-space: nowrap;
 
-    transition:
-            color var(--transicao),
-            background-color var(--transicao),
-            transform var(--transicao);
+    transition: all 0.3s ease;
 }
 
-.btn-cadastrar {
+/* Cadastrar */
+
+.header-estetick .btn-cadastrar {
     color: var(--dourado);
-    background-color: transparent;
+    background: transparent;
+    border: 1px solid var(--dourado);
 }
 
-.btn-cadastrar:hover {
+.header-estetick .btn-cadastrar:hover {
     color: var(--preto);
-    background-color: var(--dourado);
-}
-
-.btn-agendar {
-    color: var(--preto);
-    background-color: var(--dourado);
-}
-
-.btn-agendar:hover {
-    color: var(--preto);
-    background-color: var(--dourado-claro);
+    background: var(--dourado);
     transform: translateY(-2px);
 }
+
+/* Agendar */
+
+.header-estetick .btn-agendar {
+    color: var(--preto);
+    background: linear-gradient(135deg, var(--dourado), #b89428);
+    border: 1px solid var(--dourado);
+}
+
+.header-estetick .btn-agendar:hover {
+    color: #000000;
+    background: linear-gradient(135deg, var(--dourado-claro), var(--dourado));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(212, 175, 55, 0.25);
+}
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+    .header-estetick .header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px 24px;
+    }
+
+    .header-estetick .logo-estetick {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .header-estetick .nav-estetick {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-estetick .header-container {
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px 10px;
+    }
+
+    .header-estetick .logo-estetick img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .header-estetick .logo-estetick {
+        font-size: 19px;
+    }
+
+    .header-estetick .nav-estetick {
+        width: 100%;
+        gap: 8px 16px;
+    }
+
+    .header-estetick .nav-estetick a {
+        font-size: 14px;
+    }
+
+    .header-estetick .botoes-header {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .header-estetick .botoes-header a {
+        flex: 1;
+        max-width: 160px;
+    }
+}
+
 
 /* =====================================================
    4. CONTEÚDO PRINCIPAL
@@ -461,98 +537,7 @@ header {
     text-decoration: underline;
 }
 
-/* =====================================================
-   6. RODAPÉ
-===================================================== */
 
-footer {
-    width: 100%;
-    margin-top: auto;
-
-    background-color: var(--preto-secundario);
-    border-top: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-.footer-estetick {
-    width: 100%;
-}
-
-.footer-container {
-    width: 100%;
-    max-width: 1320px;
-    margin: 0 auto;
-    padding: 22px 20px 18px;
-}
-
-.footer-main {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 22px;
-}
-
-.footer-container .copyright {
-    margin: 0;
-    color: #999999;
-    font-size: 0.82rem;
-}
-
-.logo-footer {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-
-    color: var(--branco);
-    font-size: 1.05rem;
-    font-weight: 800;
-    text-decoration: none;
-}
-
-.logo-footer:hover {
-    color: var(--branco);
-}
-
-.logo-footer img {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-}
-
-.logo-footer > span > span {
-    color: var(--dourado);
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px 16px;
-
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.footer-links a {
-    color: #aaaaaa;
-    font-size: 0.82rem;
-}
-
-.footer-links a:hover {
-    color: var(--dourado);
-}
-
-.footer-tagline {
-    margin-top: 16px;
-    padding-top: 12px;
-
-    color: var(--dourado);
-    font-size: 0.82rem;
-    text-align: center;
-
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-}
 
 /* =====================================================
    7. ACESSIBILIDADE
@@ -686,5 +671,208 @@ input:focus-visible {
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+    }
+}
+
+/* =====================================================
+   FOOTER - ESTETICKELITE
+   IDENTIDADE VISUAL: PRETO + DOURADO
+===================================================== */
+
+footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 0;
+
+    background: linear-gradient(
+            135deg,
+            #030303,
+            #121212,
+            #030303
+    );
+
+    color: var(--branco);
+    border-top: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.6);
+
+    position: relative;
+}
+
+/* Linha dourada */
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+            90deg,
+            transparent,
+            var(--dourado),
+            var(--dourado-claro),
+            var(--dourado),
+            transparent
+    );
+}
+
+/* Estrutura */
+
+.footer-estetick {
+    width: 100%;
+    background: transparent;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1320px;
+    min-height: 120px;
+
+    margin: 0 auto;
+    padding: 28px 20px 18px;
+}
+
+/* Organização principal */
+
+.footer-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+/* Logo */
+
+.footer-estetick .logo-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--branco);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.footer-estetick .logo-footer:hover {
+    color: var(--branco);
+}
+
+.footer-estetick .logo-footer img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer-estetick .logo-footer > span > span {
+    color: var(--dourado);
+}
+
+/* Links */
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-estetick .footer-links a,
+.footer-estetick .nav-link {
+    color: #999999;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-estetick .footer-links a:hover,
+.footer-estetick .nav-link:hover {
+    color: var(--dourado);
+}
+
+/* Direitos autorais */
+
+.footer-estetick .copyright {
+    margin: 0;
+    color: #999999;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Linha divisória */
+
+.footer-estetick .linha-dourada {
+    margin-top: 18px;
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+/* Frase institucional */
+
+.footer-tagline {
+    margin-top: 15px;
+    padding-top: 12px;
+
+    color: var(--dourado);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Acesso administrativo */
+
+.btn-admin {
+    color: #555555;
+    font-size: 11px;
+    text-decoration: none;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.btn-admin:hover {
+    color: var(--dourado);
+    opacity: 1;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+    .footer-container {
+        text-align: center;
+        padding: 25px 16px 18px;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 12px 18px;
+    }
+
+    .footer-estetick .copyright {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer-links {
+        gap: 10px 14px;
+    }
+
+    .footer-estetick .footer-links a {
+        font-size: 12px;
     }
 }

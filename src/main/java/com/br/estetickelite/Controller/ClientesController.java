@@ -1,18 +1,17 @@
-
 package com.br.estetickelite.Controller;
 
 import com.br.estetickelite.Model.Clientes;
+import com.br.estetickelite.Model.Veiculo;
 import com.br.estetickelite.Service.ClientesService;
-
-import jakarta.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -29,22 +28,26 @@ public class ClientesController {
     // Exibe o formulário de cadastro
     @GetMapping("/cadastro")
     public String cadastro(Model model) {
+
         model.addAttribute("cliente", new Clientes());
+        model.addAttribute("veiculo", new Veiculo());
+
         return "cadastro";
     }
 
-    // Recebe e valida os dados do formulário
+    // Recebe e salva cliente e veículo
     @PostMapping("/cadastro")
     public String salvar(
-            @ModelAttribute("cliente") Clientes cliente,
-            BindingResult resultado,
-            @RequestParam("confirmarSenha") String confirmarSenha,
-            Model model,
-            RedirectAttributes redirectAttributes) {
 
-        if (resultado.hasErrors()) {
-            return "cadastro";
-        }
+            @ModelAttribute("cliente") Clientes cliente,
+
+            @ModelAttribute("veiculo") Veiculo veiculo,
+
+            @RequestParam("confirmarSenha") String confirmarSenha,
+
+            Model model,
+
+            RedirectAttributes redirectAttributes) {
 
         // Confere se as senhas são iguais
         if (cliente.getSenha() == null
@@ -80,8 +83,8 @@ public class ClientesController {
             return "cadastro";
         }
 
-        // Salva o cliente e criptografa a senha no serviço
-        clientesService.salvar(cliente);
+        // Salva cliente e veículo juntos
+        clientesService.salvarComVeiculo(cliente, veiculo);
 
         redirectAttributes.addFlashAttribute(
                 "mensagem",

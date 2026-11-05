@@ -7,6 +7,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "veiculos")
@@ -27,6 +29,18 @@ public class Veiculo {
 
     private String cor;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Clientes cliente;
+
+
+    public Clientes getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Clientes cliente) {
+        this.cliente = cliente;
+    }
     // Construtor vazio obrigatório para o JPA
     public Veiculo() {
     }
