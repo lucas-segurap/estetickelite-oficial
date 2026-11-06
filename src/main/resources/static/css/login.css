@@ -516,68 +516,159 @@ main {
 /* =========================================================
    16. RODAPÉ
    ========================================================= */
+/* =====================================================
+   ESTETICKELITE — FOOTER
+   IDENTIDADE VISUAL: PRETO + DOURADO
+===================================================== */
+
+
+/* =====================================================
+   FOOTER PRINCIPAL
+===================================================== */
 
 footer {
     width: 100%;
-    margin-top: auto;
-
-    background-color: var(--preto-secundario);
-    border-top: 1px solid rgba(212, 175, 55, 0.35);
+    background: linear-gradient(135deg, #030303, #121212, #030303);
+    color: #ffffff;
+    border-top: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.6);
+    position: relative;
+    padding: 35px 0;
 }
+
+
+/* =====================================================
+   LINHA DOURADA
+===================================================== */
+
+footer::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #d4af37,
+        #f0d56a,
+        #d4af37,
+        transparent
+    );
+}
+
+
+/* =====================================================
+   FOOTER ESTETICK
+===================================================== */
 
 .footer-estetick {
-    width: 100%;
+    background-color: #000000;
+    border-top: 1px solid #2b2b2b;
+    color: #ffffff;
 }
 
-.footer-container {
-    padding-top: 10px;
-    padding-bottom: 10px;
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.footer-estetick .footer-container {
+    min-height: 120px;
 }
 
-.footer-main {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
 
-    gap: 20px;
-    padding-top: 22px;
-    padding-bottom: 22px;
+/* =====================================================
+   LOGO
+===================================================== */
+
+.footer-estetick .logo-footer {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
-.copyright {
-    margin: 0;
 
-    color: #a9a9a9;
-    font-size: 0.83rem;
+.footer-estetick .logo-footer span {
+    color: #d4af37;
 }
 
-.logo-footer {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 
-    gap: 9px;
+/* =====================================================
+   DIREITOS AUTORAIS
+===================================================== */
 
-    color: var(--branco);
-    font-size: 1.1rem;
-    font-weight: 800;
+.footer-estetick .copyright {
+    color: #999999;
+    font-size: 14px;
 }
 
-.logo-footer img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+.footer-estetick .nav-link {
+    color: #999999 !important;
+    transition: 0.3s;
+    font-size: 14px;
 }
 
-.logo-footer span span {
-    color: var(--dourado);
+
+.footer-estetick .nav-link:hover {
+    color: #d4af37 !important;
 }
 
-.logo-footer:hover {
-    color: var(--dourado-claro);
+
+/* =====================================================
+   LINHA DOURADA
+===================================================== */
+
+.footer-estetick .linha-dourada {
+    border-top: 1px solid #d4af37;
 }
 
+
+/* =====================================================
+   BOTÃO ADMINISTRATIVO
+===================================================== */
+
+.btn-admin {
+    color: #555555;
+    text-decoration: none;
+    font-size: 11px;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+
+.btn-admin:hover {
+    color: #d4af37;
+    opacity: 1;
+}
+
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .footer-estetick .footer-container {
+        text-align: center;
+    }
+
+    .footer-estetick .nav {
+        justify-content: center !important;
+        margin-top: 15px;
+    }
+
+}
 
 /* =========================================================
    17. LINKS DO RODAPÉ
