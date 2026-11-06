@@ -598,204 +598,155 @@ main.contato {
 }
 
 /* =====================================================
-   FOOTER - ESTETICKELITE
+   ESTETICKELITE — FOOTER
    IDENTIDADE VISUAL: PRETO + DOURADO
+===================================================== */
+
+
+/* =====================================================
+   FOOTER PRINCIPAL
 ===================================================== */
 
 footer {
     width: 100%;
-    margin-top: auto;
-    padding: 0;
-
-    background: linear-gradient(
-            135deg,
-            #030303,
-            #121212,
-            #030303
-    );
-
-    color: var(--branco);
+    background: linear-gradient(135deg, #030303, #121212, #030303);
+    color: #ffffff;
     border-top: 1px solid rgba(212, 175, 55, 0.45);
     box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.6);
-
     position: relative;
+    padding: 35px 0;
 }
 
-/* Linha dourada */
+
+/* =====================================================
+   LINHA DOURADA
+===================================================== */
 
 footer::before {
     content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
     position: absolute;
     top: 0;
     left: 0;
 
-    width: 100%;
-    height: 2px;
-
     background: linear-gradient(
-            90deg,
-            transparent,
-            var(--dourado),
-            var(--dourado-claro),
-            var(--dourado),
-            transparent
+        90deg,
+        transparent,
+        #d4af37,
+        #f0d56a,
+        #d4af37,
+        transparent
     );
 }
 
-/* Estrutura */
+
+/* =====================================================
+   FOOTER ESTETICK
+===================================================== */
 
 .footer-estetick {
-    width: 100%;
-    background: transparent;
+    background-color: #000000;
+    border-top: 1px solid #2b2b2b;
+    color: #ffffff;
 }
 
-.footer-container {
-    width: 100%;
-    max-width: 1320px;
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.footer-estetick .footer-container {
     min-height: 120px;
-
-    margin: 0 auto;
-    padding: 28px 20px 18px;
 }
 
-/* Organização principal */
 
-.footer-main {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 22px;
-}
-
-/* Logo */
+/* =====================================================
+   LOGO
+===================================================== */
 
 .footer-estetick .logo-footer {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-
-    color: var(--branco);
+    text-decoration: none;
+    color: #ffffff;
     font-size: 20px;
-    font-weight: 800;
+    font-weight: bold;
     letter-spacing: 1px;
-    text-decoration: none;
 }
 
-.footer-estetick .logo-footer:hover {
-    color: var(--branco);
+
+.footer-estetick .logo-footer span {
+    color: #d4af37;
 }
 
-.footer-estetick .logo-footer img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-}
 
-.footer-estetick .logo-footer > span > span {
-    color: var(--dourado);
-}
-
-/* Links */
-
-.footer-links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px 20px;
-
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.footer-estetick .footer-links a,
-.footer-estetick .nav-link {
-    color: #999999;
-    font-size: 14px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-estetick .footer-links a:hover,
-.footer-estetick .nav-link:hover {
-    color: var(--dourado);
-}
-
-/* Direitos autorais */
+/* =====================================================
+   DIREITOS AUTORAIS
+===================================================== */
 
 .footer-estetick .copyright {
-    margin: 0;
     color: #999999;
-    font-size: 13px;
-    text-align: center;
+    font-size: 14px;
 }
 
-/* Linha divisória */
+
+/* =====================================================
+   LINKS
+===================================================== */
+
+.footer-estetick .nav-link {
+    color: #999999 !important;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+
+.footer-estetick .nav-link:hover {
+    color: #d4af37 !important;
+}
+
+
+/* =====================================================
+   LINHA DOURADA
+===================================================== */
 
 .footer-estetick .linha-dourada {
-    margin-top: 18px;
-    border-top: 1px solid rgba(212, 175, 55, 0.25);
+    border-top: 1px solid #d4af37;
 }
 
-/* Frase institucional */
 
-.footer-tagline {
-    margin-top: 15px;
-    padding-top: 12px;
-
-    color: var(--dourado);
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-}
-
-/* Acesso administrativo */
+/* =====================================================
+   BOTÃO ADMINISTRATIVO
+===================================================== */
 
 .btn-admin {
     color: #555555;
-    font-size: 11px;
     text-decoration: none;
+    font-size: 11px;
     opacity: 0.5;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
+
 .btn-admin:hover {
-    color: var(--dourado);
+    color: #d4af37;
     opacity: 1;
 }
 
-/* Responsividade */
+
+/* =====================================================
+   RESPONSIVIDADE
+===================================================== */
 
 @media (max-width: 768px) {
-    .footer-container {
+
+    .footer-estetick .footer-container {
         text-align: center;
-        padding: 25px 16px 18px;
     }
 
-    .footer-main {
-        flex-direction: column;
-        justify-content: center;
-        gap: 18px;
+    .footer-estetick .nav {
+        justify-content: center !important;
+        margin-top: 15px;
     }
 
-    .footer-links {
-        justify-content: center;
-        gap: 12px 18px;
-    }
-
-    .footer-estetick .copyright {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 400px) {
-    .footer-links {
-        gap: 10px 14px;
-    }
-
-    .footer-estetick .footer-links a {
-        font-size: 12px;
-    }
 }
